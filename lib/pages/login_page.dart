@@ -20,47 +20,60 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Color(0xFFFFFFFF),
         body: SafeArea(
           child: Center(
+            child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // logo
-                  Icon(Icons.account_circle,
-                      size: 100, color: Colors.grey[300]),
+                  // App Logo
+                  Image.asset(
+                    'assets/icon.png',  
+                    width: 100,            
+                    height: 100,
+                  ),
 
                   const SizedBox(height: 50),
-                  // welcome back message
+
+                  // Welcome message
                   const Text('Selamat Datang!',
                       style: TextStyle(
+                        fontFamily: 'Roboto', 
+                        fontSize:25,
+                        fontWeight: FontWeight.bold,
                         color: Colors.black,
                       )),
 
                   const SizedBox(height: 25),
-                  // email field
+                  
+                  // Email field
                   MyTextField(
                       controller: emailController,
                       hintText: 'Username',
                       obscureText: false),
 
                   const SizedBox(height: 10),
-                  // password field
+
+                  // Password field
                   MyTextField(
                       controller: passwordController,
                       hintText: 'Password',
                       obscureText: true),
 
                   const SizedBox(height: 10),
-                  // sign in button
+
+                  // Sign in button
                   MyButton(onTap: () {}, text: 'Masuk'),
 
                   const SizedBox(height: 25),
-                  // register page
+
+                  // Register option
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text('Belum punya akun?',
                           style: TextStyle(
+                            fontFamily: 'Roboto',
                             color: Colors.black,
                           )),
                       const SizedBox(width: 4),
@@ -69,6 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: const Text(
                             'Daftar Sekarang!',
                             style: TextStyle(
+                              fontFamily: 'Roboto',
                               color: Color(0xFF4285F4),
                               fontWeight: FontWeight.bold,
                             ),
@@ -79,6 +93,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-        ));
+        )));
   }
 }
