@@ -18,82 +18,109 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFFFFFFF),
-        body: SafeArea(
-          child: Center(
+      backgroundColor: Color(0xFFFFFFFF),
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView( // Make the scrolling responsive for all screen types
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // logo
-                  Icon(Icons.account_circle,
-                      size: 100, color: Colors.grey[300]),
+                  // Account Icon
+                  Image.asset(
+                    'assets/account.png',  
+                    width: 100,            
+                    height: 100,
+                  ),
 
                   const SizedBox(height: 50),
-                  // welcome back message
-                  const Text('Mari Daftar!',
-                      style: TextStyle(
-                        color: Colors.black,
-                      )),
+
+                  // Welcome message
+                  const Text(
+                    'Daftar Akun Baru',
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    ),
+                  ),
 
                   const SizedBox(height: 25),
-                  // username field
+
+                  // Username field
                   MyTextField(
-                      controller: emailController,
-                      hintText: 'Username',
-                      obscureText: false),
+                    controller: emailController,
+                    hintText: 'Username',
+                    obscureText: false,
+                  ),
 
                   const SizedBox(height: 10),
-                  // email field
+
+                  // Email field
                   MyTextField(
-                      controller: emailController,
-                      hintText: 'Email',
-                      obscureText: false),
+                    controller: emailController,
+                    hintText: 'Email',
+                    obscureText: false,
+                  ),
 
                   const SizedBox(height: 10),
-                  // password field
+
+                  // Password field
                   MyTextField(
-                      controller: passwordController,
-                      hintText: 'Password',
-                      obscureText: true),
+                    controller: passwordController,
+                    hintText: 'Password',
+                    obscureText: true,
+                  ),
 
                   const SizedBox(height: 10),
-                  // confirm password field
+
+                  // Confirm password field
                   MyTextField(
-                      controller: confirmPasswordController,
-                      hintText: ' Confirm Password',
-                      obscureText: true),
+                    controller: confirmPasswordController,
+                    hintText: 'Confirm Password',
+                    obscureText: true,
+                  ),
 
                   const SizedBox(height: 10),
-                  // sign in button
+
+                  // Sign up button
                   MyButton(onTap: () {}, text: 'Daftar'),
 
                   const SizedBox(height: 25),
-                  // register page
+
+                  // Login Option
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Sudah Punya Akun?',
-                          style: TextStyle(
-                            color: Colors.black,
-                          )),
+                      const Text(
+                        'Sudah Punya Akun?',
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          color: Colors.black,
+                        ),
+                      ),
                       const SizedBox(width: 4),
                       GestureDetector(
-                          onTap: widget.onTap,
-                          child: const Text(
-                            'Masuk Sekarang!',
-                            style: TextStyle(
-                              color: Color(0xFF4285F4),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
+                        onTap: widget.onTap,
+                        child: const Text(
+                          'Masuk Sekarang',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            color: Color(0xFF4285F4),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ],
               ),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
