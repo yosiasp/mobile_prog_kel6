@@ -35,10 +35,10 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 50),
 
-                  // Welcome message
-                  const Text('Selamat Datang!',
+                  // App Title
+                  const Text('YouGallery',
                       style: TextStyle(
-                        fontFamily: 'Roboto', 
+                        fontFamily: 'Suse', 
                         fontSize:25,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 25),
                   
-                  // Email field
+                  // Email Field
                   MyTextField(
                       controller: emailController,
                       hintText: 'Username',
@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 10),
 
-                  // Password field
+                  // Password Field
                   MyTextField(
                       controller: passwordController,
                       hintText: 'Password',
@@ -62,12 +62,12 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 10),
 
-                  // Sign in button
+                  // Sign In Button
                   MyButton(onTap: () {}, text: 'Masuk'),
 
                   const SizedBox(height: 25),
 
-                  // Register option
+                  // Register Option
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
