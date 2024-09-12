@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uts_mobile_prog/pages/profile_page.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
 
@@ -17,10 +18,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFFFFFFF),
+        backgroundColor: const Color(0xFFFFFFFF),
         body: SafeArea(
-          child: Center(
-            child: SingleChildScrollView(
+            child: Center(
+          child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Column(
@@ -28,8 +29,8 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   // App Logo
                   Image.asset(
-                    'assets/icon.png',  
-                    width: 100,            
+                    'assets/icon.png',
+                    width: 100,
                     height: 100,
                   ),
 
@@ -38,14 +39,14 @@ class _LoginPageState extends State<LoginPage> {
                   // App Title
                   const Text('YouGallery',
                       style: TextStyle(
-                        fontFamily: 'Suse', 
-                        fontSize:25,
+                        fontFamily: 'Suse',
+                        fontSize: 25,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       )),
 
                   const SizedBox(height: 25),
-                  
+
                   // Email Field
                   MyTextField(
                       controller: emailController,
@@ -63,7 +64,14 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 10),
 
                   // Sign In Button
-                  MyButton(onTap: () {}, text: 'Masuk'),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProfilePage()));
+                      },
+                      child: Text('Masuk')),
 
                   const SizedBox(height: 25),
 

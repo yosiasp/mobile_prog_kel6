@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
-  final Function()? onTap;
+  final Function()? onPressed;
   final String text;
-  const MyButton({super.key, required this.onTap, required this.text});
+  const MyButton({super.key, required this.onPressed, required this.text});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(25),
+      padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(
-        color: Color(0xFF4285F4),
+        color: const Color(0xFF4285F4),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Center(

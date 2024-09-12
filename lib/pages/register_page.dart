@@ -19,7 +19,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView( 
@@ -29,7 +29,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                 Container(
                   width: double.infinity,
                   height: 300, 
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/register-bg.JPG'), 
                       fit: BoxFit.cover,
@@ -82,9 +82,9 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                       const SizedBox(height: 100),
 
                       // Register title
-                      Align(
+                      const Align(
                         alignment: Alignment.centerLeft, 
-                        child: const Text(
+                        child: Text(
                           'Daftar Akun Baru',
                           style: TextStyle(
                             fontFamily: 'Roboto',
@@ -134,7 +134,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                       const SizedBox(height: 10),
 
                       // Sign Up Button
-                      MyButton(onTap: () {}, text: 'Daftar'),
+                      MyButton(onPressed: () {}, text: 'Daftar'),
 
                       const SizedBox(height: 25),
 

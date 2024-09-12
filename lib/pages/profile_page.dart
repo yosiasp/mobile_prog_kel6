@@ -1,31 +1,27 @@
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
-    final Function()? onTap;
-    const ProfilePage({super.key, required this.onTap});
+  const ProfilePage({super.key});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: Icon(Icons.arrow_back, color: Colors.black),
-        title: Text(
+        leading: const Icon(Icons.arrow_back, color: Colors.black),
+        title: const Text(
           'Username',
-          style: TextStyle(
-            fontFamily: 'Roboto', 
-            color: Colors.black),
+          style: TextStyle(fontFamily: 'Roboto', color: Colors.black),
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.more_vert, color: Colors.black),
+            icon: const Icon(Icons.more_vert, color: Colors.black),
             onPressed: () {},
           ),
         ],
@@ -37,15 +33,15 @@ class _ProfilePageState extends State<ProfilePage> {
               padding: const EdgeInsets.all(16.0),
               child: Row(
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 40,
                     backgroundImage: AssetImage('assets/profile.jpg'),
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   Expanded(
                     child: Column(
                       children: [
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             ProfileInfo(number: '100', label: 'Posts'),
@@ -53,10 +49,10 @@ class _ProfilePageState extends State<ProfilePage> {
                             ProfileInfo(number: '180', label: 'Following'),
                           ],
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         ElevatedButton(
                           onPressed: () {},
-                          child: Text('Edit Profile'),
+                          child: const Text('Edit Profile'),
                         ),
                       ],
                     ),
@@ -64,24 +60,25 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Full Name', style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text('Full Name',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                     Text('My bio blablabla'),
                   ],
                 ),
               ),
             ),
-            Divider(),
+            const Divider(),
             GridView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 mainAxisSpacing: 2,
                 crossAxisSpacing: 2,
@@ -108,7 +105,7 @@ class ProfileInfo extends StatelessWidget {
   final String number;
   final String label;
 
-  const ProfileInfo({required this.number, required this.label});
+  const ProfileInfo({super.key, required this.number, required this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -116,11 +113,11 @@ class ProfileInfo extends StatelessWidget {
       children: [
         Text(
           number,
-          style: TextStyle(
-            fontFamily: 'Roboto', 
+          style: const TextStyle(
+            fontFamily: 'Roboto',
             fontSize: 18,
-            fontWeight: FontWeight.bold, 
-            ),
+            fontWeight: FontWeight.bold,
+          ),
         ),
         Text(label),
       ],
