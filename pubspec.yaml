@@ -61,6 +61,7 @@ flutter:
   assets:
     - assets/icon.png
     - assets/account.png
+    - assets/register-bg.JPG
 
   fonts:
     - family: Roboto
@@ -70,6 +71,11 @@ flutter:
           weight: 700
         - asset: fonts/Roboto-Italic.ttf
           style: italic
+    - family: Suse
+      fonts:
+        - asset: fonts/SUSE-Regular.ttf
+        - asset: fonts/SUSE-Bold.ttf
+          weight: 700
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
