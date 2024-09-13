@@ -61,7 +61,7 @@ flutter:
   assets:
     - assets/icon.png
     - assets/account.png
-    - assets/register-bg.JPG
+    - assets/register-bg.jpg
 
   fonts:
     - family: Roboto
