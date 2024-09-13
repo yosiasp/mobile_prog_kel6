@@ -14,11 +14,15 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const Icon(Icons.arrow_back, color: Colors.black),
+        leading: const Icon(Icons.menu, color: Colors.black),
         title: const Text(
           'Username',
-          style: TextStyle(fontFamily: 'Roboto', color: Colors.black),
+          style: TextStyle(
+            fontSize: 22,
+            fontFamily: 'Suse', 
+            color: Colors.black),
         ),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.more_vert, color: Colors.black),
@@ -31,32 +35,51 @@ class _ProfilePageState extends State<ProfilePage> {
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Row(
+              child: Column(
                 children: [
+                  // Profile Picture
                   const CircleAvatar(
-                    radius: 40,
+                    radius: 45,
                     backgroundImage: AssetImage('assets/profile.jpg'),
                   ),
-                  const SizedBox(width: 20),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ProfileInfo(number: '100', label: 'Posts'),
-                            ProfileInfo(number: '250', label: 'Followers'),
-                            ProfileInfo(number: '180', label: 'Following'),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: const Text('Edit Profile'),
-                        ),
+
+                  const SizedBox(height: 25),
+
+                  // Account Information 
+                  const Padding(
+                    padding: const EdgeInsets.only(left: 25.0), 
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const [
+                        ProfileInfo(number: '48', label: 'Posts'),
+                        ProfileInfo(number: '5.1K', label: 'Subscribers'),
+                        ProfileInfo(number: '180', label: 'Subscribing'),
                       ],
                     ),
                   ),
+
+                  const SizedBox(height: 25), 
+
+                  // Edit Profile Button
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16), 
+                      ),
+                    ),
+                    child: const Text(
+                      'Edit Profile',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Color(0xFF4285F4),
+                        fontWeight: FontWeight.bold, 
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 8), 
                 ],
               ),
             ),
@@ -68,8 +91,19 @@ class _ProfilePageState extends State<ProfilePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('Full Name',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text('My bio blablabla'),
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.bold,
+                          )
+                        ),
+                    Text('My bio blablabla',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.w500,
+                          )
+                        ),
                   ],
                 ),
               ),
@@ -115,8 +149,8 @@ class ProfileInfo extends StatelessWidget {
           number,
           style: const TextStyle(
             fontFamily: 'Roboto',
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
+            fontSize: 19,
+            fontWeight: FontWeight.w600,
           ),
         ),
         Text(label),
