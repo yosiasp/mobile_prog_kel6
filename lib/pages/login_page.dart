@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
@@ -66,11 +68,14 @@ class _LoginPageState extends State<LoginPage> {
                   // Sign In Button
                   MyButton(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ProfilePage()),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const ProfilePage()),
+                        // );
+
+                        // ini masih error mik soalnya kalo di aktifin button daftarya juga ke home
+                        // berarti masih satu ontap gitu mik sementara gue komen dulu aja ya
                       },
                       text: 'Masuk'),
 
