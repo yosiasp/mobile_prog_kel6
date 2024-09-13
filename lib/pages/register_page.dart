@@ -134,7 +134,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                       const SizedBox(height: 10),
 
                       // Sign Up Button
-                      MyButton(onPressed: () {}, text: 'Daftar'),
+                      MyButton(onTap: () {}, text: 'Daftar'),
 
                       const SizedBox(height: 25),
 

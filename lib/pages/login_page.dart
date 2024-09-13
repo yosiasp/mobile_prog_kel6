@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:uts_mobile_prog/pages/profile_page.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
 
@@ -64,14 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 10),
 
                   // Sign In Button
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ProfilePage()));
-                      },
-                      child: Text('Masuk')),
+                  MyButton(onTap: () {}, text: 'Masuk'),
 
                   const SizedBox(height: 25),
 
