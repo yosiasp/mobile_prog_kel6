@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
+import 'profile_page.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -63,7 +64,12 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 15),
 
                   // Sign In Button
-                  MyButton(onTap: () {}, text: 'Masuk'),
+                  MyButton(onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProfilePage()), 
+                    );
+                  }, text: 'Masuk'),
 
                   const SizedBox(height: 25),
 
