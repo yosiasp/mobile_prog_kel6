@@ -1,3 +1,4 @@
+// ignore: unnecessary_import
 import 'dart:ui'; // Required for using BackdropFilter
 import 'package:flutter/material.dart';
 import '../components/text_field.dart';
@@ -13,6 +14,7 @@ class MyRegisterPage extends StatefulWidget {
 
 class _MyRegisterPageState extends State<MyRegisterPage> {
   final emailController = TextEditingController();
+  final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
@@ -22,20 +24,19 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: Center(
-          child: SingleChildScrollView( 
+          child: SingleChildScrollView(
             child: Stack(
               children: [
                 // Background Image For Header
                 Container(
                   width: double.infinity,
-                  height: 300, 
+                  height: 300,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/register-bg.JPG'), 
+                      image: AssetImage('assets/register-bg.JPG'),
                       fit: BoxFit.cover,
                     ),
                   ),
-
                 ),
 
                 // Header With Background Image
@@ -44,12 +45,12 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 50), 
+                      const SizedBox(height: 50),
 
                       // Account Icon
                       Image.asset(
-                        'assets/icon.png',  
-                        width: 100,            
+                        'assets/icon.png',
+                        width: 100,
                         height: 100,
                       ),
 
@@ -83,7 +84,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
 
                       // Register title
                       const Align(
-                        alignment: Alignment.centerLeft, 
+                        alignment: Alignment.centerLeft,
                         child: Text(
                           'Daftar Akun Baru',
                           style: TextStyle(
@@ -108,7 +109,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
 
                       // Email Field
                       MyTextField(
-                        controller: emailController,
+                        controller: usernameController,
                         hintText: 'Email',
                         obscureText: false,
                       ),

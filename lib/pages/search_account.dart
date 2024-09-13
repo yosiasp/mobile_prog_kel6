@@ -18,8 +18,9 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
             onPressed: () {
               showSearch(
-                  context: context,
-                  delegate: CustomSearchDelegate(),);
+                context: context,
+                delegate: CustomSearchDelegate(),
+              );
             },
             icon: const Icon(Icons.search),
           ),
@@ -30,12 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class CustomSearchDelegate extends SearchDelegate {
-  List<String> searchTerms = [
-    'Adi',
-    'Budi',
-    'Coco',
-    'Dodi'
-  ];
+  List<String> searchTerms = ['Adi', 'Budi', 'Coco', 'Dodi'];
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
