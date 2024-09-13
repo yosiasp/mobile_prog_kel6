@@ -33,10 +33,11 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                   height: 300,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/register-bg.JPG'),
+                      image: AssetImage('assets/register-bg.JPG'), 
                       fit: BoxFit.cover,
                     ),
                   ),
+
                 ),
 
                 // Header With Background Image
@@ -61,9 +62,16 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                         'YouGallery',
                         style: TextStyle(
                           fontFamily: 'Suse',
-                          color: Colors.black,
+                          color: Colors.lightBlue,
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black87, // Shadow color
+                              offset: Offset(2, 2), // Shadow position: X and Y
+                              blurRadius: 5, // Shadow blur
+                            ),
+                          ],
                         ),
                       ),
 
@@ -74,9 +82,16 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                         'Share your Gallery, Share YOU',
                         style: TextStyle(
                           fontFamily: 'Suse',
-                          color: Colors.yellow,
+                          color: Colors.amber,
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black54, // Shadow color
+                              offset: Offset(2, 2), // Shadow position: X and Y
+                              blurRadius: 4, // Shadow blur
+                            ),
+                          ],
                         ),
                       ),
 
