@@ -33,7 +33,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                   height: 300,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/register-bg.JPG'), 
+                      image: AssetImage('assets/register-bg.jpg'), 
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -67,9 +67,9 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                           fontSize: 24,
                           shadows: [
                             Shadow(
-                              color: Colors.black87, // Shadow color
-                              offset: Offset(2, 2), // Shadow position: X and Y
-                              blurRadius: 5, // Shadow blur
+                              color: Colors.black87, 
+                              offset: Offset(5, 4),
+                              blurRadius: 4,
                             ),
                           ],
                         ),
@@ -87,9 +87,9 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                           fontSize: 18,
                           shadows: [
                             Shadow(
-                              color: Colors.black54, // Shadow color
-                              offset: Offset(2, 2), // Shadow position: X and Y
-                              blurRadius: 4, // Shadow blur
+                              color: Colors.black54, 
+                              offset: Offset(2, 2), 
+                              blurRadius: 4, 
                             ),
                           ],
                         ),
@@ -147,7 +147,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                         obscureText: true,
                       ),
 
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 15),
 
                       // Sign Up Button
                       MyButton(onTap: () {}, text: 'Daftar'),
