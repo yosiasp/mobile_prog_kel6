@@ -40,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   // Profile Picture
                   const CircleAvatar(
                     radius: 45,
-                    backgroundImage: AssetImage('assets/profile.jpg'),
+                    backgroundImage: AssetImage('assets/profile.JPG'),
                   ),
 
                   const SizedBox(height: 25),
@@ -51,7 +51,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: const [
-                        ProfileInfo(number: '48', label: 'Posts'),
+                        ProfileInfo(number: '3', label: 'Posts'),
                         ProfileInfo(number: '5.1K', label: 'Subscribers'),
                         ProfileInfo(number: '180', label: 'Subscribing'),
                       ],
@@ -83,6 +83,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
+
+            // Personal Information
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Align(
@@ -108,22 +110,47 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
+            
             const Divider(),
+
+            // Gallery Of Posts With Gallery
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                mainAxisSpacing: 2,
-                crossAxisSpacing: 2,
+                crossAxisCount: 2,
+                mainAxisSpacing: 6, // Space Betwen Rows
+                crossAxisSpacing: 6, // Space Between Columns
               ),
-              itemCount: 30,
+
+              itemCount: 3, // Number Of Posts
+
+              // Loop to show posts
               itemBuilder: (context, index) {
-                return Container(
-                  color: Colors.grey[300],
-                  child: Image.asset(
-                    'assets/post_$index.jpg',
-                    fit: BoxFit.cover,
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0), 
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(18), 
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.3), 
+                          spreadRadius: 2.5, 
+                          blurRadius: 5, 
+                          offset: const Offset(0, 3), 
+                        ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(24),
+                      child: Image.asset(
+                        'assets/img$index.JPG',
+                        width: 300,
+                        height: 300,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 );
               },
