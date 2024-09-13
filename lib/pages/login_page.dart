@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                       hintText: 'Password',
                       obscureText: true),
 
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 15),
 
                   // Sign In Button
                   MyButton(onTap: () {}, text: 'Masuk'),
