@@ -1,7 +1,11 @@
+// ignore_for_file: unnecessary_const
+
 import 'package:flutter/material.dart';
+import 'login_page.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  const ProfilePage({super.key, this.onTap});
+  final Function()? onTap;
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -17,16 +21,60 @@ class _ProfilePageState extends State<ProfilePage> {
         leading: const Icon(Icons.menu, color: Colors.black),
         title: const Text(
           'Username',
-          style: TextStyle(
-            fontSize: 22,
-            fontFamily: 'Suse', 
-            color: Colors.black),
+          style:
+              TextStyle(fontSize: 22, fontFamily: 'Suse', color: Colors.black),
         ),
         centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.more_vert, color: Colors.black),
-            onPressed: () {},
+            onPressed: () {
+              // Menampilkan dropdown menu saat tombol diklik
+              showMenu(
+                context: context,
+                position: const RelativeRect.fromLTRB(
+                    100, 100, 0, 0), // Sesuaikan posisi
+                items: [
+                  PopupMenuItem(
+                    child: ListTile(
+                      leading: const Icon(Icons.edit),
+                      title: const Text('Edit Profile'),
+                      onTap: () {
+                        Navigator.pop(context); // Menutup menu
+                        // Aksi untuk Edit Profile
+                      },
+                    ),
+                  ),
+                  PopupMenuItem(
+                    child: ListTile(
+                      leading: const Icon(Icons.settings),
+                      title: const Text('Settings'),
+                      onTap: () {
+                        Navigator.pop(context); // Menutup menu
+                        // Aksi untuk Settings
+                      },
+                    ),
+                  ),
+                  PopupMenuItem(
+                    child: ListTile(
+                      leading: const Icon(Icons.logout),
+                      title: const Text('Logout'),
+                      onTap: () {
+                        Navigator.pop(context); // Menutup menu sebelum navigasi
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginPage(onTap: () {
+                                    Navigator.pop(context);
+                                  })),
+                        );
+                        // Aksi untuk Logout
+                      },
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),
@@ -45,28 +93,29 @@ class _ProfilePageState extends State<ProfilePage> {
 
                   const SizedBox(height: 25),
 
-                  // Account Information 
+                  // Account Information
                   const Padding(
-                    padding: const EdgeInsets.only(left: 25.0), 
+                    padding: EdgeInsets.only(left: 25.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
-                        ProfileInfo(number: '3', label: 'Posts'),
-                        ProfileInfo(number: '5.1K', label: 'Subscribers'),
-                        ProfileInfo(number: '180', label: 'Subscribing'),
+                      children: [
+                        const ProfileInfo(number: '3', label: 'Posts'),
+                        const ProfileInfo(number: '5.1K', label: 'Subscribers'),
+                        const ProfileInfo(number: '180', label: 'Subscribing'),
                       ],
                     ),
                   ),
 
-                  const SizedBox(height: 25), 
+                  const SizedBox(height: 25),
 
                   // Edit Profile Button
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 12),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16), 
+                        borderRadius: BorderRadius.circular(16),
                       ),
                     ),
                     child: const Text(
@@ -74,12 +123,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       style: TextStyle(
                         fontSize: 15,
                         color: Color(0xFF4285F4),
-                        fontWeight: FontWeight.bold, 
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
 
-                  const SizedBox(height: 8), 
+                  const SizedBox(height: 8),
                 ],
               ),
             ),
@@ -97,20 +146,18 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontSize: 15,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.bold,
-                          )
-                        ),
+                        )),
                     Text('My bio blablabla',
                         style: TextStyle(
                           fontSize: 13,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.w500,
-                          )
-                        ),
+                        )),
                   ],
                 ),
               ),
             ),
-            
+
             const Divider(),
 
             // Gallery Of Posts With Gallery
@@ -128,17 +175,17 @@ class _ProfilePageState extends State<ProfilePage> {
               // Loop to show posts
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0), 
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(18), 
+                      borderRadius: BorderRadius.circular(18),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.3), 
-                          spreadRadius: 2.5, 
-                          blurRadius: 5, 
-                          offset: const Offset(0, 3), 
+                          color: Colors.black.withOpacity(0.3),
+                          spreadRadius: 2.5,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
                         ),
                       ],
                     ),

@@ -64,12 +64,15 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 15),
 
                   // Sign In Button
-                  MyButton(onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ProfilePage()), 
-                    );
-                  }, text: 'Masuk'),
+                  MyButton(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProfilePage()),
+                        );
+                      },
+                      text: 'Masuk'),
 
                   const SizedBox(height: 25),
 
@@ -87,6 +90,31 @@ class _LoginPageState extends State<LoginPage> {
                           onTap: widget.onTap,
                           child: const Text(
                             'Daftar Sekarang!',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              color: Color(0xFF4285F4),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )),
+                    ],
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  // Forgot Password Option
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Lupa Password?',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            color: Colors.black,
+                          )),
+                      const SizedBox(width: 4),
+                      GestureDetector(
+                          onTap: widget.onTap,
+                          child: const Text(
+                            'Klik disini!',
                             style: TextStyle(
                               fontFamily: 'Roboto',
                               color: Color(0xFF4285F4),
