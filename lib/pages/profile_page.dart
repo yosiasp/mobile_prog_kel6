@@ -85,28 +85,92 @@ class _ProfilePageState extends State<ProfilePage> {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  // Profile Picture
-                  const CircleAvatar(
-                    radius: 45,
-                    backgroundImage: AssetImage('assets/profile.JPG'),
-                  ),
+                  Container(
+                    // Background Image For The Container (Profile Picture and Account Info Container)
+                    decoration: BoxDecoration(
+                      image: const DecorationImage(
+                        image: AssetImage('assets/pp-bg.JPG'), 
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(24), 
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1), 
+                          spreadRadius: 1, 
+                          blurRadius: 1, 
+                          offset: const Offset(0, 1), 
+                        ),
+                      ],
+                    ),
 
-                  const SizedBox(height: 25),
-
-                  // Account Information
-                  const Padding(
-                    padding: EdgeInsets.only(left: 25.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    child: Column(
                       children: [
-                        const ProfileInfo(number: '3', label: 'Posts'),
-                        const ProfileInfo(number: '5.1K', label: 'Subscribers'),
-                        const ProfileInfo(number: '180', label: 'Subscribing'),
+                        const SizedBox(height: 25),
+
+                        // Profile Picture
+                        Container (
+                          height: 130,
+                          width: 130,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18), 
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.3), 
+                                spreadRadius: 2, 
+                                blurRadius: 5, 
+                                offset: const Offset(0, 4), 
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(18),
+                            child: Image.asset(
+                              'assets/profile.JPG',
+                              width: 130,
+                              height: 130,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(height: 30),
+
+                        // Account Information
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 30),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Container(
+                              padding: const EdgeInsets.all(16), 
+                              decoration: BoxDecoration(
+                                color: Colors.amber, 
+                                borderRadius: BorderRadius.circular(18), 
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.3), 
+                                    spreadRadius: 2, 
+                                    blurRadius: 5, 
+                                    offset: const Offset(0, 4), 
+                                  ),
+                                ],
+                              ),
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: const [
+                                  ProfileInfo(number: '3', label: 'Posts'),
+                                  ProfileInfo(number: '5.1K', label: 'Subscribers'),
+                                  ProfileInfo(number: '180', label: 'Subscribing'),
+                                ],
+                              ),
+                            ),  
+                          )
+                        ),
+                        const SizedBox(height: 40),
                       ],
                     ),
                   ),
 
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 30),
 
                   // Edit Profile Button
                   ElevatedButton(
@@ -121,7 +185,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: const Text(
                       'Edit Profile',
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 16,
                         color: Color(0xFF4285F4),
                         fontWeight: FontWeight.bold,
                       ),
@@ -143,13 +207,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     Text('Full Name',
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 16,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.bold,
                         )),
                     Text('My bio blablabla',
                         style: TextStyle(
-                          fontSize: 13,
+                          fontSize: 14,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.w500,
                         )),
@@ -160,19 +224,19 @@ class _ProfilePageState extends State<ProfilePage> {
 
             const Divider(),
 
-            // Gallery Of Posts With Gallery
+            // Gallery Of Posts 
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                mainAxisSpacing: 6, // Space Betwen Rows
-                crossAxisSpacing: 6, // Space Between Columns
+                mainAxisSpacing: 6, // Space Betwen Rows Of Posts
+                crossAxisSpacing: 6, // Space Between Columns Of Posts
               ),
 
               itemCount: 3, // Number Of Posts
 
-              // Loop to show posts
+              // Loop To Show Posts
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 4.0),
@@ -223,11 +287,21 @@ class ProfileInfo extends StatelessWidget {
           number,
           style: const TextStyle(
             fontFamily: 'Roboto',
-            fontSize: 19,
+            // color: Colors.white,
+            color: Color(0xFF4285F4),
+            fontSize: 18.5,
             fontWeight: FontWeight.w600,
           ),
         ),
-        Text(label),
+        Text(
+          label,
+          style: const TextStyle(
+            // color: Colors.white,  
+            fontFamily: 'Roboto',
+            color: Color(0xFF4285F4),
+            fontSize: 12.5,
+          )
+        ),
       ],
     );
   }
