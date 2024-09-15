@@ -66,6 +66,7 @@ flutter:
     - assets/img0.JPG
     - assets/img1.JPG
     - assets/img2.JPG
+    - assets/pp-bg.JPG
 
   fonts:
     - family: Roboto
