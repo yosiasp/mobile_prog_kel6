@@ -12,6 +12,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  bool showImages = true; // Variable to declare what to show (Images/Albums)
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -224,53 +226,153 @@ class _ProfilePageState extends State<ProfilePage> {
 
             const Divider(),
 
-            // Gallery Of Posts 
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 6, // Space Betwen Rows Of Posts
-                crossAxisSpacing: 6, // Space Between Columns Of Posts
-              ),
-
-              itemCount: 3, // Number Of Posts
-
-              // Loop To Show Posts
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
+            // Buttons to Choose What to Show (Images/Albums)
+            Row (
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                
+                // Show Images Button
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      showImages = true;
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: showImages ? const Color(0xFF4285F4) : Colors.amber,
+                    shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.3),
-                          spreadRadius: 2.5,
-                          blurRadius: 5,
-                          offset: const Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(24),
-                      child: Image.asset(
-                        'assets/img$index.JPG',
-                        width: 300,
-                        height: 300,
-                        fit: BoxFit.cover,
-                      ),
                     ),
                   ),
-                );
-              },
+                  child: const Text('Images', style: TextStyle(
+                    fontSize: 15,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w700,
+                  )),
+                ),
+
+                const SizedBox(width: 60),
+
+                // Show Albums Button
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      showImages = false;
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: showImages ? const Color(0xFF4285F4) : Colors.amber,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                  ),
+                  child: const Text('Albums', style: TextStyle(
+                    fontSize: 15,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w700,
+                  )),
+                ),
+              ],
             ),
+
+            const Divider(),
+
+            // Showing The Gallery Chosen
+            showImages ? _imagesGallery() : _albumGallery(),
           ],
         ),
       ),
     );
   }
+}
+
+// Widget for Images Gallery 
+Widget _imagesGallery() {
+  return GridView.builder(
+    shrinkWrap: true,
+    physics: const NeverScrollableScrollPhysics(),
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2, // Number Of Images For Each Row
+      mainAxisSpacing: 6, // Space Betwen Rows Of Posts
+      crossAxisSpacing: 6, // Space Between Columns Of Posts
+      childAspectRatio: 1 / 1, // Aspect ratio 
+    ),
+
+    itemCount: 3, // Number Of Posts
+
+    // Loop To Show Posts
+    itemBuilder: (context, index) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(18),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                spreadRadius: 2.5,
+                blurRadius: 5,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(24),
+            child: Image.asset(
+              'assets/img$index.JPG',
+              width: 300,
+              height: 300,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+// Widget for Albums Gallery 
+Widget _albumGallery() {
+  return GridView.builder(
+  shrinkWrap: true,
+    physics: const NeverScrollableScrollPhysics(),
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 1, // Number Of Albums For Each Row
+      mainAxisSpacing: 8, // Space Betwen Rows Of Gallery
+      childAspectRatio: 16 / 9, // Aspect Ratio
+    ),
+
+    itemCount: 3, // Number Of Albums
+
+    // Loop To Show Albums
+    itemBuilder: (context, index) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(18),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                spreadRadius: 2.5,
+                blurRadius: 5,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(24),
+            child: Image.asset(
+              'assets/img$index.JPG',
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      );
+    },
+  );
 }
 
 class ProfileInfo extends StatelessWidget {
@@ -287,7 +389,6 @@ class ProfileInfo extends StatelessWidget {
           number,
           style: const TextStyle(
             fontFamily: 'Roboto',
-            // color: Colors.white,
             color: Color(0xFF4285F4),
             fontSize: 18.5,
             fontWeight: FontWeight.w600,
@@ -296,7 +397,6 @@ class ProfileInfo extends StatelessWidget {
         Text(
           label,
           style: const TextStyle(
-            // color: Colors.white,  
             fontFamily: 'Roboto',
             color: Color(0xFF4285F4),
             fontSize: 12.5,
