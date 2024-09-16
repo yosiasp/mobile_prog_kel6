@@ -10,33 +10,16 @@ class UploadImage extends StatefulWidget {
 class _UploadImageState extends State<UploadImage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: const Text(
-            "Upload Image",
-          ),
-        ),
-        body: _buildUI());
-  }
-
-  Widget _buildUI() {
-    return SizedBox.expand(
-      child: Column(
-        children: [
-          _searchBar(),
-        ],
-      ),
-    );
-  }
-
-  Widget _searchBar() {
-    return SizedBox(
-      width: MediaQuery.sizeOf(context).width * 0.9,
-      child: TextField(
-        decoration: const InputDecoration(
-          hintText: "search something",
-          border: OutlineInputBorder(),
+    return const Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: Stack(
+          children: [
+            CircleAvatar(
+              radius: 100,
+              backgroundColor: Color(0xFF4285F4),
+            ),
+          ],
         ),
       ),
     );
