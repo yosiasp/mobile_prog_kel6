@@ -239,7 +239,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     });
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF4285F4),
+                    backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
                     ),
@@ -248,7 +248,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Icon(
                         Icons.photo,
-                        color: Colors.grey[300],
+                        color: Colors.grey[500],
                       ),
                       const SizedBox(width: 3),
                       Text(
@@ -257,14 +257,14 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontSize: 15,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.w700,
-                          color: Colors.grey[300],
+                          color: Colors.grey[500],
                         )
                       )
                     ],
                   ),
                 ),
 
-                const SizedBox(width: 40),
+                const SizedBox(width: 36),
 
                 // Show Albums Button
                 ElevatedButton(
@@ -274,7 +274,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     });
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF4285F4),
+                    backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
                     ),
@@ -283,7 +283,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Icon(
                         Icons.photo_album,
-                        color: Colors.grey[300],
+                        color: Colors.grey[500],
                       ),
                       const SizedBox(width: 3),
                       Text(
@@ -292,7 +292,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontSize: 15,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.w700,
-                          color: Colors.grey[300],
+                          color: Colors.grey[500],
                         )
                       )
                     ],
