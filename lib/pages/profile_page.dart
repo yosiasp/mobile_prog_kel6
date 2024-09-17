@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_const
 
 import 'package:flutter/material.dart';
-import 'login_page.dart';
+import '../auth/login_or_register.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key, this.onTap});
@@ -66,9 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => LoginPage(onTap: () {
-                                    Navigator.pop(context);
-                                  })),
+                            builder: (context) => const LoginOrRegister()),
                         );
                         // Aksi untuk Logout
                       },

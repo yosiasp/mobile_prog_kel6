@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
 import 'profile_page.dart';
+import 'update_password.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -67,17 +68,14 @@ class _LoginPageState extends State<LoginPage> {
 
                   // Sign In Button
                   MyButton(
-                      onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => const ProfilePage()),
-                        // );
-
-                        // ini masih error mik soalnya kalo di aktifin button daftarya juga ke home
-                        // berarti masih satu ontap gitu mik sementara gue komen dulu aja ya
-                      },
-                      text: 'Masuk'),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProfilePage()),
+                      );
+                    },
+                    text: 'Masuk'),
 
                   const SizedBox(height: 25),
 
@@ -92,15 +90,15 @@ class _LoginPageState extends State<LoginPage> {
                           )),
                       const SizedBox(width: 4),
                       GestureDetector(
-                          onTap: widget.onTap,
-                          child: const Text(
-                            'Daftar Sekarang!',
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              color: Color(0xFF4285F4),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
+                        onTap: widget.onTap,
+                        child: const Text(
+                          'Daftar Sekarang!',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            color: Color(0xFF4285F4),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )),
                     ],
                   ),
 
@@ -117,15 +115,21 @@ class _LoginPageState extends State<LoginPage> {
                           )),
                       const SizedBox(width: 4),
                       GestureDetector(
-                          onTap: widget.onTap,
-                          child: const Text(
-                            'Klik disini!',
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              color: Color(0xFF4285F4),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => UpdatePassword()),
+                          );
+                        },
+                        child: const Text(
+                          'Klik Disini!',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            color: Color(0xFF4285F4),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ],
