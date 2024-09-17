@@ -172,7 +172,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
 
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 25),
 
                   // Edit Profile Button
                   ElevatedButton(
@@ -239,19 +239,32 @@ class _ProfilePageState extends State<ProfilePage> {
                     });
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: showImages ? const Color(0xFF4285F4) : Colors.amber,
+                    backgroundColor: const Color(0xFF4285F4),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
                     ),
                   ),
-                  child: const Text('Images', style: TextStyle(
-                    fontSize: 15,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w700,
-                  )),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.photo,
+                        color: Colors.grey[300],
+                      ),
+                      const SizedBox(width: 3),
+                      Text(
+                        'Images', 
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.w700,
+                          color: Colors.grey[300],
+                        )
+                      )
+                    ],
+                  ),
                 ),
 
-                const SizedBox(width: 60),
+                const SizedBox(width: 40),
 
                 // Show Albums Button
                 ElevatedButton(
@@ -261,16 +274,29 @@ class _ProfilePageState extends State<ProfilePage> {
                     });
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: showImages ? const Color(0xFF4285F4) : Colors.amber,
+                    backgroundColor: const Color(0xFF4285F4),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
                     ),
                   ),
-                  child: const Text('Albums', style: TextStyle(
-                    fontSize: 15,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w700,
-                  )),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.photo_album,
+                        color: Colors.grey[300],
+                      ),
+                      const SizedBox(width: 3),
+                      Text(
+                        'Albums', 
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.w700,
+                          color: Colors.grey[300],
+                        )
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
