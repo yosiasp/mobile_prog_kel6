@@ -16,6 +16,21 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // Go Back To The Recent Screen
+          },
+        ),
+        title: const Text(
+          'Batal',
+          style:
+              TextStyle(fontSize: 22, fontFamily: 'Roboto', color: Colors.black),
+        ),
+      ),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -35,9 +50,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
                   // App Title
                   const Text(
-                    'YouGallery',
+                    'Lupa Kata Sandi?',
                     style: TextStyle(
-                      fontFamily: 'Suse',
+                      fontFamily: 'Roboto',
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
@@ -46,8 +61,47 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
                   const SizedBox(height: 25),
 
-                  // Email Field
+                  // Describtion Text
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Masukkan alamat email anda. Kami akan',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            color: Colors.grey[400],
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                      )),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('mengirimkan link untuk mengubah kata',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            color: Colors.grey[400],
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                      )),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('sandi anda.',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            color: Colors.grey[400],
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                      )),
+                    ],
+                  ),
 
+                  const SizedBox(height: 12),
+
+                  // Email Field
                   MyTextField(
                     controller: emailController,
                     hintText: 'Email',
@@ -56,7 +110,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
                   const SizedBox(height: 10),
 
-                  // Sign In Button
+                  // Send Email Button
                   MyButton(onTap: () {}, text: 'Kirim Email'),
 
                   const SizedBox(height: 25),

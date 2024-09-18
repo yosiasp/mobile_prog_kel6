@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
+import 'forget_password.dart';
 
 class UpdatePassword extends StatefulWidget {
   const UpdatePassword({super.key});
@@ -18,6 +19,21 @@ class _UpdatePasswordState extends State<UpdatePassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // Go Back To The Recent Screen
+          },
+        ),
+        title: const Text(
+          'Batal',
+          style:
+              TextStyle(fontSize: 22, fontFamily: 'Roboto', color: Colors.black),
+        ),
+      ),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -37,9 +53,9 @@ class _UpdatePasswordState extends State<UpdatePassword> {
 
                   // App Title
                   const Text(
-                    'YouGallery',
+                    'Ganti Kata Sandi',
                     style: TextStyle(
-                      fontFamily: 'Suse',
+                      fontFamily: 'Roboto',
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
@@ -52,17 +68,16 @@ class _UpdatePasswordState extends State<UpdatePassword> {
 
                   MyTextField(
                     controller: passwordController,
-                    hintText: 'Password',
+                    hintText: 'Kata Sandi Lama',
                     obscureText: true,
                   ),
 
                   const SizedBox(height: 10),
 
                   // Password Field
-
                   MyTextField(
                     controller: newPasswordController,
-                    hintText: 'New Password',
+                    hintText: 'Kata Sandi Baru',
                     obscureText: true,
                   ),
 
@@ -72,16 +87,39 @@ class _UpdatePasswordState extends State<UpdatePassword> {
 
                   MyTextField(
                     controller: confirmPasswordController,
-                    hintText: 'Confirm New Password',
+                    hintText: 'Konfirmasi Kata Sandi Baru',
                     obscureText: true,
                   ), // Tambahkan field konfirmasi password
 
+                  const SizedBox(height: 15),
+
+                  // Change Password Button
+                  MyButton(onTap: () {}, text: 'Ubah Kata Sandi'),
+
                   const SizedBox(height: 10),
 
-                  // Sign In Button
-                  MyButton(onTap: () {}, text: 'Update Password'),
-
-                  const SizedBox(height: 25),
+                  // Forgot Password Option
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ForgetPassword()),
+                          );
+                        },
+                        child: const Text(
+                          'Lupa Kata Sandi',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            color: Color(0xFF4285F4),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
