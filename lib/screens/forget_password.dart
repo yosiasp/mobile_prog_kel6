@@ -61,7 +61,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
                   const SizedBox(height: 25),
 
-                  // Description Text
+                  // Description Text (Flexible Pharagraph)
                   Text(
                     'Masukkan alamat email anda, kami akan mengirimkan link untuk mengubah kata sandi anda.',
                     style: TextStyle(

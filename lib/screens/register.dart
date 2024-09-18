@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
 
-class MyRegisterPage extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function()? onTap;
-  const MyRegisterPage({super.key, required this.onTap});
+  const Register({super.key, required this.onTap});
 
   @override
-  State<MyRegisterPage> createState() => _MyRegisterPageState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _MyRegisterPageState extends State<MyRegisterPage> {
+class _RegisterState extends State<Register> {
   final emailController = TextEditingController();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
