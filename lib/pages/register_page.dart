@@ -37,7 +37,12 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                       fit: BoxFit.cover,
                     ),
                   ),
-
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+                    child: Container(
+                      color: Colors.white.withOpacity(0), 
+                    ),
+                  ),
                 ),
 
                 // Header With Background Image

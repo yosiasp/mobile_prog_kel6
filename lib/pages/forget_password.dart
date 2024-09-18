@@ -61,42 +61,17 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
                   const SizedBox(height: 25),
 
-                  // Describtion Text
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Masukkan alamat email anda. Kami akan',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            color: Colors.grey[400],
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                      )),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('mengirimkan link untuk mengubah kata',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            color: Colors.grey[400],
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                      )),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('sandi anda.',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            color: Colors.grey[400],
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                      )),
-                    ],
+                  // Description Text
+                  Text(
+                    'Masukkan alamat email anda, kami akan mengirimkan link untuk mengubah kata sandi anda.',
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      color: Colors.grey[400],
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.center,
+                    softWrap: true, 
                   ),
 
                   const SizedBox(height: 12),
