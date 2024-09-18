@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
 import 'profile_page.dart';
-import 'update_password.dart';
+import 'forget_password.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -30,25 +30,48 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // App Logo
-                  Image.asset(
-                    'assets/icon.png',
-                    width: 100,
-                    height: 100,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center, 
+                    children: [
+                      // App Logo
+                      Image.asset(
+                        'assets/icon.png',
+                        width: 100,
+                        height: 100,
+                      ),
+
+                      const SizedBox(width: 20), 
+
+                      // App Title
+                      const Text(
+                        'YouGallery',
+                        style: TextStyle(
+                          fontFamily: 'Suse',
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 60),
+
+                  // Welcome Text
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Selamat Datang',
+                          style: TextStyle(
+                            fontFamily: 'Suse',
+                            color: Colors.black,
+                            fontSize: 32,
+                            fontWeight: FontWeight.w600,
+                      )),
+                    ],
                   ),
 
                   const SizedBox(height: 50),
-
-                  // App Title
-                  const Text('YouGallery',
-                      style: TextStyle(
-                        fontFamily: 'Suse',
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      )),
-
-                  const SizedBox(height: 25),
 
                   // Email Field
                   MyTextField(
@@ -92,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                       GestureDetector(
                         onTap: widget.onTap,
                         child: const Text(
-                          'Daftar Sekarang!',
+                          'Daftar Sekarang',
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             color: Color(0xFF4285F4),
@@ -108,21 +131,15 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Lupa Password?',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            color: Colors.black,
-                          )),
-                      const SizedBox(width: 4),
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => UpdatePassword()),
+                            MaterialPageRoute(builder: (context) => ForgetPassword()),
                           );
                         },
                         child: const Text(
-                          'Klik Disini!',
+                          'Lupa Kata Sandi',
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             color: Color(0xFF4285F4),
