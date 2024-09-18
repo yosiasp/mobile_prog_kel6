@@ -22,7 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
         elevation: 0,
         leading: const Icon(Icons.menu, color: Colors.black),
         title: const Text(
-          'Username',
+          '@Username',
           style:
               TextStyle(fontSize: 22, fontFamily: 'Suse', color: Colors.black),
         ),
@@ -40,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   PopupMenuItem(
                     child: ListTile(
                       leading: const Icon(Icons.edit),
-                      title: const Text('Edit Profile'),
+                      title: const Text('Edit Profil'),
                       onTap: () {
                         Navigator.pop(context); // Menutup menu
                         // Aksi untuk Edit Profile
@@ -50,7 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   PopupMenuItem(
                     child: ListTile(
                       leading: const Icon(Icons.settings),
-                      title: const Text('Settings'),
+                      title: const Text('Pengaturan'),
                       onTap: () {
                         Navigator.pop(context); // Menutup menu
                         // Aksi untuk Settings
@@ -60,7 +60,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   PopupMenuItem(
                     child: ListTile(
                       leading: const Icon(Icons.logout),
-                      title: const Text('Logout'),
+                      title: const Text('Keluar'),
                       onTap: () {
                         Navigator.pop(context); // Menutup menu sebelum navigasi
                         Navigator.push(
@@ -183,7 +183,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     child: const Text(
-                      'Edit Profile',
+                      'Edit Profil',
                       style: TextStyle(
                         fontSize: 16,
                         color: Color(0xFF4285F4),
@@ -246,7 +246,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Icon(
                         Icons.photo,
-                        color: Colors.grey[500],
+                        color: showImages ? Color(0xFF4285F4) : Colors.grey[500], // Changing Based of Chosen View
                       ),
                       const SizedBox(width: 3),
                       Text(
@@ -255,7 +255,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontSize: 15,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.w700,
-                          color: Colors.grey[500],
+                          color: showImages ? Color(0xFF4285F4) : Colors.grey[500], // Changing Based of Chosen View
                         )
                       )
                     ],
@@ -281,16 +281,16 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Icon(
                         Icons.photo_album,
-                        color: Colors.grey[500],
+                        color: showImages ? Colors.grey[500] : Color(0xFF4285F4), // Changing Based of Chosen View
                       ),
                       const SizedBox(width: 3),
                       Text(
                         'Albums', 
-                        style: TextStyle(
+                          style: TextStyle(
                           fontSize: 15,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.w700,
-                          color: Colors.grey[500],
+                          color: showImages ? Colors.grey[500] : Color(0xFF4285F4), // Changing Based of Chosen View
                         )
                       )
                     ],

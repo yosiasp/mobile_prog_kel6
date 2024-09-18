@@ -36,8 +36,8 @@ class _LoginPageState extends State<LoginPage> {
                       // App Logo
                       Image.asset(
                         'assets/icon.png',
-                        width: 100,
-                        height: 100,
+                        width: 110,
+                        height: 110,
                       ),
 
                       const SizedBox(width: 20), 
@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                         'YouGallery',
                         style: TextStyle(
                           fontFamily: 'Suse',
-                          fontSize: 25,
+                          fontSize: 26,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                           style: TextStyle(
                             fontFamily: 'Suse',
                             color: Colors.black,
-                            fontSize: 32,
+                            fontSize: 30,
                             fontWeight: FontWeight.w600,
                       )),
                     ],
