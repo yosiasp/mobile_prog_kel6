@@ -3,15 +3,15 @@
 import 'package:flutter/material.dart';
 import '../auth/login_or_register.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key, this.onTap});
+class Profile extends StatefulWidget {
+  const Profile({super.key, this.onTap});
   final Function()? onTap;
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _ProfileState extends State<Profile> {
   bool showImages = true; // Variable to declare what to show (Images/Albums)
 
   @override
@@ -37,16 +37,16 @@ class _ProfilePageState extends State<ProfilePage> {
                 position: const RelativeRect.fromLTRB(
                     100, 100, 0, 0), // Sesuaikan posisi
                 items: [
-                  PopupMenuItem(
-                    child: ListTile(
-                      leading: const Icon(Icons.edit),
-                      title: const Text('Edit Profil'),
-                      onTap: () {
-                        Navigator.pop(context); // Menutup menu
-                        // Aksi untuk Edit Profile
-                      },
-                    ),
-                  ),
+                  // PopupMenuItem(
+                  //   child: ListTile(
+                  //     leading: const Icon(Icons.edit),
+                  //     title: const Text('Edit Profil'),
+                  //     onTap: () {
+                  //       Navigator.pop(context); // Menutup menu
+                  //       // Aksi untuk Edit Profile
+                  //     },
+                  //   ),
+                  // ),
                   PopupMenuItem(
                     child: ListTile(
                       leading: const Icon(Icons.settings),
@@ -246,7 +246,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Icon(
                         Icons.photo,
-                        color: showImages ? Color(0xFF4285F4) : Colors.grey[500], // Changing Based of Chosen View
+                        color: showImages ? const Color(0xFF4285F4) : Colors.grey[500], // Changing Based of Chosen View
                       ),
                       const SizedBox(width: 3),
                       Text(
@@ -255,7 +255,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontSize: 15,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.w700,
-                          color: showImages ? Color(0xFF4285F4) : Colors.grey[500], // Changing Based of Chosen View
+                          color: showImages ? const Color(0xFF4285F4) : Colors.grey[500], // Changing Based of Chosen View
                         )
                       )
                     ],
@@ -281,7 +281,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Icon(
                         Icons.photo_album,
-                        color: showImages ? Colors.grey[500] : Color(0xFF4285F4), // Changing Based of Chosen View
+                        color: showImages ? Colors.grey[500] : const Color(0xFF4285F4), // Changing Based of Chosen View
                       ),
                       const SizedBox(width: 3),
                       Text(
@@ -290,7 +290,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontSize: 15,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.w700,
-                          color: showImages ? Colors.grey[500] : Color(0xFF4285F4), // Changing Based of Chosen View
+                          color: showImages ? Colors.grey[500] : const Color(0xFF4285F4), // Changing Based of Chosen View
                         )
                       )
                     ],

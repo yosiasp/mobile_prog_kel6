@@ -3,18 +3,18 @@
 import 'package:flutter/material.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
-import 'profile_page.dart';
+import 'profile.dart';
 import 'forget_password.dart';
 
-class LoginPage extends StatefulWidget {
+class Login extends StatefulWidget {
   final Function()? onTap;
-  const LoginPage({super.key, required this.onTap});
+  const Login({super.key, required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<Login> createState() => _LoginState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginState extends State<Login> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -95,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ProfilePage()),
+                          builder: (context) => Profile()),
                       );
                     },
                     text: 'Masuk'),
