@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../auth/login_or_register.dart';
+import 'upload_image.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key, this.onTap});
@@ -20,7 +21,7 @@ class _ProfileState extends State<Profile> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const Icon(Icons.menu, color: Colors.black),
+        leading: const Icon(Icons.account_circle_outlined, size: 24, color: Colors.black),
         title: const Text(
           '@Username',
           style:
@@ -29,7 +30,7 @@ class _ProfileState extends State<Profile> {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.more_vert, color: Colors.black),
+            icon: const Icon(Icons.more_vert, size: 24 , color: Colors.black),
             onPressed: () {
               // Menampilkan dropdown menu saat tombol diklik
               showMenu(
@@ -37,16 +38,6 @@ class _ProfileState extends State<Profile> {
                 position: const RelativeRect.fromLTRB(
                     100, 100, 0, 0), // Sesuaikan posisi
                 items: [
-                  // PopupMenuItem(
-                  //   child: ListTile(
-                  //     leading: const Icon(Icons.edit),
-                  //     title: const Text('Edit Profil'),
-                  //     onTap: () {
-                  //       Navigator.pop(context); // Menutup menu
-                  //       // Aksi untuk Edit Profile
-                  //     },
-                  //   ),
-                  // ),
                   PopupMenuItem(
                     child: ListTile(
                       leading: const Icon(Icons.settings),
@@ -133,7 +124,7 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
 
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 20),
 
                         // Account Information
                         Padding(
@@ -154,14 +145,69 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ],
                               ),
-                              child: const Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: const [
-                                  ProfileInfo(number: '3', label: 'Posts'),
-                                  ProfileInfo(number: '5.1K', label: 'Subscribers'),
-                                  ProfileInfo(number: '180', label: 'Subscribing'),
+                              child: const Column(
+                                children: [
+                                  // Fullname, role, and Location
+                                  const Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      // Fullname
+                                      Text(
+                                        'Fullname', 
+                                        style: TextStyle(
+                                          fontFamily: 'Suse',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+
+                                      const SizedBox(height: 0.8), 
+
+                                      // Location
+                                      const Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.location_on, 
+                                            color: Colors.grey, 
+                                            size: 14.5,       
+                                          ),
+                                          Text(
+                                            'Location', 
+                                            style: TextStyle(
+                                              fontFamily: 'Roboto',
+                                              fontSize:14.5,
+                                              color: Colors.grey,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ],
+                                      )
+
+                                    ],
+                                  ),
+
+                                  const SizedBox(height: 4), 
+
+                                  // Row Divider
+                                  const Divider(
+                                    color: Colors.grey, 
+                                    thickness: 1,    
+                                  ),
+
+                                  const SizedBox(height: 4), 
+                      
+                                  // Other Info
+                                  const Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      ProfileInfo(number: '3', label: 'Posts'),
+                                      ProfileInfo(number: '5.1K', label: 'Subscribers'),
+                                      ProfileInfo(number: '180', label: 'Subscribing'),
+                                    ],
+                                  ),
                                 ],
-                              ),
+                              )
                             ),  
                           )
                         ),
@@ -182,13 +228,26 @@ class _ProfileState extends State<Profile> {
                         borderRadius: BorderRadius.circular(16),
                       ),
                     ),
-                    child: const Text(
-                      'Edit Profil',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Color(0xFF4285F4),
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min, 
+                      children: [
+                        const Icon(
+                          Icons.edit, 
+                          size: 18, 
+                          color: Color(0xFF4285F4)
+                        ),
+
+                        const SizedBox(width: 2),
+
+                        const Text(
+                          'Edit Profil',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF4285F4),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
 
@@ -197,30 +256,28 @@ class _ProfileState extends State<Profile> {
               ),
             ),
 
-            // Personal Information
+            // About Section (Flexible pharagraph)
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Full Name',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.bold,
-                        )),
-                    Text('My bio blablabla',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w500,
-                        )),
-                  ],
-                ),
+              child: Row(
+                children:[
+                  Flexible(
+                    child: Text(
+                      'Halo nama saya Andre. Saya adalah fotografer berbasis di Bandung, Indonesia. Saya sudah menempuh dunia fotografi sejak tahun 2016.',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontFamily: 'Suse',
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.justify,
+                      softWrap: true, 
+                    ), 
+                  ),
+                ] 
               ),
             ),
+    
+            const SizedBox(height: 4),
 
             const Divider(),
 
@@ -246,7 +303,7 @@ class _ProfileState extends State<Profile> {
                     children: [
                       Icon(
                         Icons.photo,
-                        color: showImages ? const Color(0xFF4285F4) : Colors.grey[500], // Changing Based of Chosen View
+                        color: showImages ? const Color(0xFF4285F4) : Colors.grey[500], // Changing Based of Chosen View (Images/Albums)
                       ),
                       const SizedBox(width: 3),
                       Text(
@@ -255,7 +312,7 @@ class _ProfileState extends State<Profile> {
                           fontSize: 15,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.w700,
-                          color: showImages ? const Color(0xFF4285F4) : Colors.grey[500], // Changing Based of Chosen View
+                          color: showImages ? const Color(0xFF4285F4) : Colors.grey[500], // Changing Based of Chosen View (Images/Albums)
                         )
                       )
                     ],
@@ -306,6 +363,20 @@ class _ProfileState extends State<Profile> {
           ],
         ),
       ),
+
+      // Floation Button To Upload New Post 
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const UploadImage()),
+          );
+        }, 
+        backgroundColor: Color(0xFF4285F4),
+        child: const Icon(Icons.add, color: Colors.white, size: 24),
+      ),
+
     );
   }
 }
