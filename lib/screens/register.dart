@@ -3,6 +3,7 @@ import 'dart:ui'; // Required for using BackdropFilter
 import 'package:flutter/material.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Register extends StatefulWidget {
   final Function()? onTap;
@@ -17,6 +18,47 @@ class _RegisterState extends State<Register> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+
+  void daftar() async {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+
+    // Perbaiki logika pemeriksaan kata sandi
+    if (passwordController.text != confirmPasswordController.text) {
+      Navigator.pop(context);
+      displayMessage('Password tidak sama');
+      return;
+    }
+
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+
+      if (context.mounted) {
+        // ignore: use_build_context_synchronously
+        Navigator.pop(context);
+      }
+    } on FirebaseAuthException catch (e) {
+      // ignore: use_build_context_synchronously
+      Navigator.pop(context);
+      displayMessage(e.code);
+    }
+  }
+
+  void displayMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(message),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +75,14 @@ class _RegisterState extends State<Register> {
                   height: 300,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/register-bg.jpg'), 
+                      image: AssetImage('assets/register-bg.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),
                   child: BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
                     child: Container(
-                      color: Colors.white.withOpacity(0), 
+                      color: Colors.white.withOpacity(0),
                     ),
                   ),
                 ),
@@ -72,7 +114,7 @@ class _RegisterState extends State<Register> {
                           fontSize: 24,
                           shadows: [
                             Shadow(
-                              color: Colors.black87, 
+                              color: Colors.black87,
                               offset: Offset(5, 4),
                               blurRadius: 4,
                             ),
@@ -92,9 +134,9 @@ class _RegisterState extends State<Register> {
                           fontSize: 18,
                           shadows: [
                             Shadow(
-                              color: Colors.black54, 
-                              offset: Offset(2, 2), 
-                              blurRadius: 4, 
+                              color: Colors.black54,
+                              offset: Offset(2, 2),
+                              blurRadius: 4,
                             ),
                           ],
                         ),
@@ -121,15 +163,6 @@ class _RegisterState extends State<Register> {
                       // Username Field
                       MyTextField(
                         controller: emailController,
-                        hintText: 'Username',
-                        obscureText: false,
-                      ),
-
-                      const SizedBox(height: 10),
-
-                      // Email Field
-                      MyTextField(
-                        controller: usernameController,
                         hintText: 'Email',
                         obscureText: false,
                       ),
@@ -155,7 +188,7 @@ class _RegisterState extends State<Register> {
                       const SizedBox(height: 15),
 
                       // Sign Up Button
-                      MyButton(onTap: () {}, text: 'Daftar'),
+                      MyButton(onTap: daftar, text: 'Daftar'),
 
                       const SizedBox(height: 25),
 
