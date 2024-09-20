@@ -3,6 +3,7 @@ import 'dart:ui'; // Required for using BackdropFilter
 import 'package:flutter/material.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
+import 'setup_account.dart';
 
 class Register extends StatefulWidget {
   final Function()? onTap;
@@ -155,7 +156,13 @@ class _RegisterState extends State<Register> {
                       const SizedBox(height: 15),
 
                       // Sign Up Button
-                      MyButton(onTap: () {}, text: 'Daftar'),
+                      MyButton(onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SetupAccount()),
+                        );
+                      }, text: 'Daftar'),
 
                       const SizedBox(height: 25),
 
