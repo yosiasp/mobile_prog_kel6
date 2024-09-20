@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_const
 
 import 'package:flutter/material.dart';
-import '../auth/login_or_register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'upload_image.dart';
 
 class Profile extends StatefulWidget {
@@ -15,13 +15,18 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   bool showImages = true; // Variable to declare what to show (Images/Albums)
 
+  void logout() {
+    FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const Icon(Icons.account_circle_outlined, size: 24, color: Colors.black),
+        leading: const Icon(Icons.account_circle_outlined,
+            size: 24, color: Colors.black),
         title: const Text(
           '@Username',
           style:
@@ -30,7 +35,7 @@ class _ProfileState extends State<Profile> {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.more_vert, size: 24 , color: Colors.black),
+            icon: const Icon(Icons.more_vert, size: 24, color: Colors.black),
             onPressed: () {
               // Menampilkan dropdown menu saat tombol diklik
               showMenu(
@@ -53,13 +58,8 @@ class _ProfileState extends State<Profile> {
                       leading: const Icon(Icons.logout),
                       title: const Text('Keluar'),
                       onTap: () {
-                        Navigator.pop(context); // Menutup menu sebelum navigasi
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginOrRegister()),
-                        );
-                        // Aksi untuk Logout
+                        Navigator.pop(context); // Menutup menu sebelum logout
+                        logout(); // Panggil logout setelah menu ditutup
                       },
                     ),
                   ),
@@ -80,16 +80,16 @@ class _ProfileState extends State<Profile> {
                     // Background Image For The Container (Profile Picture and Account Info Container)
                     decoration: BoxDecoration(
                       image: const DecorationImage(
-                        image: AssetImage('assets/pp-bg.JPG'), 
+                        image: AssetImage('assets/pp-bg.JPG'),
                         fit: BoxFit.cover,
                       ),
-                      borderRadius: BorderRadius.circular(24), 
+                      borderRadius: BorderRadius.circular(24),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.1), 
-                          spreadRadius: 1, 
-                          blurRadius: 1, 
-                          offset: const Offset(0, 1), 
+                          color: Colors.black.withOpacity(0.1),
+                          spreadRadius: 1,
+                          blurRadius: 1,
+                          offset: const Offset(0, 1),
                         ),
                       ],
                     ),
@@ -99,17 +99,17 @@ class _ProfileState extends State<Profile> {
                         const SizedBox(height: 25),
 
                         // Profile Picture
-                        Container (
+                        Container(
                           height: 130,
                           width: 130,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(18), 
+                            borderRadius: BorderRadius.circular(18),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black.withOpacity(0.3), 
-                                spreadRadius: 2, 
-                                blurRadius: 5, 
-                                offset: const Offset(0, 4), 
+                                color: Colors.black.withOpacity(0.3),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: const Offset(0, 4),
                               ),
                             ],
                           ),
@@ -128,89 +128,94 @@ class _ProfileState extends State<Profile> {
 
                         // Account Information
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 30),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Container(
-                              padding: const EdgeInsets.all(16), 
-                              decoration: BoxDecoration(
-                                color: Colors.amber, 
-                                borderRadius: BorderRadius.circular(18), 
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.3), 
-                                    spreadRadius: 2, 
-                                    blurRadius: 5, 
-                                    offset: const Offset(0, 4), 
-                                  ),
-                                ],
-                              ),
-                              child: const Column(
-                                children: [
-                                  // Fullname, role, and Location
-                                  const Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      // Fullname
-                                      Text(
-                                        'Fullname', 
-                                        style: TextStyle(
-                                          fontFamily: 'Suse',
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Container(
+                                  padding: const EdgeInsets.all(16),
+                                  decoration: BoxDecoration(
+                                    color: Colors.amber,
+                                    borderRadius: BorderRadius.circular(18),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.3),
+                                        spreadRadius: 2,
+                                        blurRadius: 5,
+                                        offset: const Offset(0, 4),
                                       ),
-
-                                      const SizedBox(height: 0.8), 
-
-                                      // Location
-                                      const Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                    ],
+                                  ),
+                                  child: const Column(
+                                    children: [
+                                      // Fullname, role, and Location
+                                      const Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
-                                          Icon(
-                                            Icons.location_on, 
-                                            color: Colors.grey, 
-                                            size: 14.5,       
-                                          ),
+                                          // Fullname
                                           Text(
-                                            'Location', 
+                                            'Fullname',
                                             style: TextStyle(
-                                              fontFamily: 'Roboto',
-                                              fontSize:14.5,
-                                              color: Colors.grey,
-                                              fontWeight: FontWeight.w600,
+                                              fontFamily: 'Suse',
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                           ),
+
+                                          const SizedBox(height: 0.8),
+
+                                          // Location
+                                          const Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.location_on,
+                                                color: Colors.grey,
+                                                size: 14.5,
+                                              ),
+                                              Text(
+                                                'Location',
+                                                style: TextStyle(
+                                                  fontFamily: 'Roboto',
+                                                  fontSize: 14.5,
+                                                  color: Colors.grey,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ],
+                                          )
                                         ],
-                                      )
+                                      ),
 
+                                      const SizedBox(height: 4),
+
+                                      // Row Divider
+                                      const Divider(
+                                        color: Colors.grey,
+                                        thickness: 1,
+                                      ),
+
+                                      const SizedBox(height: 4),
+
+                                      // Other Info
+                                      const Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          ProfileInfo(
+                                              number: '3', label: 'Posts'),
+                                          ProfileInfo(
+                                              number: '5.1K',
+                                              label: 'Subscribers'),
+                                          ProfileInfo(
+                                              number: '180',
+                                              label: 'Subscribing'),
+                                        ],
+                                      ),
                                     ],
-                                  ),
-
-                                  const SizedBox(height: 4), 
-
-                                  // Row Divider
-                                  const Divider(
-                                    color: Colors.grey, 
-                                    thickness: 1,    
-                                  ),
-
-                                  const SizedBox(height: 4), 
-                      
-                                  // Other Info
-                                  const Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      ProfileInfo(number: '3', label: 'Posts'),
-                                      ProfileInfo(number: '5.1K', label: 'Subscribers'),
-                                      ProfileInfo(number: '180', label: 'Subscribing'),
-                                    ],
-                                  ),
-                                ],
-                              )
-                            ),  
-                          )
-                        ),
+                                  )),
+                            )),
                         const SizedBox(height: 40),
                       ],
                     ),
@@ -229,16 +234,11 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     child: const Row(
-                      mainAxisSize: MainAxisSize.min, 
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(
-                          Icons.edit, 
-                          size: 18, 
-                          color: Color(0xFF4285F4)
-                        ),
-
+                        const Icon(Icons.edit,
+                            size: 18, color: Color(0xFF4285F4)),
                         const SizedBox(width: 2),
-
                         const Text(
                           'Edit Profil',
                           style: TextStyle(
@@ -259,33 +259,30 @@ class _ProfileState extends State<Profile> {
             // About Section (Flexible pharagraph)
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children:[
-                  Flexible(
-                    child: Text(
-                      'Halo nama saya Andre. Saya adalah fotografer berbasis di Bandung, Indonesia. Saya sudah menempuh dunia fotografi sejak tahun 2016.',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontFamily: 'Suse',
-                        fontWeight: FontWeight.w500,
-                      ),
-                      textAlign: TextAlign.justify,
-                      softWrap: true, 
-                    ), 
+              child: Row(children: [
+                Flexible(
+                  child: Text(
+                    'Halo nama saya Andre. Saya adalah fotografer berbasis di Bandung, Indonesia. Saya sudah menempuh dunia fotografi sejak tahun 2016.',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontFamily: 'Suse',
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.justify,
+                    softWrap: true,
                   ),
-                ] 
-              ),
+                ),
+              ]),
             ),
-    
+
             const SizedBox(height: 4),
 
             const Divider(),
 
             // Buttons to Choose What to Show (Images/Albums)
-            Row (
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                
                 // Show Images Button
                 ElevatedButton(
                   onPressed: () {
@@ -303,18 +300,22 @@ class _ProfileState extends State<Profile> {
                     children: [
                       Icon(
                         Icons.photo,
-                        color: showImages ? const Color(0xFF4285F4) : Colors.grey[500], // Changing Based of Chosen View (Images/Albums)
+                        color: showImages
+                            ? const Color(0xFF4285F4)
+                            : Colors.grey[
+                                500], // Changing Based of Chosen View (Images/Albums)
                       ),
                       const SizedBox(width: 3),
-                      Text(
-                        'Images', 
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w700,
-                          color: showImages ? const Color(0xFF4285F4) : Colors.grey[500], // Changing Based of Chosen View (Images/Albums)
-                        )
-                      )
+                      Text('Images',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.w700,
+                            color: showImages
+                                ? const Color(0xFF4285F4)
+                                : Colors.grey[
+                                    500], // Changing Based of Chosen View (Images/Albums)
+                          ))
                     ],
                   ),
                 ),
@@ -338,18 +339,22 @@ class _ProfileState extends State<Profile> {
                     children: [
                       Icon(
                         Icons.photo_album,
-                        color: showImages ? Colors.grey[500] : const Color(0xFF4285F4), // Changing Based of Chosen View
+                        color: showImages
+                            ? Colors.grey[500]
+                            : const Color(
+                                0xFF4285F4), // Changing Based of Chosen View
                       ),
                       const SizedBox(width: 3),
-                      Text(
-                        'Albums', 
+                      Text('Albums',
                           style: TextStyle(
-                          fontSize: 15,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w700,
-                          color: showImages ? Colors.grey[500] : const Color(0xFF4285F4), // Changing Based of Chosen View
-                        )
-                      )
+                            fontSize: 15,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.w700,
+                            color: showImages
+                                ? Colors.grey[500]
+                                : const Color(
+                                    0xFF4285F4), // Changing Based of Chosen View
+                          ))
                     ],
                   ),
                 ),
@@ -364,24 +369,22 @@ class _ProfileState extends State<Profile> {
         ),
       ),
 
-      // Floation Button To Upload New Post 
+      // Floation Button To Upload New Post
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => const UploadImage()),
+            MaterialPageRoute(builder: (context) => const UploadImage()),
           );
-        }, 
+        },
         backgroundColor: const Color(0xFF4285F4),
         child: const Icon(Icons.add, color: Colors.white, size: 24),
       ),
-
     );
   }
 }
 
-// Widget for Images Gallery 
+// Widget for Images Gallery
 Widget _imagesGallery() {
   return GridView.builder(
     shrinkWrap: true,
@@ -390,7 +393,7 @@ Widget _imagesGallery() {
       crossAxisCount: 2, // Number Of Images For Each Row
       mainAxisSpacing: 6, // Space Betwen Rows Of Posts
       crossAxisSpacing: 6, // Space Between Columns Of Posts
-      childAspectRatio: 1 / 1, // Aspect ratio 
+      childAspectRatio: 1 / 1, // Aspect ratio
     ),
 
     itemCount: 3, // Number Of Posts
@@ -427,10 +430,10 @@ Widget _imagesGallery() {
   );
 }
 
-// Widget for Albums Gallery 
+// Widget for Albums Gallery
 Widget _albumGallery() {
   return GridView.builder(
-  shrinkWrap: true,
+    shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 1, // Number Of Albums For Each Row
@@ -489,14 +492,12 @@ class ProfileInfo extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        Text(
-          label,
-          style: const TextStyle(
-            fontFamily: 'Roboto',
-            color: Color(0xFF4285F4),
-            fontSize: 12.5,
-          )
-        ),
+        Text(label,
+            style: const TextStyle(
+              fontFamily: 'Roboto',
+              color: Color(0xFF4285F4),
+              fontSize: 12.5,
+            )),
       ],
     );
   }

@@ -21,9 +21,35 @@ class _LoginState extends State<Login> {
 
   // ignore: non_constant_identifier_names
   void Masuk() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailController.text,
-      password: passwordController.text,
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+
+      if (context.mounted) {
+        // ignore: use_build_context_synchronously
+        Navigator.pop(context);
+      }
+    } on FirebaseAuthException catch (e) {
+      // ignore: avoid_print, use_build_context_synchronously
+      Navigator.pop(context);
+      displayMessage(e.code);
+    }
+  }
+
+  void displayMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(message),
+      ),
     );
   }
 
