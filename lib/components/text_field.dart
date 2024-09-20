@@ -23,7 +23,10 @@ class MyTextField extends StatelessWidget {
         fillColor: Colors.grey.shade200,
         filled: true,
         hintText: hintText,
-        hintStyle: TextStyle(color: Colors.grey[500]),
+        hintStyle: TextStyle(
+          fontFamily: 'Roboto', 
+          color: Colors.grey[400]
+          ),
       ),
     );
   }
