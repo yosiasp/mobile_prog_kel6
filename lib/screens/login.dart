@@ -95,7 +95,7 @@ class _LoginState extends State<Login> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Profile()),
+                          builder: (context) => const Profile()),
                       );
                     },
                     text: 'Masuk'),
@@ -135,7 +135,7 @@ class _LoginState extends State<Login> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ForgetPassword()),
+                            MaterialPageRoute(builder: (context) => const ForgetPassword()),
                           );
                         },
                         child: const Text(

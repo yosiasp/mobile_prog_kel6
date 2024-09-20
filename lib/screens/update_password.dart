@@ -106,7 +106,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ForgetPassword()),
+                            MaterialPageRoute(builder: (context) => const ForgetPassword()),
                           );
                         },
                         child: const Text(
