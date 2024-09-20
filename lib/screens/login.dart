@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
 import 'profile.dart';
@@ -18,6 +19,14 @@ class _LoginState extends State<Login> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  // ignore: non_constant_identifier_names
+  void Masuk() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +40,7 @@ class _LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center, 
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // App Logo
                       Image.asset(
@@ -40,7 +49,7 @@ class _LoginState extends State<Login> {
                         height: 110,
                       ),
 
-                      const SizedBox(width: 20), 
+                      const SizedBox(width: 20),
 
                       // App Title
                       const Text(
@@ -67,7 +76,7 @@ class _LoginState extends State<Login> {
                             color: Colors.black,
                             fontSize: 30,
                             fontWeight: FontWeight.w600,
-                      )),
+                          )),
                     ],
                   ),
 
@@ -90,15 +99,7 @@ class _LoginState extends State<Login> {
                   const SizedBox(height: 15),
 
                   // Sign In Button
-                  MyButton(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Profile()),
-                      );
-                    },
-                    text: 'Masuk'),
+                  MyButton(onTap: Masuk, text: 'Masuk'),
 
                   const SizedBox(height: 25),
 
@@ -113,15 +114,15 @@ class _LoginState extends State<Login> {
                           )),
                       const SizedBox(width: 4),
                       GestureDetector(
-                        onTap: widget.onTap,
-                        child: const Text(
-                          'Daftar Sekarang',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            color: Color(0xFF4285F4),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
+                          onTap: widget.onTap,
+                          child: const Text(
+                            'Daftar Sekarang',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              color: Color(0xFF4285F4),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )),
                     ],
                   ),
 
@@ -135,7 +136,8 @@ class _LoginState extends State<Login> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const ForgetPassword()),
+                            MaterialPageRoute(
+                                builder: (context) => const ForgetPassword()),
                           );
                         },
                         child: const Text(
