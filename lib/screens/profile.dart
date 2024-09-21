@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'upload_image.dart';
+import 'edit_profile.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key, this.onTap});
@@ -154,7 +155,7 @@ class _ProfileState extends State<Profile> {
                                         children: [
                                           // Fullname
                                           Text(
-                                            'Fullname',
+                                            'Name',
                                             style: TextStyle(
                                               fontFamily: 'Suse',
                                               fontSize: 20,
@@ -225,7 +226,12 @@ class _ProfileState extends State<Profile> {
 
                   // Edit Profile Button
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const EditProfile()),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 12),
