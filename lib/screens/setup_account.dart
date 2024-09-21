@@ -90,7 +90,7 @@ class _SetupAccountState extends State<SetupAccount> {
 
               // Location Field
               MyTextField(
-                controller: nameController,
+                controller: locationController,
                 hintText: 'Lokasi',
                 obscureText: false,
               ),
@@ -113,7 +113,7 @@ class _SetupAccountState extends State<SetupAccount> {
 
               // Birthday Field
               MyTextField(
-                controller: nameController,
+                controller: birthdayController,
                 hintText: 'Tanggal Ulang Tahun',
                 obscureText: false,
               ),
