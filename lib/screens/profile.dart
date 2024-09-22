@@ -1,9 +1,9 @@
 // ignore_for_file: unnecessary_const
-
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'upload_image.dart';
 import 'edit_profile.dart';
+import 'setting.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key, this.onTap});
@@ -51,6 +51,12 @@ class _ProfileState extends State<Profile> {
                       onTap: () {
                         Navigator.pop(context); // Menutup menu
                         // Aksi untuk Settings
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const SettingPage(), // Arahkan ke halaman SettingPage
+                          ),);
                       },
                     ),
                   ),
@@ -229,7 +235,8 @@ class _ProfileState extends State<Profile> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const EditProfile()),
+                        MaterialPageRoute(
+                            builder: (context) => const EditProfile()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -504,7 +511,7 @@ class ProfileInfo extends StatelessWidget {
               color: Color(0xFF4285F4),
               fontSize: 12.5,
             )),
-      ],
-    );
-  }
+     ],
+);
+}
 }
