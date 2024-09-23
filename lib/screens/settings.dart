@@ -1,9 +1,17 @@
 // setting.dart
 import 'package:flutter/material.dart';
-import 'package:uts_mobile_prog/screens/akun.dart';
+import 'package:uts_mobile_prog/screens/account_settings.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../auth/auth.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
+
+
+  // Logout di alihkan ke screen settings
+  void logout() {
+    FirebaseAuth.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +42,15 @@ class SettingPage extends StatelessWidget {
               // Aksi untuk Arsip
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.notifications),
-            title: const Text('Notifikasi'),
-            trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () {
-              // Aksi untuk Notifikasi
-            },
-          ),
+          // Taro di home screen aja ntar
+          // ListTile(
+          //   leading: const Icon(Icons.notifications),
+          //   title: const Text('Notifikasi'),
+          //   trailing: const Icon(Icons.arrow_forward_ios),
+          //   onTap: () {
+          //     // Aksi untuk Notifikasi
+          //   },
+          // ),
           ListTile(
             leading: const Icon(Icons.lock),
             title: const Text('Privasi Akun'),
@@ -66,28 +75,31 @@ class SettingPage extends StatelessWidget {
               // Aksi untuk Tentang
             },
           ),
-          Divider(),
-          ListTile(
-            leading: const Icon(Icons.person_add),
-            title: const Text('Tambahkan Akun'),
-            onTap: () {
-              // Aksi untuk Tambahkan Akun
-            },
-          ),
+          const Divider(),
+          // Mungkin gak perlu
+          // ListTile(
+          //   leading: const Icon(Icons.person_add),
+          //   title: const Text('Tambahkan Akun'),
+          //   onTap: () {
+          //     // Aksi untuk Tambahkan Akun
+          //   },
+          // ),
           ListTile(
             leading: const Icon(Icons.logout),
             title: const Text('Keluar'),
             onTap: () {
-              // Aksi untuk Keluar dari akun ini
+              Navigator.pop(context);
+              logout(); 
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.logout),
-            title: const Text('Keluar dari Semua Akun'),
-            onTap: () {
-              // Aksi untuk Keluar dari semua akun
-            },
-          ),
+          // Mungkin gak perlu
+          // ListTile(
+          //   leading: const Icon(Icons.logout),
+          //   title: const Text('Keluar dari Semua Akun'),
+          //   onTap: () {
+          //     // Aksi untuk Keluar dari semua akun
+          //   },
+          // ),
         ],
      ),
 );

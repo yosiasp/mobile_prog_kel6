@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'update_password.dart';
 
 class AccountCenterPage extends StatelessWidget {
   const AccountCenterPage({super.key});
@@ -30,7 +31,7 @@ class AccountCenterPage extends StatelessWidget {
               // Aksi ketika "Ganti Kata Sandi" dipilih
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ChangePasswordPage()),
+                MaterialPageRoute(builder: (context) => const UpdatePassword()),
               );
             },
           ),

@@ -1,9 +1,9 @@
 // ignore_for_file: unnecessary_const
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'upload_image.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'upload_image.dart';
 import 'edit_profile.dart';
-import 'setting.dart';
+import 'settings.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key, this.onTap});
@@ -16,9 +16,10 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   bool showImages = true; // Variable to declare what to show (Images/Albums)
 
-  void logout() {
-    FirebaseAuth.instance.signOut();
-  }
+  // Logout di alihkan ke screen settings
+  // void logout() {
+  //   FirebaseAuth.instance.signOut();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -36,43 +37,55 @@ class _ProfileState extends State<Profile> {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.more_vert, size: 24, color: Colors.black),
+            icon: const Icon(Icons.settings, size: 24, color: Colors.black),
             onPressed: () {
-              // Menampilkan dropdown menu saat tombol diklik
-              showMenu(
-                context: context,
-                position: const RelativeRect.fromLTRB(
-                    100, 100, 0, 0), // Sesuaikan posisi
-                items: [
-                  PopupMenuItem(
-                    child: ListTile(
-                      leading: const Icon(Icons.settings),
-                      title: const Text('Pengaturan'),
-                      onTap: () {
-                        Navigator.pop(context); // Menutup menu
-                        // Aksi untuk Settings
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                const SettingPage(), // Arahkan ke halaman SettingPage
-                          ),);
-                      },
-                    ),
-                  ),
-                  PopupMenuItem(
-                    child: ListTile(
-                      leading: const Icon(Icons.logout),
-                      title: const Text('Keluar'),
-                      onTap: () {
-                        Navigator.pop(context); // Menutup menu sebelum logout
-                        logout(); // Panggil logout setelah menu ditutup
-                      },
-                    ),
-                  ),
-                ],
+              // Aksi untuk Settings
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      const SettingPage(), // Arahkan ke halaman SettingPage
+                ),
               );
             },
+
+            // icon: const Icon(Icons.more_vert, size: 24, color: Colors.black),
+            // onPressed: () {
+            //   // Menampilkan dropdown menu saat tombol diklik
+            //   showMenu(
+            //     context: context,
+            //     position: const RelativeRect.fromLTRB(
+            //         100, 100, 0, 0), // Sesuaikan posisi
+            //     items: [
+            //       PopupMenuItem(
+            //         child: ListTile(
+            //           leading: const Icon(Icons.settings),
+            //           title: const Text('Pengaturan'),
+            //           onTap: () {
+            //             Navigator.pop(context); // Menutup menu
+            //             // Aksi untuk Settings
+            //             Navigator.push(
+            //               context,
+            //               MaterialPageRoute(
+            //                 builder: (context) =>
+            //                     const SettingPage(), // Arahkan ke halaman SettingPage
+            //               ),);
+            //           },
+            //         ),
+            //       ),
+            //       PopupMenuItem(
+            //         child: ListTile(
+            //           leading: const Icon(Icons.logout),
+            //           title: const Text('Keluar'),
+            //           onTap: () {
+            //             Navigator.pop(context); // Menutup menu sebelum logout
+            //             logout(); // Panggil logout setelah menu ditutup
+            //           },
+            //         ),
+            //       ),
+            //     ],
+            //   );
+            // },
           ),
         ],
       ),
@@ -382,17 +395,17 @@ class _ProfileState extends State<Profile> {
         ),
       ),
 
-      // Floation Button To Upload New Post
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const UploadImage()),
-          );
-        },
-        backgroundColor: const Color(0xFF4285F4),
-        child: const Icon(Icons.add, color: Colors.white, size: 24),
-      ),
+      // Floation Button To Upload New Post (akan di alihkan ke bar menu saja)
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.push(
+      //       context,
+      //       MaterialPageRoute(builder: (context) => const UploadImage()),
+      //     );
+      //   },
+      //   backgroundColor: const Color(0xFF4285F4),
+      //   child: const Icon(Icons.add, color: Colors.white, size: 24),
+      // ),
     );
   }
 }
