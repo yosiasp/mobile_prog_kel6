@@ -64,7 +64,7 @@ class _UploadImageState extends State<UploadImage> {
               color: Colors.blue,
               margin: EdgeInsets.symmetric(
                 horizontal: 20.0,
-                vertical: 20.0,
+                vertical: 19.0,
               ),
               child: ListTile(
                 leading: Icon(Icons.message,

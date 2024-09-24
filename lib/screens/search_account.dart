@@ -32,7 +32,7 @@ class _SearchAccountState extends State<SearchAccount> {
 
   Widget _searchBar() {
     return SizedBox(
-      width: MediaQuery.sizeOf(context).width * 0.9,
+      width: MediaQuery.sizeOf(context).width * 0.8,
       child: const TextField(
         decoration: InputDecoration(
           hintText: "search something",

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:uts_mobile_prog/screens/account_settings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../auth/auth.dart';
+//import '../auth/auth.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
