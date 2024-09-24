@@ -1,11 +1,11 @@
 // setting.dart
 import 'package:flutter/material.dart';
-import 'package:uts_mobile_prog/screens/account_settings.dart';
+import 'package:uts_mobile_prog/screens/account_center.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import '../auth/auth.dart';
 
-class SettingPage extends StatelessWidget {
-  const SettingPage({super.key});
+class Settings extends StatelessWidget {
+  const Settings({super.key});
 
 
   // Logout di alihkan ke screen settings
@@ -29,7 +29,7 @@ class SettingPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const AccountCenterPage()),
+                    builder: (context) => const AccountCenter()),
               );
             },
           ),

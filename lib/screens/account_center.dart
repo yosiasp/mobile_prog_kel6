@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'update_password.dart';
 
-class AccountCenterPage extends StatelessWidget {
-  const AccountCenterPage({super.key});
+class AccountCenter extends StatelessWidget {
+  const AccountCenter({super.key});
 
   @override
   Widget build(BuildContext context) {

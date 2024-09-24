@@ -44,7 +44,7 @@ class _ProfileState extends State<Profile> {
                 context,
                 MaterialPageRoute(
                   builder: (context) =>
-                      const SettingPage(), // Arahkan ke halaman SettingPage
+                    const Settings(), // Arahkan ke halaman SettingPage
                 ),
               );
             },
