@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({super.key});
@@ -11,6 +12,48 @@ class ForgetPassword extends StatefulWidget {
 
 class _ForgetPasswordState extends State<ForgetPassword> {
   final emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
+
+  Future<void> sendEmail() async {
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: emailController.text.trim());
+      showDialog(
+        // ignore: use_build_context_synchronously
+        context: context,
+        builder: (context) {
+          return const AlertDialog(
+            content: Text(
+              'Email berhasil dikirim',
+              style: TextStyle(fontSize: 20), // Adjust the font size as needed
+            ),
+          );
+        },
+      );
+    } on FirebaseAuthException catch (e) {
+      // ignore: avoid_print
+      print(e);
+      showDialog(
+        // ignore: use_build_context_synchronously
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            // {{ edit_2 }}: Perbaiki penggunaan Text
+            content: Text(
+              'Error: ${e.message}', // Menggabungkan pesan kesalahan dengan teks
+              style: const TextStyle(
+                  fontSize: 20), // Sesuaikan ukuran font sesuai kebutuhan
+            ),
+          );
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +70,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         ),
         title: const Text(
           'Batal',
-          style:
-              TextStyle(fontSize: 22, fontFamily: 'Roboto', color: Colors.black),
+          style: TextStyle(
+              fontSize: 22, fontFamily: 'Roboto', color: Colors.black),
         ),
       ),
       body: SafeArea(
@@ -71,7 +114,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       fontWeight: FontWeight.w500,
                     ),
                     textAlign: TextAlign.center,
-                    softWrap: true, 
+                    softWrap: true,
                   ),
 
                   const SizedBox(height: 12),
@@ -86,7 +129,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   const SizedBox(height: 10),
 
                   // Send Email Button
-                  MyButton(onTap: () {}, text: 'Kirim Email'),
+                  MyButton(onTap: sendEmail, text: 'Kirim Email'),
 
                   const SizedBox(height: 25),
                 ],

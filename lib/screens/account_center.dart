@@ -45,7 +45,8 @@ class AccountCenter extends StatelessWidget {
               // Aksi ketika "Ubah Alamat Email" dipilih
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ChangeEmailPage()),
+                MaterialPageRoute(
+                    builder: (context) => const ChangeEmailPage()),
               );
             },
           ),
@@ -60,7 +61,8 @@ class AccountCenter extends StatelessWidget {
               // Aksi ketika "Hapus Akun" dipilih
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const DeleteAccountPage()),
+                MaterialPageRoute(
+                    builder: (context) => const DeleteAccountPage()),
               );
             },
           ),
@@ -105,6 +107,6 @@ class DeleteAccountPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Hapus Akun')),
       body: const Center(child: Text('Halaman Hapus Akun')),
-);
-}
+    );
+  }
 }

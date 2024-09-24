@@ -14,6 +14,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
   final passwordController = TextEditingController();
   final newPasswordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +31,8 @@ class _UpdatePasswordState extends State<UpdatePassword> {
         ),
         title: const Text(
           'Batal',
-          style:
-              TextStyle(fontSize: 22, fontFamily: 'Roboto', color: Colors.black),
+          style: TextStyle(
+              fontSize: 22, fontFamily: 'Roboto', color: Colors.black),
         ),
       ),
       body: SafeArea(
@@ -94,7 +95,11 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                   const SizedBox(height: 15),
 
                   // Change Password Button
-                  MyButton(onTap: () {}, text: 'Ubah Kata Sandi'),
+                  MyButton(
+                      onTap: () {
+                        changePassword(); // Memanggil fungsi changePassword
+                      },
+                      text: 'Ubah Kata Sandi'),
 
                   const SizedBox(height: 10),
 
@@ -106,7 +111,8 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const ForgetPassword()),
+                            MaterialPageRoute(
+                                builder: (context) => const ForgetPassword()),
                           );
                         },
                         child: const Text(
@@ -128,4 +134,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
       ),
     );
   }
+}
+
+void changePassword() {
 }
