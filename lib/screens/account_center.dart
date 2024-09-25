@@ -38,6 +38,16 @@ class AccountCenter extends StatelessWidget {
           const Divider(), // Garis pemisah
 
           ListTile(
+            leading: const Icon(Icons.person_outlined , color: Colors.black),
+            title: const Text('Ubah Username'),
+            trailing: const Icon(Icons.arrow_forward_ios, color: Colors.black),
+            onTap: () {
+              // Aksi ketika "Ubah Username" dipilih
+            },
+          ),
+          const Divider(),
+
+          ListTile(
             leading: const Icon(Icons.email_outlined, color: Colors.black),
             title: const Text('Ubah Alamat Email'),
             trailing: const Icon(Icons.arrow_forward_ios, color: Colors.black),
