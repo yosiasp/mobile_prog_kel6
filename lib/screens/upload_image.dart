@@ -9,10 +9,12 @@ class UploadImage extends StatefulWidget {
 }
 
 class File {
+  // ignore: unused_field
   File? _selectedImage;
 }
 
 class _UploadImageState extends State<UploadImage> {
+  // ignore: unused_field
   File? _selectedImage;
 
   @override
@@ -87,6 +89,7 @@ class _UploadImageState extends State<UploadImage> {
     );
   }
 
+  // ignore: unused_element
   Future _pickImageFromGallery() async {
     final returnedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);

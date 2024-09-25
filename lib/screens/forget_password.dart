@@ -22,7 +22,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Future<void> sendEmail() async {
     try {
       await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: emailController.text.trim());
+          .sendPasswordResetEmail(email: emailController.text.toString());
       showDialog(
         // ignore: use_build_context_synchronously
         context: context,
@@ -30,7 +30,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           return const AlertDialog(
             content: Text(
               'Email berhasil dikirim',
-              style: TextStyle(fontSize: 20), // Adjust the font size as needed
+              style: TextStyle(fontSize: 20),
             ),
           );
         },
@@ -43,11 +43,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            // {{ edit_2 }}: Perbaiki penggunaan Text
             content: Text(
-              'Error: ${e.message}', // Menggabungkan pesan kesalahan dengan teks
-              style: const TextStyle(
-                  fontSize: 20), // Sesuaikan ukuran font sesuai kebutuhan
+              'Error: ${e.message}',
+              style: const TextStyle(fontSize: 20),
             ),
           );
         },

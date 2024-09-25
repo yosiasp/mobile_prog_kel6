@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
 import 'forget_password.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
 
 class UpdatePassword extends StatefulWidget {
   const UpdatePassword({super.key});
@@ -11,10 +12,54 @@ class UpdatePassword extends StatefulWidget {
 }
 
 class _UpdatePasswordState extends State<UpdatePassword> {
-  final passwordController = TextEditingController();
   final newPasswordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-  
+
+  void changePassword() async {
+    if (newPasswordController.text == confirmPasswordController.text) {
+      try {
+        User? user = FirebaseAuth.instance.currentUser;
+        await user?.updatePassword(newPasswordController.text);
+        showDialog(
+          // ignore: use_build_context_synchronously
+          context: context,
+          builder: (context) {
+            return const AlertDialog(
+              content: Text(
+                'Kata sandi berhasil diubah',
+                style: TextStyle(fontSize: 20),
+              ),
+            );
+          },
+        );
+      } catch (e) {
+        showDialog(
+          // ignore: use_build_context_synchronously
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Text(
+                'Terjadi kesalahan: $e',
+                style: const TextStyle(fontSize: 20),
+              ),
+            );
+          },
+        );
+      }
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return const AlertDialog(
+            content: Text(
+              'Kata sandi baru tidak cocok',
+              style: TextStyle(fontSize: 20),
+            ),
+          );
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,16 +109,6 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                   ),
 
                   const SizedBox(height: 25),
-
-                  // Email Field
-
-                  MyTextField(
-                    controller: passwordController,
-                    hintText: 'Kata Sandi Lama',
-                    obscureText: true,
-                  ),
-
-                  const SizedBox(height: 10),
 
                   // Password Field
                   MyTextField(
@@ -134,7 +169,4 @@ class _UpdatePasswordState extends State<UpdatePassword> {
       ),
     );
   }
-}
-
-void changePassword() {
 }

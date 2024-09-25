@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Register extends StatefulWidget {
   final Function()? onTap;
@@ -15,8 +16,10 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final emailController = TextEditingController();
-  final usernameController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
   final passwordController = TextEditingController();
+  final ageController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
   void daftar() async {
@@ -40,6 +43,10 @@ class _RegisterState extends State<Register> {
         password: passwordController.text,
       );
 
+      // create user in firebase
+      createUserInFirebase(firstNameController.text, lastNameController.text,
+          int.parse(ageController.text), emailController.text);
+
       if (context.mounted) {
         // ignore: use_build_context_synchronously
         Navigator.pop(context);
@@ -49,6 +56,16 @@ class _RegisterState extends State<Register> {
       Navigator.pop(context);
       displayMessage(e.code);
     }
+  }
+
+  Future<void> createUserInFirebase(
+      String firstName, String lastName, int age, String email) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'first name': firstName,
+      'last name': lastName, // Perbaikan di sini
+      'age': age, // Tambahkan koma di sini
+      'email': email,
+    }); // Tambahkan titik koma di akhir
   }
 
   void displayMessage(String message) {
@@ -159,6 +176,28 @@ class _RegisterState extends State<Register> {
                       ),
 
                       const SizedBox(height: 25),
+                      MyTextField(
+                        controller: firstNameController,
+                        hintText: 'Nama Depan',
+                        obscureText: false,
+                      ),
+
+                      const SizedBox(height: 10),
+
+                      MyTextField(
+                        controller: lastNameController,
+                        hintText: 'Nama Belakang',
+                        obscureText: false,
+                      ),
+
+                      const SizedBox(height: 10),
+                      MyTextField(
+                        controller: ageController,
+                        hintText: 'Umur',
+                        obscureText: false,
+                      ),
+
+                      const SizedBox(height: 10),
 
                       // Username Field
                       MyTextField(
