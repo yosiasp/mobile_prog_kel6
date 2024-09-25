@@ -36,24 +36,24 @@ class MainMenuState extends State<MainMenu> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: ' ',
+              label: 'Rumah',
               ),
           BottomNavigationBarItem(
               icon: Icon(Icons.search),
-              label: ' ',
+              label: 'Pencarian',
               ),
           BottomNavigationBarItem(
               icon: Icon(Icons.add),
-              label: '',
+              label: 'Bagikan',
               ),
           BottomNavigationBarItem(
               icon: Icon(Icons.account_circle_outlined),
-              label: ' ',
+              label: 'Profil',
               ),
         ],
         backgroundColor: Colors.white,
         unselectedItemColor: Colors.grey,
-        showSelectedLabels: false, // Tidak tampilkan label
+        showSelectedLabels: true, 
         iconSize: 30,
         currentIndex: screenIndex,
         selectedItemColor: Colors.black,
