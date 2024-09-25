@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UploadImage extends StatefulWidget {
   const UploadImage({super.key});
@@ -7,7 +8,13 @@ class UploadImage extends StatefulWidget {
   State<UploadImage> createState() => _UploadImageState();
 }
 
+class File {
+  File? _selectedImage;
+}
+
 class _UploadImageState extends State<UploadImage> {
+  File? _selectedImage;
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -18,25 +25,25 @@ class _UploadImageState extends State<UploadImage> {
             Text(
               '',
               style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
-              color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+                color: Colors.blue,
               ),
             ),
             Text(
               'Click circle below to add photo',
               style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
-              color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+                color: Colors.blue,
               ),
             ),
             Text(
               '',
               style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
-              color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+                color: Colors.blue,
               ),
             ),
             CircleAvatar(
@@ -47,17 +54,17 @@ class _UploadImageState extends State<UploadImage> {
             Text(
               '',
               style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
-              color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+                color: Colors.blue,
               ),
             ),
             Text(
               'Add caption below',
               style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
-              color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+                color: Colors.blue,
               ),
             ),
             Card(
@@ -67,17 +74,26 @@ class _UploadImageState extends State<UploadImage> {
                 vertical: 19.0,
               ),
               child: ListTile(
-                leading: Icon(Icons.message,
-                    color: Colors.black),
+                leading: Icon(Icons.message, color: Colors.black),
                 title: Text(
                   'write your caption here',
-                   style: TextStyle(color: Colors.black),
-                 ),
-               ),
-             ),
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  Future _pickImageFromGallery() async {
+    final returnedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (returnedImage == null) return;
+    setState(() {
+      _selectedImage = File();
+    });
   }
 }
