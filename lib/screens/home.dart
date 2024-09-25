@@ -16,17 +16,17 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const Icon(Icons.account_circle_outlined,
+        leading: const Icon(Icons.home_outlined,
             size: 24, color: Colors.black),
         title: const Text(
-          'Page Home',
+          'YouGallery',
           style:
               TextStyle(fontSize: 22, fontFamily: 'Suse', color: Colors.black),
         ),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.settings, size: 24, color: Colors.black),
+            icon: const Icon(Icons.notifications, size: 24, color: Colors.black),
             onPressed: () {
 
             },
