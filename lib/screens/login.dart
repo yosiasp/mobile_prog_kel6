@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
-import 'profile.dart';
+// import 'profile.dart';
 import 'forget_password.dart';
 
 class Login extends StatefulWidget {
