@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'update_password.dart';
+import 'delete_account.dart';
+import 'change_email.dart';
+import 'change_username.dart';
 
 class AccountCenter extends StatelessWidget {
   const AccountCenter({super.key});
@@ -28,7 +31,6 @@ class AccountCenter extends StatelessWidget {
             title: const Text('Ganti Kata Sandi'),
             trailing: const Icon(Icons.arrow_forward_ios, color: Colors.black),
             onTap: () {
-              // Aksi ketika "Ganti Kata Sandi" dipilih
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const UpdatePassword()),
@@ -42,7 +44,11 @@ class AccountCenter extends StatelessWidget {
             title: const Text('Ubah Username'),
             trailing: const Icon(Icons.arrow_forward_ios, color: Colors.black),
             onTap: () {
-              // Aksi ketika "Ubah Username" dipilih
+               Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ChangeUsername()),
+              );
             },
           ),
           const Divider(),
@@ -56,7 +62,7 @@ class AccountCenter extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const ChangeEmailPage()),
+                    builder: (context) => const ChangeEmail()),
               );
             },
           ),
@@ -72,7 +78,8 @@ class AccountCenter extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const DeleteAccountPage()),
+                  // builder: (context) => const DeleteAccountPage()),
+                  builder: (context) => const DeleteAccount()),
               );
             },
           ),
@@ -85,38 +92,38 @@ class AccountCenter extends StatelessWidget {
   }
 }
 
-class ChangePasswordPage extends StatelessWidget {
-  const ChangePasswordPage({super.key});
+// class ChangePasswordPage extends StatelessWidget {
+//   const ChangePasswordPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Ganti Kata Sandi')),
-      body: const Center(child: Text('Halaman Ganti Kata Sandi')),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: const Text('Ganti Kata Sandi')),
+//       body: const Center(child: Text('Halaman Ganti Kata Sandi')),
+//     );
+//   }
+// }
 
-class ChangeEmailPage extends StatelessWidget {
-  const ChangeEmailPage({super.key});
+// class ChangeEmailPage extends StatelessWidget {
+//   const ChangeEmailPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Ubah Alamat Email')),
-      body: const Center(child: Text('Halaman Ubah Alamat Email')),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: const Text('Ubah Alamat Email')),
+//       body: const Center(child: Text('Halaman Ubah Alamat Email')),
+//     );
+//   }
+// }
 
-class DeleteAccountPage extends StatelessWidget {
-  const DeleteAccountPage({super.key});
+// class DeleteAccountPage extends StatelessWidget {
+//   const DeleteAccountPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Hapus Akun')),
-      body: const Center(child: Text('Halaman Hapus Akun')),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: const Text('Hapus Akun')),
+//       body: const Center(child: Text('Halaman Hapus Akun')),
+//     );
+//   }
+// }

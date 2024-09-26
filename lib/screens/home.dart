@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'notifications.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key, this.onTap});
@@ -27,7 +28,15 @@ class _HomeState extends State<Home> {
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications, size: 24, color: Colors.black),
-            onPressed: () {
+            onPressed: () 
+            {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                    const Notifications(), 
+                ),
+              );
 
             },
 

@@ -111,7 +111,7 @@ class _LoginState extends State<Login> {
                   // Email Field
                   MyTextField(
                       controller: emailController,
-                      hintText: 'Username',
+                      hintText: 'Email',
                       obscureText: false),
 
                   const SizedBox(height: 10),
@@ -170,6 +170,7 @@ class _LoginState extends State<Login> {
                           'Lupa Kata Sandi',
                           style: TextStyle(
                             fontFamily: 'Roboto',
+                            fontSize: 24,
                             color: Color(0xFF4285F4),
                             fontWeight: FontWeight.bold,
                           ),
