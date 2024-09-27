@@ -36,7 +36,7 @@ class _SearchAccountState extends State<SearchAccount> {
       child: const TextField(
         decoration: InputDecoration(
           hintText: "search something",
-          prefixIcon: const Icon(Icons.search),
+          prefixIcon: Icon(Icons.search),
           border: OutlineInputBorder(),
         ),
       ),

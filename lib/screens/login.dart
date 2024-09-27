@@ -40,7 +40,27 @@ class _LoginState extends State<Login> {
     } on FirebaseAuthException catch (e) {
       // ignore: avoid_print, use_build_context_synchronously
       Navigator.pop(context);
-      displayMessage(e.code);
+      String errorMessage;
+
+
+      switch (e.code) {
+        case 'invalid-email':
+          errorMessage = 'Email tidak valid.';
+          break;
+        case 'user-not-found':
+          errorMessage = 'Pengguna tidak ditemukan.';
+          break;
+        case 'wrong-password':
+          errorMessage = 'Kata sandi salah.';
+          break;
+        case 'user-disabled':
+          errorMessage = 'Akun dinonaktifkan.';
+          break;
+        default:
+          errorMessage = 'Terjadi kesalahan. Silakan coba lagi.';
+      }
+
+      displayMessage(errorMessage);
     }
   }
 
@@ -170,7 +190,7 @@ class _LoginState extends State<Login> {
                           'Lupa Kata Sandi',
                           style: TextStyle(
                             fontFamily: 'Roboto',
-                            fontSize: 24,
+                            fontSize: 15,
                             color: Color(0xFF4285F4),
                             fontWeight: FontWeight.bold,
                           ),

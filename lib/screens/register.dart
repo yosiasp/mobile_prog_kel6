@@ -21,7 +21,8 @@ class _RegisterState extends State<Register> {
   final passwordController = TextEditingController();
   final ageController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-
+  final usernameController = TextEditingController();
+  
   void daftar() async {
     showDialog(
       context: context,
@@ -44,8 +45,12 @@ class _RegisterState extends State<Register> {
       );
 
       // create user in firebase
-      createUserInFirebase(firstNameController.text, lastNameController.text,
-          int.parse(ageController.text), emailController.text);
+      createUserInFirebase(
+          firstNameController.text,
+          lastNameController.text,
+          int.parse(ageController.text),
+          emailController.text,
+          usernameController.text);
 
       if (context.mounted) {
         // ignore: use_build_context_synchronously
@@ -58,13 +63,14 @@ class _RegisterState extends State<Register> {
     }
   }
 
-  Future<void> createUserInFirebase(
-      String firstName, String lastName, int age, String email) async {
+  Future<void> createUserInFirebase(String firstName, String lastName, int age,
+      String email, String username) async {
     await FirebaseFirestore.instance.collection('users').add({
       'first name': firstName,
       'last name': lastName, // Perbaikan di sini
       'age': age, // Tambahkan koma di sini
       'email': email,
+      'username': username,
     }); // Tambahkan titik koma di akhir
   }
 
@@ -176,6 +182,13 @@ class _RegisterState extends State<Register> {
                       ),
 
                       const SizedBox(height: 25),
+                      MyTextField(
+                        controller: usernameController,
+                        hintText: 'Username',
+                        obscureText: false,
+                      ),
+
+                      const SizedBox(height: 10),
                       MyTextField(
                         controller: firstNameController,
                         hintText: 'Nama Depan',

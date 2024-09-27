@@ -1,9 +1,10 @@
-// ignore_for_file: unnecessary_const
 import 'package:flutter/material.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'upload_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'edit_profile.dart';
+// ignore: unused_import
 import 'settings.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key, this.onTap});
@@ -14,12 +15,62 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  bool showImages = true; // Variable to declare what to show (Images/Albums)
+  bool showImages = true;
+  String email = '';
+  String firstname = '';
+  String lastname = '';
+  String username = ''; // Declare username variable
 
-  // Logout di alihkan ke screen settings
-  // void logout() {
-  //   FirebaseAuth.instance.signOut();
-  // }
+  // ignore: non_constant_identifier_names
+  List<String> DocIDs = [];
+
+  Future<void> getDocIDs() async {
+    // Added return type
+    await FirebaseFirestore.instance
+        .collection('users')
+        .get()
+
+        // ignore: avoid_function_literals_in_foreach_calls
+        .then((snapshot) => snapshot.docs.forEach((element) {
+              // ignore: avoid_print
+              print(element.reference);
+            }));
+  }
+
+  Future<void> getUserData() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      setState(() {
+        email = user.email ?? '';
+      });
+
+      QuerySnapshot userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo: email)
+          .get();
+
+      if (userSnapshot.docs.isNotEmpty) {
+        DocumentSnapshot userDoc = userSnapshot.docs.first;
+
+        // Debugging: Print the user document data
+        // ignore: avoid_print
+        print('User Document: ${userDoc.data()}');
+
+        setState(() {
+          firstname = userDoc['first name'] ?? ''; // Ensure safe access
+          lastname = userDoc['last name'] ?? ''; // Ensure safe access
+          username = userDoc['username'] ?? ''; // Ensure safe access
+        });
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserData();
+    getDocIDs();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +80,10 @@ class _ProfileState extends State<Profile> {
         elevation: 0,
         leading: const Icon(Icons.account_circle_outlined,
             size: 24, color: Colors.black),
-        title: const Text(
-          '@Username',
-          style:
-              TextStyle(fontSize: 22, fontFamily: 'Suse', color: Colors.black),
+        title: Text(
+          username, // Ganti email dengan username
+          style: const TextStyle(
+              fontSize: 22, fontFamily: 'Suse', color: Colors.black),
         ),
         centerTitle: true,
         actions: [
@@ -44,7 +95,7 @@ class _ProfileState extends State<Profile> {
                 context,
                 MaterialPageRoute(
                   builder: (context) =>
-                    const Settings(), // Arahkan ke halaman SettingPage
+                      const SettingsScreen(), // Arahkan ke halaman SettingPage
                 ),
               );
             },
@@ -165,17 +216,17 @@ class _ProfileState extends State<Profile> {
                                       ),
                                     ],
                                   ),
-                                  child: const Column(
+                                  child: Column(
                                     children: [
                                       // Fullname, role, and Location
-                                      const Column(
+                                      Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
                                           // Fullname
                                           Text(
-                                            'Name',
-                                            style: TextStyle(
+                                            '$firstname $lastname', // Gabungan first name dan last name
+                                            style: const TextStyle(
                                               fontFamily: 'Suse',
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold,
@@ -262,10 +313,9 @@ class _ProfileState extends State<Profile> {
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.edit,
-                            size: 18, color: Color(0xFF4285F4)),
-                        const SizedBox(width: 2),
-                        const Text(
+                        Icon(Icons.edit, size: 18, color: Color(0xFF4285F4)),
+                        SizedBox(width: 2),
+                        Text(
                           'Edit Profil',
                           style: TextStyle(
                             fontSize: 16,
@@ -524,7 +574,7 @@ class ProfileInfo extends StatelessWidget {
               color: Color(0xFF4285F4),
               fontSize: 12.5,
             )),
-     ],
-);
-}
+      ],
+    );
+  }
 }

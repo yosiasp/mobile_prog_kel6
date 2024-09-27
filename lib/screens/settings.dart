@@ -4,8 +4,8 @@ import 'package:uts_mobile_prog/screens/account_center.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import '../auth/auth.dart';
 
-class Settings extends StatelessWidget {
-  const Settings({super.key});
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
 
 
   // Logout di alihkan ke screen settings
