@@ -12,7 +12,8 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-  final nameController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
   final locationController = TextEditingController();
   final aboutController = TextEditingController();
 
@@ -283,17 +284,40 @@ class _EditProfileState extends State<EditProfile> {
 
               const SizedBox(height: 25),
 
-              // Name Field
+              // First Name Field
               MyTextField(
-                controller: nameController,
-                hintText: 'Nama',
+                controller: firstNameController,
+                hintText: 'Nama depan',
                 obscureText: false,
               ),
 
               const SizedBox(height: 3),
 
               Text(
-                'Masukkan nama pengenalan anda, bisa nama lengkap atau nama panggilan',
+                'Nama depan anda',
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                  color: Colors.grey[400],
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+                textAlign: TextAlign.left,
+                softWrap: true, 
+              ),
+
+              const SizedBox(height: 12),
+
+              // Last Name Field
+              MyTextField(
+                controller: lastNameController,
+                hintText: 'Nama belakang',
+                obscureText: false,
+              ),
+
+              const SizedBox(height: 3),
+
+              Text(
+                'Nama belakang anda',
                 style: TextStyle(
                   fontFamily: 'Roboto',
                   color: Colors.grey[400],

@@ -29,6 +29,84 @@ class _NotificationsState extends State<Notifications> {
       'date': '5 Feb 2024',
       'profile': 'assets/account.png'
     },
+    {
+      'username': '@username',
+      'description': 'mengomentari kiriman anda',
+      'date': '5 Feb 2024',
+      'profile': 'assets/account.png'
+    },
+    {
+      'username': '@username',
+      'description': 'mengomentari kiriman anda',
+      'date': '5 Feb 2024',
+      'profile': 'assets/account.png'
+    },
+    {
+      'username': '@username',
+      'description': 'mengomentari kiriman anda',
+      'date': '5 Feb 2024',
+      'profile': 'assets/account.png'
+    },
+    {
+      'username': '@username',
+      'description': 'mengomentari kiriman anda',
+      'date': '5 Feb 2024',
+      'profile': 'assets/account.png'
+    },
+    {
+      'username': '@username',
+      'description': 'mengomentari kiriman anda',
+      'date': '5 Feb 2024',
+      'profile': 'assets/account.png'
+    },
+    {
+      'username': '@username',
+      'description': 'mengomentari kiriman anda',
+      'date': '5 Feb 2024',
+      'profile': 'assets/account.png'
+    },
+    {
+      'username': '@username',
+      'description': 'mengomentari kiriman anda',
+      'date': '5 Feb 2024',
+      'profile': 'assets/account.png'
+    },
+    {
+      'username': '@username',
+      'description': 'mengomentari kiriman anda',
+      'date': '5 Feb 2024',
+      'profile': 'assets/account.png'
+    },
+    {
+      'username': '@username',
+      'description': 'mengomentari kiriman anda',
+      'date': '5 Feb 2024',
+      'profile': 'assets/account.png'
+    },
+    {
+      'username': '@username',
+      'description': 'mengomentari kiriman anda',
+      'date': '5 Feb 2024',
+      'profile': 'assets/account.png'
+    },
+    {
+      'username': '@username',
+      'description': 'mengomentari kiriman anda',
+      'date': '5 Feb 2024',
+      'profile': 'assets/account.png'
+    },
+    {
+      'username': '@username',
+      'description': 'mengomentari kiriman anda',
+      'date': '5 Feb 2024',
+      'profile': 'assets/account.png'
+    },
+    {
+      'username': '@username',
+      'description': 'mengomentari kiriman anda',
+      'date': '5 Feb 2024',
+      'profile': 'assets/account.png'
+    },
   ];
 
   @override
@@ -51,67 +129,64 @@ class _NotificationsState extends State<Notifications> {
         ),
       ),
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
+        child: ListView.builder(
+          padding: const EdgeInsets.all(10.0),
+          itemCount: notifications.length,
+          // Loop to build each notification widget
+          itemBuilder: (context, index) {
+            var notification = notifications[index];
+            return Column(
               children: [
-                // Loop to build each notification widget
-                for (var notification in notifications) ...[
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        // Profile Picture
-                        Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle, 
-                            borderRadius: BorderRadius.circular(8.0), 
-                            image: DecorationImage(
-                              image: AssetImage(notification['profile']!),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start, // Aligns everything to the top
+                  children: [
+                    // Square Profile Picture 
+                    Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle, 
+                        borderRadius: BorderRadius.circular(8.0),
+                        image: DecorationImage(
+                          image: AssetImage(notification['profile']!),
+                          fit: BoxFit.cover,
                         ),
-                        const SizedBox(width: 10),
-
-                        // Username and Description
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                notification['username']!,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    fontFamily: 'Roboto'),
-                              ),
-                              Text(
-                                notification['description']!,
-                                style: const TextStyle(fontSize: 14),
-                              ),
-                            ],
-                          ),
-                        ),
-                        // Date
-                        Text(
-                          notification['date']!,
-                          style: const TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                  const Divider(), 
-                ],
+                    const SizedBox(width: 10),
+                    // Username and Description
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            notification['username']!,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                fontFamily: 'Roboto'),
+                          ),
+                          Text(
+                            notification['description']!,
+                            style: const TextStyle(fontSize: 14),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // Date
+                    Text(
+                      notification['date']!,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+                const Divider(), 
               ],
-            ),
-          ),
+            );
+          },
         ),
       ),
     );
