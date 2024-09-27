@@ -20,7 +20,7 @@ class _UploadImageState extends State<UploadImage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           children: [
@@ -73,13 +73,12 @@ class _UploadImageState extends State<UploadImage> {
               color: Colors.blue,
               margin: EdgeInsets.symmetric(
                 horizontal: 20.0,
-                vertical: 19.0,
+                vertical: 20.0,
               ),
-              child: ListTile(
-                leading: Icon(Icons.message, color: Colors.black),
-                title: Text(
-                  'write your caption here',
-                  style: TextStyle(color: Colors.black),
+              child: TextField(
+                decoration: InputDecoration(
+                hintText: "write your caption here",
+                prefixIcon: Icon(Icons.message, color: Colors.white),
                 ),
               ),
             ),
