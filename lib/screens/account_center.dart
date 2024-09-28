@@ -24,6 +24,7 @@ class AccountCenter extends StatelessWidget {
         ),
         elevation: 0,
       ),
+      backgroundColor: Colors.white,
       body: ListView(
         children: [
           ListTile(

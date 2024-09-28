@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:uts_mobile_prog/screens/account_center.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'about_account.dart';
+import 'account_status.dart';
 //import '../auth/auth.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -18,7 +20,9 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pengaturan'),
+        backgroundColor: Colors.white,
       ),
+      backgroundColor: Colors.white,
       body: ListView(
         children: [
           ListTile(
@@ -64,15 +68,23 @@ class SettingsScreen extends StatelessWidget {
             title: const Text('Status Akun'),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
-              // Aksi untuk Status Akun
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const AccountStatus()),
+              );
             },
           ),
           ListTile(
             leading: const Icon(Icons.info_outline),
-            title: const Text('Tentang'),
+            title: const Text('Tentang Akun'),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
-              // Aksi untuk Tentang
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const AboutAccount()),
+              );
             },
           ),
           const Divider(),
