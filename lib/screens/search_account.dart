@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:custom_text_form_field_plus/custom_text_form_field_plus.dart';
 
 class SearchAccount extends StatefulWidget {
   const SearchAccount({super.key});
@@ -8,38 +9,36 @@ class SearchAccount extends StatefulWidget {
 }
 
 class _SearchAccountState extends State<SearchAccount> {
+  TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: const Text(
-            "Search Account",
-          ),
-        ),
-        body: _buildUI());
-  }
-
-  Widget _buildUI() {
-    return SizedBox.expand(
-      child: Column(
-        children: [
-          _searchBar(),
-        ],
-      ),
-    );
-  }
-
-  Widget _searchBar() {
-    return SizedBox(
-      width: MediaQuery.sizeOf(context).width * 0.8,
-      child: const TextField(
-        decoration: InputDecoration(
-          hintText: "search something",
-          prefixIcon: Icon(Icons.search),
-          border: OutlineInputBorder(),
-        ),
-      ),
-    );
+    return SafeArea(
+        child: Scaffold(
+      body: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: [
+              Container(
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Row(
+                    children: [
+                      IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_back_ios)),
+                      Expanded(
+                        child: CustomTextFormField(
+                          hintText: "Search",
+                          controller: searchController,
+                          keyboardType: const TextInputType.numberWithOptions(),
+                        ),
+                      ),
+                      IconButton(onPressed: (){}, icon: const Icon(Icons.search)),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          )),
+    ));
   }
 }
