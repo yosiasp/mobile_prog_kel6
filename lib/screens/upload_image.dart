@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image_cropper/image_cropper.dart';
 
 class UploadImage extends StatefulWidget {
   const UploadImage({super.key});
@@ -8,15 +9,7 @@ class UploadImage extends StatefulWidget {
   State<UploadImage> createState() => _UploadImageState();
 }
 
-class File {
-  // ignore: unused_field
-  File? _selectedImage;
-}
-
 class _UploadImageState extends State<UploadImage> {
-  // ignore: unused_field
-  File? _selectedImage;
-
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -77,8 +70,8 @@ class _UploadImageState extends State<UploadImage> {
               ),
               child: TextField(
                 decoration: InputDecoration(
-                hintText: "write your caption here",
-                prefixIcon: Icon(Icons.message, color: Colors.white),
+                  hintText: "write your caption here",
+                  prefixIcon: Icon(Icons.message, color: Colors.white),
                 ),
               ),
             ),
@@ -86,16 +79,5 @@ class _UploadImageState extends State<UploadImage> {
         ),
       ),
     );
-  }
-
-  // ignore: unused_element
-  Future _pickImageFromGallery() async {
-    final returnedImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-
-    if (returnedImage == null) return;
-    setState(() {
-      _selectedImage = File();
-    });
   }
 }

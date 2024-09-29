@@ -24,7 +24,7 @@ class _SearchAccountState extends State<SearchAccount> {
                   padding: EdgeInsets.all(20),
                   child: Row(
                     children: [
-                      IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_back_ios)),
+                      IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_back)),
                       Expanded(
                         child: CustomTextFormField(
                           hintText: "Search",
