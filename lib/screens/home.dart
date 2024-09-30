@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; // Import Firestore
 import 'notifications.dart';
 
 class Home extends StatefulWidget {
@@ -38,10 +39,28 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: 10, // Jumlah post yang ingin ditampilkan
-        itemBuilder: (context, index) {
-          return const PostWidget();
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('uploads')
+            .orderBy('timestamp', descending: true)
+            .snapshots(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return const Center(child: Text('No posts available'));
+          }
+          return ListView.builder(
+            itemCount: snapshot.data!.docs.length,
+            itemBuilder: (context, index) {
+              final post = snapshot.data!.docs[index];
+              return PostWidget(
+                imageUrl: post['imageUrl'],
+                caption: post['caption'],
+              );
+            },
+          );
         },
       ),
     );
@@ -49,7 +68,10 @@ class _HomeState extends State<Home> {
 }
 
 class PostWidget extends StatelessWidget {
-  const PostWidget({super.key});
+  final String imageUrl;
+  final String caption;
+
+  const PostWidget({super.key, required this.imageUrl, required this.caption});
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +104,7 @@ class PostWidget extends StatelessWidget {
               // Tindakan saat gambar di-tap
             },
             child: Image.network(
-              'https://via.placeholder.com/600x400', // Ganti dengan URL gambar post
+              imageUrl, // Ganti dengan URL gambar post
               fit: BoxFit.cover,
             ),
           ),
@@ -125,15 +147,15 @@ class PostWidget extends StatelessWidget {
             ),
           ),
           // Bagian caption di bawah jumlah likes
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             child: Text(
-              'This is an amazing caption for the post!',
-              style: TextStyle(fontWeight: FontWeight.normal),
+              caption,
+              style: const TextStyle(fontWeight: FontWeight.normal),
             ),
           ),
         ],
-     ),
-);
-}
+      ),
+    );
+  }
 }

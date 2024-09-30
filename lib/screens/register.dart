@@ -22,7 +22,7 @@ class _RegisterState extends State<Register> {
   final ageController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final usernameController = TextEditingController();
-  
+
   void daftar() async {
     showDialog(
       context: context,
