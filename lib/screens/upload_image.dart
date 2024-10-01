@@ -4,7 +4,8 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:uts_mobile_prog/components/button.dart'; // Ganti dengan path yang sesuai
+import 'package:uts_mobile_prog/components/button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class UploadImage extends StatefulWidget {
   const UploadImage({super.key});
@@ -16,6 +17,31 @@ class UploadImage extends StatefulWidget {
 class _UploadImageState extends State<UploadImage> {
   File? _image;
   final TextEditingController _captionController = TextEditingController();
+  String username = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _getUsername();
+  }
+
+  Future<void> _getUsername() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      String email = user.email ?? '';
+      QuerySnapshot userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo: email)
+          .get();
+
+      if (userSnapshot.docs.isNotEmpty) {
+        DocumentSnapshot userDoc = userSnapshot.docs.first;
+        setState(() {
+          username = userDoc['username'] ?? '';
+        });
+      }
+    }
+  }
 
   Future<void> _pickImage() async {
     final picker = ImagePicker();
@@ -57,6 +83,7 @@ class _UploadImageState extends State<UploadImage> {
       await FirebaseFirestore.instance.collection('uploads').add({
         'imageUrl': imageUrl,
         'caption': _captionController.text,
+        'username': username, // Add username here
         'timestamp': FieldValue.serverTimestamp(),
       });
 
@@ -121,8 +148,10 @@ class _UploadImageState extends State<UploadImage> {
                 ),
               ),
               const SizedBox(height: 20),
-              const Text(
+              // ignore: prefer_const_constructors
+              Text(
                 'Add caption below',
+                // ignore: prefer_const_constructors
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 15,

@@ -132,7 +132,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                   // Change Password Button
                   MyButton(
                       onTap: () {
-                        changePassword(); // Memanggil fungsi changePassword
+                        changePassword();
                       },
                       text: 'Ubah Kata Sandi'),
 

@@ -4,7 +4,7 @@ import 'firebase_options.dart';
 import 'auth/auth.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Tambahkan ini
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

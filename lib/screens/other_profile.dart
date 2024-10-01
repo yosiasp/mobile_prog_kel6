@@ -212,9 +212,7 @@ class _OtherProfileState extends State<OtherProfile> {
 
                   // Edit Profile Button
                   ElevatedButton(
-                    onPressed: () {
-                      
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 12),
@@ -475,7 +473,7 @@ class ProfileInfo extends StatelessWidget {
               color: Color(0xFF4285F4),
               fontSize: 12.5,
             )),
-     ],
-);
-}
+      ],
+    );
+  }
 }

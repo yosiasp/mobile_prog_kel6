@@ -22,6 +22,8 @@ class _RegisterState extends State<Register> {
   final ageController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final usernameController = TextEditingController();
+  final locationController = TextEditingController();
+  final aboutMeController = TextEditingController();
 
   void daftar() async {
     showDialog(
@@ -50,7 +52,9 @@ class _RegisterState extends State<Register> {
           lastNameController.text,
           int.parse(ageController.text),
           emailController.text,
-          usernameController.text);
+          usernameController.text,
+          locationController.text,
+          aboutMeController.text);
 
       if (context.mounted) {
         // ignore: use_build_context_synchronously
@@ -64,14 +68,17 @@ class _RegisterState extends State<Register> {
   }
 
   Future<void> createUserInFirebase(String firstName, String lastName, int age,
-      String email, String username) async {
+      String email, String username, String location, String aboutMe) async {
+    // Tambahkan parameter aboutMe
     await FirebaseFirestore.instance.collection('users').add({
       'first name': firstName,
       'last name': lastName,
       'age': age,
       'email': email,
       'username': username,
-      'accountCreationDate': DateTime.now().toString(), // Tambahkan tanggal pembuatan akun
+      'accountCreationDate': DateTime.now().toString(),
+      'location': location,
+      'about me': aboutMe,
     });
   }
 
@@ -213,6 +220,22 @@ class _RegisterState extends State<Register> {
 
                       const SizedBox(height: 10),
 
+                      MyTextField(
+                        controller: locationController,
+                        hintText: 'Lokasi',
+                        obscureText: false,
+                      ),
+
+                      const SizedBox(height: 10),
+
+                      MyTextField(
+                        controller: aboutMeController,
+                        hintText: 'Tentang Saya',
+                        obscureText: false,
+                      ),
+
+                      const SizedBox(height: 10),
+
                       // Username Field
                       MyTextField(
                         controller: emailController,
@@ -238,7 +261,7 @@ class _RegisterState extends State<Register> {
                         obscureText: true,
                       ),
 
-                      const SizedBox(height: 15),
+                      const SizedBox(height: 10),
 
                       // Sign Up Button
                       MyButton(onTap: daftar, text: 'Daftar'),

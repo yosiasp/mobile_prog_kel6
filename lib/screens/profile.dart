@@ -19,10 +19,12 @@ class _ProfileState extends State<Profile> {
   String email = '';
   String firstname = '';
   String lastname = '';
-  String username = ''; // Declare username variable
+  String username = '';
+  String location = '';
+  String aboutMe = '';
 
   // ignore: non_constant_identifier_names
-  List<String> DocIDs = [];
+  List<String> docIDs = [];
 
   Future<void> getDocIDs() async {
     // Added return type
@@ -52,14 +54,12 @@ class _ProfileState extends State<Profile> {
       if (userSnapshot.docs.isNotEmpty) {
         DocumentSnapshot userDoc = userSnapshot.docs.first;
 
-        // Debugging: Print the user document data
-        // ignore: avoid_print
-        print('User Document: ${userDoc.data()}');
-
         setState(() {
-          firstname = userDoc['first name'] ?? ''; // Ensure safe access
-          lastname = userDoc['last name'] ?? ''; // Ensure safe access
-          username = userDoc['username'] ?? ''; // Ensure safe access
+          firstname = userDoc['first name'] ?? '';
+          lastname = userDoc['last name'] ?? '';
+          username = userDoc['username'] ?? '';
+          aboutMe = userDoc['about me'] ?? '';
+          location = userDoc['location'] ?? '';
         });
       }
     }
@@ -94,49 +94,10 @@ class _ProfileState extends State<Profile> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      const SettingsScreen(), // Arahkan ke halaman SettingPage
+                  builder: (context) => const SettingsScreen(),
                 ),
               );
             },
-
-            // icon: const Icon(Icons.more_vert, size: 24, color: Colors.black),
-            // onPressed: () {
-            //   // Menampilkan dropdown menu saat tombol diklik
-            //   showMenu(
-            //     context: context,
-            //     position: const RelativeRect.fromLTRB(
-            //         100, 100, 0, 0), // Sesuaikan posisi
-            //     items: [
-            //       PopupMenuItem(
-            //         child: ListTile(
-            //           leading: const Icon(Icons.settings),
-            //           title: const Text('Pengaturan'),
-            //           onTap: () {
-            //             Navigator.pop(context); // Menutup menu
-            //             // Aksi untuk Settings
-            //             Navigator.push(
-            //               context,
-            //               MaterialPageRoute(
-            //                 builder: (context) =>
-            //                     const SettingPage(), // Arahkan ke halaman SettingPage
-            //               ),);
-            //           },
-            //         ),
-            //       ),
-            //       PopupMenuItem(
-            //         child: ListTile(
-            //           leading: const Icon(Icons.logout),
-            //           title: const Text('Keluar'),
-            //           onTap: () {
-            //             Navigator.pop(context); // Menutup menu sebelum logout
-            //             logout(); // Panggil logout setelah menu ditutup
-            //           },
-            //         ),
-            //       ),
-            //     ],
-            //   );
-            // },
           ),
         ],
       ),
@@ -225,7 +186,7 @@ class _ProfileState extends State<Profile> {
                                         children: [
                                           // Fullname
                                           Text(
-                                            '$firstname $lastname', // Gabungan first name dan last name
+                                            '$firstname $lastname',
                                             style: const TextStyle(
                                               fontFamily: 'Suse',
                                               fontSize: 20,
@@ -236,17 +197,19 @@ class _ProfileState extends State<Profile> {
                                           const SizedBox(height: 0.8),
 
                                           // Location
-                                          const Row(
+                                          Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
+                                              // ignore: prefer_const_constructors
                                               Icon(
                                                 Icons.location_on,
                                                 color: Colors.grey,
                                                 size: 14.5,
                                               ),
                                               Text(
-                                                'Location',
+                                                location,
+                                                // ignore: prefer_const_constructors
                                                 style: TextStyle(
                                                   fontFamily: 'Roboto',
                                                   fontSize: 14.5,
@@ -333,13 +296,13 @@ class _ProfileState extends State<Profile> {
             ),
 
             // About Section (Flexible pharagraph)
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(children: [
                 Flexible(
                   child: Text(
-                    'Halo nama saya Andre. Saya adalah fotografer berbasis di Bandung, Indonesia. Saya sudah menempuh dunia fotografi sejak tahun 2016.',
-                    style: TextStyle(
+                    aboutMe,
+                    style: const TextStyle(
                       fontSize: 15,
                       fontFamily: 'Suse',
                       fontWeight: FontWeight.w500,
