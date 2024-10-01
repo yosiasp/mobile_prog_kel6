@@ -87,8 +87,8 @@ class PostWidget extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 20,
-                  backgroundImage: NetworkImage(
-                      'https://via.placeholder.com/150'), // Ganti dengan URL gambar pengguna
+                  backgroundImage:
+                      NetworkImage('https://via.placeholder.com/150'),
                 ),
                 SizedBox(width: 8),
                 Text(
@@ -106,6 +106,15 @@ class PostWidget extends StatelessWidget {
             child: Image.network(
               imageUrl, // Ganti dengan URL gambar post
               fit: BoxFit.cover,
+            ),
+          ),
+          // Bagian caption di atas jumlah likes
+          const SizedBox(height: 8.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+            child: Text(
+              caption,
+              style: const TextStyle(fontWeight: FontWeight.normal),
             ),
           ),
           // Bagian interaksi (like, comment)
@@ -144,14 +153,6 @@ class PostWidget extends StatelessWidget {
                   },
                 ),
               ],
-            ),
-          ),
-          // Bagian caption di bawah jumlah likes
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-            child: Text(
-              caption,
-              style: const TextStyle(fontWeight: FontWeight.normal),
             ),
           ),
         ],

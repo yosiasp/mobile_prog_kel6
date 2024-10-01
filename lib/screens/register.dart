@@ -67,11 +67,12 @@ class _RegisterState extends State<Register> {
       String email, String username) async {
     await FirebaseFirestore.instance.collection('users').add({
       'first name': firstName,
-      'last name': lastName, // Perbaikan di sini
-      'age': age, // Tambahkan koma di sini
+      'last name': lastName,
+      'age': age,
       'email': email,
       'username': username,
-    }); // Tambahkan titik koma di akhir
+      'accountCreationDate': DateTime.now().toString(), // Tambahkan tanggal pembuatan akun
+    });
   }
 
   void displayMessage(String message) {

@@ -4,7 +4,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:http/http.dart' as http;
+import 'package:uts_mobile_prog/components/button.dart'; // Ganti dengan path yang sesuai
 
 class UploadImage extends StatefulWidget {
   const UploadImage({super.key});
@@ -40,9 +40,7 @@ class _UploadImageState extends State<UploadImage> {
     final captionFile = File(captionPath);
     await captionFile.writeAsString(_captionController.text);
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Image and caption saved!')),
-    );
+    displayMessage('Image and caption saved!');
   }
 
   Future<void> _sendImageAndCaption() async {
@@ -62,14 +60,19 @@ class _UploadImageState extends State<UploadImage> {
         'timestamp': FieldValue.serverTimestamp(),
       });
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Image and caption sent!')),
-      );
+      displayMessage('Image and caption sent!');
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to send image and caption: $e')),
-      );
+      displayMessage('Failed to send image and caption: $e');
     }
+  }
+
+  void displayMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(message),
+      ),
+    );
   }
 
   @override
@@ -87,29 +90,34 @@ class _UploadImageState extends State<UploadImage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (_image != null)
-                CircleAvatar(
-                  radius: 100,
-                  backgroundImage: FileImage(_image!),
+                Container(
+                  width: 200,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: FileImage(_image!),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                )
+              else
+                GestureDetector(
+                  onTap: _pickImage,
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    color: const Color(0xFF4285F4),
+                    child: const Icon(Icons.add_a_photo,
+                        size: 50, color: Colors.white),
+                  ),
                 ),
               const SizedBox(height: 20),
               const Text(
                 'Click circle below to add photo',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 25,
+                  fontSize: 15,
                   color: Colors.blue,
-                ),
-              ),
-              const SizedBox(height: 20),
-              GestureDetector(
-                onTap: _pickImage,
-                child: CircleAvatar(
-                  radius: 100,
-                  backgroundColor: const Color(0xFF4285F4),
-                  child: _image == null
-                      ? const Icon(Icons.add_a_photo,
-                          size: 50, color: Colors.white)
-                      : null,
                 ),
               ),
               const SizedBox(height: 20),
@@ -117,7 +125,7 @@ class _UploadImageState extends State<UploadImage> {
                 'Add caption below',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 25,
+                  fontSize: 15,
                   color: Colors.blue,
                 ),
               ),
@@ -142,13 +150,13 @@ class _UploadImageState extends State<UploadImage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(
-                    onPressed: _saveImageAndCaption,
-                    child: const Text('Save'),
+                  MyButton(
+                    onTap: _saveImageAndCaption,
+                    text: 'Save',
                   ),
-                  ElevatedButton(
-                    onPressed: _sendImageAndCaption,
-                    child: const Text('Send'),
+                  MyButton(
+                    onTap: _sendImageAndCaption,
+                    text: 'Send',
                   ),
                 ],
               ),
