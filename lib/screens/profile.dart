@@ -408,7 +408,7 @@ class _ProfileState extends State<Profile> {
             const Divider(),
 
             // Showing The Gallery Chosen
-            showImages ? _imagesGallery() : _albumGallery(),
+            showImages ? _imagesGallery() : _albumGallery(uploadedImages),
           ],
         ),
       ),
@@ -426,7 +426,7 @@ class _ProfileState extends State<Profile> {
         crossAxisSpacing: 6,
         childAspectRatio: 1 / 1,
       ),
-      itemCount: uploadedImages.length, // Change this line
+      itemCount: uploadedImages.length,
 
       // Loop To Show Posts
       itemBuilder: (context, index) {
@@ -448,7 +448,7 @@ class _ProfileState extends State<Profile> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(24),
               child: Image.network(
-                uploadedImages[index], // Change this line
+                uploadedImages[index],
                 width: 300,
                 height: 300,
                 fit: BoxFit.cover,
@@ -461,7 +461,8 @@ class _ProfileState extends State<Profile> {
   }
 
   // Widget for Albums Gallery
-  Widget _albumGallery() {
+  Widget _albumGallery(List<String> images) {
+    // Accept images as a parameter
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -471,7 +472,7 @@ class _ProfileState extends State<Profile> {
         childAspectRatio: 16 / 9,
       ),
 
-      itemCount: 3,
+      itemCount: images.length,
 
       // Loop To Show Albums
       itemBuilder: (context, index) {
@@ -492,8 +493,8 @@ class _ProfileState extends State<Profile> {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(24),
-              child: Image.asset(
-                'assets/img$index.JPG',
+              child: Image.network(
+                images[index],
                 fit: BoxFit.cover,
               ),
             ),
