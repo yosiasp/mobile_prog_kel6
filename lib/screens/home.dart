@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; // Import Firestore
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'notifications.dart';
 
 class Home extends StatefulWidget {
@@ -58,6 +58,7 @@ class _HomeState extends State<Home> {
               return PostWidget(
                 imageUrl: post['imageUrl'],
                 caption: post['caption'],
+                username: post['username'] ?? 'Unknown',
               );
             },
           );
@@ -70,8 +71,14 @@ class _HomeState extends State<Home> {
 class PostWidget extends StatelessWidget {
   final String imageUrl;
   final String caption;
+  final String username;
 
-  const PostWidget({super.key, required this.imageUrl, required this.caption});
+  const PostWidget({
+    super.key,
+    required this.imageUrl,
+    required this.caption,
+    required this.username,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -81,19 +88,19 @@ class PostWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Bagian user info
-          const Padding(
-            padding: EdgeInsets.all(8.0),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 20,
                   backgroundImage:
                       NetworkImage('https://via.placeholder.com/150'),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 Text(
-                  'Username',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  username, // Display username here
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
             ),

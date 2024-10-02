@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:custom_text_form_field_plus/custom_text_form_field_plus.dart';
 
 class SearchAccount extends StatefulWidget {
   const SearchAccount({super.key});
@@ -27,10 +26,10 @@ class _SearchAccountState extends State<SearchAccount> {
                         onPressed: () {}, icon: const Icon(Icons.search)),
                     Expanded(
                         child: TextField(
-                          controller: searchController,
-                          decoration: InputDecoration(
-                          hintText: "Search here...",
-                          suffixIcon: Icon(Icons.clear),
+                      controller: searchController,
+                      decoration: InputDecoration(
+                        hintText: "Search here...",
+                        suffixIcon: Icon(Icons.clear),
                       ),
                     )),
                   ],
