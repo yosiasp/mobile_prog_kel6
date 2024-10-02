@@ -9,7 +9,6 @@ import 'account_status.dart';
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
-
   // Logout di alihkan ke screen settings
   void logout() {
     FirebaseAuth.instance.signOut();
@@ -32,8 +31,7 @@ class SettingsScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const AccountCenter()),
+                MaterialPageRoute(builder: (context) => const AccountCenter()),
               );
             },
           ),
@@ -46,15 +44,6 @@ class SettingsScreen extends StatelessWidget {
               // Aksi untuk Arsip
             },
           ),
-          // Taro di home screen aja ntar
-          // ListTile(
-          //   leading: const Icon(Icons.notifications),
-          //   title: const Text('Notifikasi'),
-          //   trailing: const Icon(Icons.arrow_forward_ios),
-          //   onTap: () {
-          //     // Aksi untuk Notifikasi
-          //   },
-          // ),
           ListTile(
             leading: const Icon(Icons.lock),
             title: const Text('Privasi Akun'),
@@ -70,8 +59,7 @@ class SettingsScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const AccountStatus()),
+                MaterialPageRoute(builder: (context) => const AccountStatus()),
               );
             },
           ),
@@ -82,38 +70,21 @@ class SettingsScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const AboutAccount()),
+                MaterialPageRoute(builder: (context) => const AboutAccount()),
               );
             },
           ),
           const Divider(),
-          // Mungkin gak perlu
-          // ListTile(
-          //   leading: const Icon(Icons.person_add),
-          //   title: const Text('Tambahkan Akun'),
-          //   onTap: () {
-          //     // Aksi untuk Tambahkan Akun
-          //   },
-          // ),
           ListTile(
             leading: const Icon(Icons.logout),
             title: const Text('Keluar'),
             onTap: () {
               Navigator.pop(context);
-              logout(); 
+              logout();
             },
           ),
-          // Mungkin gak perlu
-          // ListTile(
-          //   leading: const Icon(Icons.logout),
-          //   title: const Text('Keluar dari Semua Akun'),
-          //   onTap: () {
-          //     // Aksi untuk Keluar dari semua akun
-          //   },
-          // ),
         ],
-     ),
-);
-}
+      ),
+    );
+  }
 }

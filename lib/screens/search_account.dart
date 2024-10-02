@@ -27,7 +27,7 @@ class _SearchAccountState extends State<SearchAccount> {
                     Expanded(
                         child: TextField(
                       controller: searchController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Search here...",
                         suffixIcon: Icon(Icons.clear),
                       ),

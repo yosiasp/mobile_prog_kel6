@@ -63,7 +63,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // Go Back To The Recent Screen
+            Navigator.pop(context);
           },
         ),
         title: const Text(

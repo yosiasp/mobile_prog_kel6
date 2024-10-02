@@ -36,7 +36,7 @@ class AccountCenter extends StatelessWidget {
               );
             },
           ),
-          const Divider(), // Garis pemisah
+          const Divider(),
 
           ListTile(
             leading: const Icon(Icons.delete_outline, color: Colors.red),
@@ -44,18 +44,14 @@ class AccountCenter extends StatelessWidget {
                 const Text('Hapus Akun', style: TextStyle(color: Colors.red)),
             trailing: const Icon(Icons.arrow_forward_ios, color: Colors.black),
             onTap: () {
-              // Aksi ketika "Hapus Akun" dipilih
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    // builder: (context) => const DeleteAccountPage()),
                     builder: (context) => const DeleteAccount()),
               );
             },
           ),
           const Divider(),
-
-          // Tambahkan item lain di sini sesuai kebutuhan
         ],
       ),
     );

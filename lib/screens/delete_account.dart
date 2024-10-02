@@ -22,7 +22,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // Go Back To The Recent Screen
+            Navigator.pop(context);
           },
         ),
         title: const Text(
@@ -39,7 +39,6 @@ class _DeleteAccountState extends State<DeleteAccount> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // App Logo
                   Image.asset(
                     'assets/icon.png',
                     width: 100,
@@ -48,7 +47,6 @@ class _DeleteAccountState extends State<DeleteAccount> {
 
                   const SizedBox(height: 50),
 
-                  // App Title
                   const Text(
                     'Hapus Akun',
                     style: TextStyle(
@@ -61,7 +59,6 @@ class _DeleteAccountState extends State<DeleteAccount> {
 
                   const SizedBox(height: 25),
 
-                  // Description Text (Flexible Pharagraph)
                   const Text(
                     'Semua konten anda akan dihapus!',
                     style: TextStyle(
@@ -89,10 +86,9 @@ class _DeleteAccountState extends State<DeleteAccount> {
                   MyButton(
                       onTap: () {
                         // Masukkin fungsinya disini
-                        // Sebelom ngehapus akun, bikin muncul AlertDialog dulu, minta konfirmasi, "apakah anda ingin menghapus...." ya/tidak" 
+                        // Sebelom ngehapus akun, bikin muncul AlertDialog dulu, minta konfirmasi, "apakah anda ingin menghapus...." ya/tidak"
                       },
                       text: 'Hapus Akun'),
-
                 ],
               ),
             ),

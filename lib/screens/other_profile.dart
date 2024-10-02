@@ -10,7 +10,7 @@ class OtherProfile extends StatefulWidget {
 }
 
 class _OtherProfileState extends State<OtherProfile> {
-  bool showImages = true; // Variable to declare what to show (Images/Albums)
+  bool showImages = true;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class _OtherProfileState extends State<OtherProfile> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // Go Back To The Recent Screen
+            Navigator.pop(context);
           },
         ),
         title: const Text(
@@ -45,8 +45,7 @@ class _OtherProfileState extends State<OtherProfile> {
                       leading: const Icon(Icons.info_outline),
                       title: const Text('Tentang akun'),
                       onTap: () {
-                        Navigator.pop(context); // Menutup menu
-                        // Aksi
+                        Navigator.pop(context);
                       },
                     ),
                   ),
@@ -289,8 +288,7 @@ class _OtherProfileState extends State<OtherProfile> {
                         Icons.photo,
                         color: showImages
                             ? const Color(0xFF4285F4)
-                            : Colors.grey[
-                                500], // Changing Based of Chosen View (Images/Albums)
+                            : Colors.grey[500],
                       ),
                       const SizedBox(width: 3),
                       Text('Images',
@@ -300,8 +298,7 @@ class _OtherProfileState extends State<OtherProfile> {
                             fontWeight: FontWeight.w700,
                             color: showImages
                                 ? const Color(0xFF4285F4)
-                                : Colors.grey[
-                                    500], // Changing Based of Chosen View (Images/Albums)
+                                : Colors.grey[500],
                           ))
                     ],
                   ),
@@ -328,8 +325,7 @@ class _OtherProfileState extends State<OtherProfile> {
                         Icons.photo_album,
                         color: showImages
                             ? Colors.grey[500]
-                            : const Color(
-                                0xFF4285F4), // Changing Based of Chosen View
+                            : const Color(0xFF4285F4),
                       ),
                       const SizedBox(width: 3),
                       Text('Albums',
@@ -339,8 +335,7 @@ class _OtherProfileState extends State<OtherProfile> {
                             fontWeight: FontWeight.w700,
                             color: showImages
                                 ? Colors.grey[500]
-                                : const Color(
-                                    0xFF4285F4), // Changing Based of Chosen View
+                                : const Color(0xFF4285F4),
                           ))
                     ],
                   ),

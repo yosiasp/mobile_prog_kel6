@@ -45,9 +45,6 @@ class _HomeState extends State<Home> {
             .orderBy('timestamp', descending: true)
             .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return const Center(child: Text('No posts available'));
           }
@@ -59,6 +56,8 @@ class _HomeState extends State<Home> {
                 imageUrl: post['imageUrl'],
                 caption: post['caption'],
                 username: post['username'] ?? 'Unknown',
+                profileImageUrl: post['profileImageUrl'] ??
+                    'https://via.placeholder.com/150',
               );
             },
           );
@@ -72,12 +71,14 @@ class PostWidget extends StatelessWidget {
   final String imageUrl;
   final String caption;
   final String username;
+  final String profileImageUrl;
 
   const PostWidget({
     super.key,
     required this.imageUrl,
     required this.caption,
     required this.username,
+    required this.profileImageUrl,
   });
 
   @override
@@ -92,14 +93,14 @@ class PostWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 20,
                   backgroundImage:
-                      NetworkImage('https://via.placeholder.com/150'),
+                      NetworkImage(profileImageUrl), // {{ edit_4 }}
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  username, // Display username here
+                  username,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
@@ -111,8 +112,10 @@ class PostWidget extends StatelessWidget {
               // Tindakan saat gambar di-tap
             },
             child: Image.network(
-              imageUrl, // Ganti dengan URL gambar post
+              imageUrl,
               fit: BoxFit.cover,
+              height: 500,
+              width: double.infinity,
             ),
           ),
           // Bagian caption di atas jumlah likes
@@ -139,9 +142,8 @@ class PostWidget extends StatelessWidget {
                       },
                     ),
                     const Text('1,234',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold)), // Jumlah likes
-                    const SizedBox(width: 16), // Spasi antara like dan comment
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    const SizedBox(width: 16),
                     IconButton(
                       icon: const Icon(Icons.comment_outlined),
                       onPressed: () {
@@ -149,8 +151,7 @@ class PostWidget extends StatelessWidget {
                       },
                     ),
                     const Text('123',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold)), // Jumlah komentar
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                   ],
                 ),
                 IconButton(

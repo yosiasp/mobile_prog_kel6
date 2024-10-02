@@ -18,11 +18,13 @@ class _UploadImageState extends State<UploadImage> {
   File? _image;
   final TextEditingController _captionController = TextEditingController();
   String username = '';
+  String? _profileImageUrl;
 
   @override
   void initState() {
     super.initState();
     _getUsername();
+    _getProfileImage();
   }
 
   Future<void> _getUsername() async {
@@ -38,6 +40,24 @@ class _UploadImageState extends State<UploadImage> {
         DocumentSnapshot userDoc = userSnapshot.docs.first;
         setState(() {
           username = userDoc['username'] ?? '';
+        });
+      }
+    }
+  }
+
+  Future<void> _getProfileImage() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      String email = user.email ?? '';
+      QuerySnapshot userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo: email)
+          .get();
+
+      if (userSnapshot.docs.isNotEmpty) {
+        DocumentSnapshot userDoc = userSnapshot.docs.first;
+        setState(() {
+          _profileImageUrl = userDoc['profileImageUrl'] ?? '';
         });
       }
     }
@@ -83,9 +103,27 @@ class _UploadImageState extends State<UploadImage> {
       await FirebaseFirestore.instance.collection('uploads').add({
         'imageUrl': imageUrl,
         'caption': _captionController.text,
-        'username': username, // Add username here
+        'username': username,
+        'profileImageUrl': _profileImageUrl,
         'timestamp': FieldValue.serverTimestamp(),
       });
+
+      // Update user's document with the new image URL
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        String email = user.email ?? '';
+        QuerySnapshot userSnapshot = await FirebaseFirestore.instance
+            .collection('users')
+            .where('email', isEqualTo: email)
+            .get();
+
+        if (userSnapshot.docs.isNotEmpty) {
+          DocumentSnapshot userDoc = userSnapshot.docs.first;
+          await userDoc.reference.update({
+            'uploadedImages': FieldValue.arrayUnion([imageUrl])
+          });
+        }
+      }
 
       displayMessage('Image and caption sent!');
     } catch (e) {

@@ -69,7 +69,6 @@ class _EditProfileState extends State<EditProfile> {
           'about me': aboutController.text,
         });
 
-        // Optionally, show a success message
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Profile updated successfully')),

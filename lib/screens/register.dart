@@ -1,10 +1,13 @@
-// ignore: unnecessary_import
-import 'dart:ui'; // Required for using BackdropFilter
+import 'dart:io';
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'home.dart';
 
 class Register extends StatefulWidget {
   final Function()? onTap;
@@ -24,6 +27,26 @@ class _RegisterState extends State<Register> {
   final usernameController = TextEditingController();
   final locationController = TextEditingController();
   final aboutMeController = TextEditingController();
+  File? _profileImage;
+
+  Future<void> _pickImage() async {
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _profileImage = File(pickedFile.path);
+      });
+    }
+  }
+
+  Future<String?> _uploadProfileImage() async {
+    if (_profileImage == null) return null;
+    final storageRef = FirebaseStorage.instance
+        .ref()
+        .child('profile_images/${emailController.text}.jpg');
+    await storageRef.putFile(_profileImage!);
+    return await storageRef.getDownloadURL();
+  }
 
   void daftar() async {
     showDialog(
@@ -33,7 +56,6 @@ class _RegisterState extends State<Register> {
       ),
     );
 
-    // Perbaiki logika pemeriksaan kata sandi
     if (passwordController.text != confirmPasswordController.text) {
       Navigator.pop(context);
       displayMessage('Password tidak sama');
@@ -46,30 +68,40 @@ class _RegisterState extends State<Register> {
         password: passwordController.text,
       );
 
-      // create user in firebase
-      createUserInFirebase(
+      final profileImageUrl = await _uploadProfileImage();
+
+      await createUserInFirebase(
           firstNameController.text,
           lastNameController.text,
           int.parse(ageController.text),
           emailController.text,
           usernameController.text,
           locationController.text,
-          aboutMeController.text);
+          aboutMeController.text,
+          profileImageUrl);
 
-      if (context.mounted) {
-        // ignore: use_build_context_synchronously
+      if (mounted) {
         Navigator.pop(context);
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const Home()));
       }
     } on FirebaseAuthException catch (e) {
-      // ignore: use_build_context_synchronously
-      Navigator.pop(context);
-      displayMessage(e.code);
+      if (mounted) {
+        Navigator.pop(context);
+        displayMessage(e.code);
+      }
     }
   }
 
-  Future<void> createUserInFirebase(String firstName, String lastName, int age,
-      String email, String username, String location, String aboutMe) async {
-    // Tambahkan parameter aboutMe
+  Future<void> createUserInFirebase(
+      String firstName,
+      String lastName,
+      int age,
+      String email,
+      String username,
+      String location,
+      String aboutMe,
+      String? profileImageUrl) async {
     await FirebaseFirestore.instance.collection('users').add({
       'first name': firstName,
       'last name': lastName,
@@ -79,6 +111,7 @@ class _RegisterState extends State<Register> {
       'accountCreationDate': DateTime.now().toString(),
       'location': location,
       'about me': aboutMe,
+      'profileImageUrl': profileImageUrl,
     });
   }
 
@@ -100,7 +133,6 @@ class _RegisterState extends State<Register> {
           child: SingleChildScrollView(
             child: Stack(
               children: [
-                // Background Image For Header
                 Container(
                   width: double.infinity,
                   height: 300,
@@ -117,8 +149,6 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                 ),
-
-                // Header With Background Image
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Column(
@@ -127,10 +157,29 @@ class _RegisterState extends State<Register> {
                       const SizedBox(height: 50),
 
                       // Account Icon
-                      Image.asset(
-                        'assets/icon.png',
-                        width: 100,
-                        height: 100,
+                      GestureDetector(
+                        onTap: _pickImage,
+                        child: ClipRRect(
+                          // Added ClipRRect for border radius
+                          borderRadius:
+                              BorderRadius.circular(15), // Set border radius
+                          child: Container(
+                            // Changed CircleAvatar to Container
+                            width: 100, // Set width for square shape
+                            height: 100, // Set height for square shape
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                  15), // Set border radius
+                              image: DecorationImage(
+                                image: _profileImage != null
+                                    ? FileImage(_profileImage!)
+                                    : const AssetImage('assets/account.png')
+                                        as ImageProvider,
+                                fit: BoxFit.cover, // Ensure the image covers th
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
 
                       const SizedBox(height: 25),
