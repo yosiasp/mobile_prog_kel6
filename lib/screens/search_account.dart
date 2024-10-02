@@ -24,16 +24,15 @@ class _SearchAccountState extends State<SearchAccount> {
                 child: Row(
                   children: [
                     IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.arrow_back)),
-                    Expanded(
-                      child: CustomTextFormField(
-                        hintText: "Search...",
-                        controller: searchController,
-                        keyboardType: const TextInputType.numberWithOptions(),
-                      ),
-                    ),
-                    IconButton(
                         onPressed: () {}, icon: const Icon(Icons.search)),
+                    Expanded(
+                        child: TextField(
+                          controller: searchController,
+                          decoration: InputDecoration(
+                          hintText: "Search here...",
+                          suffixIcon: Icon(Icons.clear),
+                      ),
+                    )),
                   ],
                 ),
               )
