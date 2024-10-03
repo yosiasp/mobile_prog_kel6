@@ -45,19 +45,19 @@ class _LoginState extends State<Login> {
 
       switch (e.code) {
         case 'invalid-email':
-          errorMessage = 'Email tidak valid.';
+          errorMessage = 'The email is not valid';
           break;
         case 'user-not-found':
-          errorMessage = 'Pengguna tidak ditemukan.';
+          errorMessage = 'User is not found';
           break;
         case 'wrong-password':
-          errorMessage = 'Kata sandi salah.';
+          errorMessage = 'The password is invallid';
           break;
         case 'user-disabled':
-          errorMessage = 'Akun dinonaktifkan.';
+          errorMessage = 'Account has been disabled, please contact us';
           break;
         default:
-          errorMessage = 'Terjadi kesalahan. Silakan coba lagi.';
+          errorMessage = 'An error occured. Please try again';
       }
 
       displayMessage(errorMessage);
@@ -116,7 +116,7 @@ class _LoginState extends State<Login> {
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Selamat Datang',
+                      Text('Welcome!',
                           style: TextStyle(
                             fontFamily: 'Suse',
                             color: Colors.black,
@@ -145,7 +145,7 @@ class _LoginState extends State<Login> {
                   const SizedBox(height: 15),
 
                   // Sign In Button
-                  MyButton(onTap: Masuk, text: 'Masuk'),
+                  MyButton(onTap: Masuk, text: 'Login'),
 
                   const SizedBox(height: 25),
 
@@ -153,7 +153,7 @@ class _LoginState extends State<Login> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Belum punya akun?',
+                      const Text('New here?',
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             color: Colors.black,
@@ -162,7 +162,7 @@ class _LoginState extends State<Login> {
                       GestureDetector(
                           onTap: widget.onTap,
                           child: const Text(
-                            'Daftar Sekarang',
+                            'Register now',
                             style: TextStyle(
                               fontFamily: 'Roboto',
                               color: Color(0xFF4285F4),
@@ -187,7 +187,7 @@ class _LoginState extends State<Login> {
                           );
                         },
                         child: const Text(
-                          'Lupa Kata Sandi',
+                          'Forgot Password',
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             fontSize: 15,

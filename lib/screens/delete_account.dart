@@ -26,7 +26,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
           },
         ),
         title: const Text(
-          'Batal',
+          'Cancel',
           style: TextStyle(
               fontSize: 22, fontFamily: 'Roboto', color: Colors.black),
         ),
@@ -48,7 +48,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
                   const SizedBox(height: 50),
 
                   const Text(
-                    'Hapus Akun',
+                    'Delete Account',
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       fontSize: 25,
@@ -60,7 +60,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
                   const SizedBox(height: 25),
 
                   const Text(
-                    'Semua konten anda akan dihapus!',
+                    'WARNING: All contents will be lost!',
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       color: Colors.red,
@@ -76,7 +76,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
                   // Password Field
                   MyTextField(
                     controller: passwordController,
-                    hintText: 'Kata Sandi',
+                    hintText: 'Password',
                     obscureText: true,
                   ),
 
@@ -88,7 +88,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
                         // Masukkin fungsinya disini
                         // Sebelom ngehapus akun, bikin muncul AlertDialog dulu, minta konfirmasi, "apakah anda ingin menghapus...." ya/tidak"
                       },
-                      text: 'Hapus Akun'),
+                      text: 'Delete Account'),
                 ],
               ),
             ),

@@ -112,7 +112,7 @@ class AboutAccount extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                'Akun dibuat tanggal',
+                                'Account created in',
                                 style: TextStyle(
                                   fontFamily: 'Roboto',
                                   fontSize: 16,

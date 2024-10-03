@@ -18,7 +18,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pengaturan'),
+        title: const Text('Settings'),
         backgroundColor: Colors.white,
       ),
       backgroundColor: Colors.white,
@@ -26,7 +26,7 @@ class SettingsScreen extends StatelessWidget {
         children: [
           ListTile(
             leading: const Icon(Icons.account_circle_outlined),
-            title: const Text('Pusat Akun'),
+            title: const Text('Account Center'),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               Navigator.push(
@@ -38,7 +38,7 @@ class SettingsScreen extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(Icons.archive),
-            title: const Text('Arsip'),
+            title: const Text('Archive'),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               // Aksi untuk Arsip
@@ -46,7 +46,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.lock),
-            title: const Text('Privasi Akun'),
+            title: const Text('Account Privacy'),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               // Aksi untuk Privasi Akun
@@ -54,7 +54,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.security),
-            title: const Text('Status Akun'),
+            title: const Text('Account Status'),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               Navigator.push(
@@ -65,7 +65,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.info_outline),
-            title: const Text('Tentang Akun'),
+            title: const Text('About Account'),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               Navigator.push(
@@ -77,7 +77,7 @@ class SettingsScreen extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(Icons.logout),
-            title: const Text('Keluar'),
+            title: const Text('Logout'),
             onTap: () {
               Navigator.pop(context);
               logout();

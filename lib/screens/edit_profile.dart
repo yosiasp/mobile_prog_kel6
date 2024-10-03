@@ -91,7 +91,7 @@ class _EditProfileState extends State<EditProfile> {
           },
         ),
         title: const Text(
-          'Batal',
+          'Cancel',
           style: TextStyle(
               fontSize: 22, fontFamily: 'Roboto', color: Colors.black),
         ),
@@ -115,7 +115,7 @@ class _EditProfileState extends State<EditProfile> {
 
                   // App Title
                   const Text(
-                    'Edit Profil',
+                    'Edit Profile',
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       fontSize: 25,
@@ -138,7 +138,7 @@ class _EditProfileState extends State<EditProfile> {
                   // First Name Field
                   MyTextField(
                     controller: firstNameController,
-                    hintText: 'Nama depan',
+                    hintText: 'First name',
                     obscureText: false,
                   ),
 
@@ -147,7 +147,7 @@ class _EditProfileState extends State<EditProfile> {
                   // Last Name Field
                   MyTextField(
                     controller: lastNameController,
-                    hintText: 'Nama belakang',
+                    hintText: 'Last name',
                     obscureText: false,
                   ),
 
@@ -156,7 +156,7 @@ class _EditProfileState extends State<EditProfile> {
                   // Location Field
                   MyTextField(
                     controller: locationController,
-                    hintText: 'Lokasi',
+                    hintText: 'Location',
                     obscureText: false,
                   ),
 
@@ -165,7 +165,7 @@ class _EditProfileState extends State<EditProfile> {
                   // About Field
                   MyTextFieldLarge(
                     controller: aboutController,
-                    hintText: 'Tentang anda',
+                    hintText: 'About YOU',
                     obscureText: false,
                   ),
 
@@ -176,7 +176,7 @@ class _EditProfileState extends State<EditProfile> {
                       onTap: () {
                         _updateProfile();
                       },
-                      text: 'Selesai'),
+                      text: 'Done'),
                 ],
               ),
             ),

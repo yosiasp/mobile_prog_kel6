@@ -29,7 +29,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         builder: (context) {
           return const AlertDialog(
             content: Text(
-              'Email berhasil dikirim',
+              'Email with the link has been sent',
               style: TextStyle(fontSize: 20),
             ),
           );
@@ -91,7 +91,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
                   // App Title
                   const Text(
-                    'Lupa Kata Sandi?',
+                    'Forgot Password?',
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       fontSize: 25,
@@ -104,7 +104,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
                   // Description Text (Flexible Pharagraph)
                   Text(
-                    'Masukkan alamat email anda, kami akan mengirimkan link untuk mengubah kata sandi anda.',
+                    'Enter your email address. We will send you an email to reset your password.',
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       color: Colors.grey[400],
@@ -127,7 +127,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   const SizedBox(height: 10),
 
                   // Send Email Button
-                  MyButton(onTap: sendEmail, text: 'Kirim Email'),
+                  MyButton(onTap: sendEmail, text: 'Send Email'),
 
                   const SizedBox(height: 25),
                 ],

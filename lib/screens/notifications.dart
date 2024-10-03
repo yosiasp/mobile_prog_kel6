@@ -123,7 +123,7 @@ class _NotificationsState extends State<Notifications> {
           },
         ),
         title: const Text(
-          'Notifikasi',
+          'Notifications',
           style: TextStyle(
               fontSize: 22, fontFamily: 'Roboto', color: Colors.black),
         ),
