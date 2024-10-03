@@ -56,6 +56,22 @@ class _RegisterState extends State<Register> {
       ),
     );
 
+    // Check if all fields are filled
+    if (emailController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        confirmPasswordController.text.isEmpty ||
+        firstNameController.text.isEmpty ||
+        lastNameController.text.isEmpty ||
+        ageController.text.isEmpty ||
+        usernameController.text.isEmpty ||
+        locationController.text.isEmpty ||
+        aboutMeController.text.isEmpty ||
+        _profileImage == null) {
+      Navigator.pop(context);
+      displayMessage('Semua field harus diisi dan foto profil harus ada.');
+      return;
+    }
+
     if (passwordController.text != confirmPasswordController.text) {
       Navigator.pop(context);
       displayMessage('Password tidak sama');
