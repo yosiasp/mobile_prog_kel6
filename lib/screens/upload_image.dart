@@ -178,7 +178,7 @@ class _UploadImageState extends State<UploadImage> {
                 ),
               const SizedBox(height: 20),
               const Text(
-                'Click circle below to add photo',
+                'Click above to add photo ☝️',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 15,
@@ -188,7 +188,7 @@ class _UploadImageState extends State<UploadImage> {
               const SizedBox(height: 20),
               // ignore: prefer_const_constructors
               Text(
-                'Add caption below',
+                'Add caption below 👇',
                 // ignore: prefer_const_constructors
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
