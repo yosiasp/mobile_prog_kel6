@@ -36,19 +36,19 @@ class MainMenuState extends State<MainMenu> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: 'Rumah',
+              label: 'Home',
               ),
           BottomNavigationBarItem(
               icon: Icon(Icons.search),
-              label: 'Pencarian',
+              label: 'Search',
               ),
           BottomNavigationBarItem(
               icon: Icon(Icons.add),
-              label: 'Bagikan',
+              label: 'Post',
               ),
           BottomNavigationBarItem(
               icon: Icon(Icons.account_circle_outlined),
-              label: 'Profil',
+              label: 'Profile',
               ),
         ],
         backgroundColor: Colors.white,

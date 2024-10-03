@@ -10,7 +10,7 @@ class AccountCenter extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Pusat Akun',
+          'Account Center',
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.white,
@@ -27,7 +27,7 @@ class AccountCenter extends StatelessWidget {
         children: [
           ListTile(
             leading: const Icon(Icons.lock_outline, color: Colors.black),
-            title: const Text('Ganti Kata Sandi'),
+            title: const Text('Change Password'),
             trailing: const Icon(Icons.arrow_forward_ios, color: Colors.black),
             onTap: () {
               Navigator.push(
@@ -41,7 +41,7 @@ class AccountCenter extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.delete_outline, color: Colors.red),
             title:
-                const Text('Hapus Akun', style: TextStyle(color: Colors.red)),
+                const Text('Delete Account', style: TextStyle(color: Colors.red)),
             trailing: const Icon(Icons.arrow_forward_ios, color: Colors.black),
             onTap: () {
               Navigator.push(

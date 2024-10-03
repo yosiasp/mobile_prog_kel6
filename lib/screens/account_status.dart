@@ -41,7 +41,7 @@ class _AccountStatusState extends State<AccountStatus> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Status Akun Anda'),
+        title: const Text('Your Account Status'),
         backgroundColor: Colors.white,
       ),
       backgroundColor: Colors.white,
@@ -100,7 +100,7 @@ class _AccountStatusState extends State<AccountStatus> {
 
                 // Date the account was created
                 const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,  
                   children: [
                     Icon(
                       Icons.check_circle_outline,
@@ -108,19 +108,27 @@ class _AccountStatusState extends State<AccountStatus> {
                       size: 32.0,
                     ),
                     SizedBox(width: 10),
-                    Text(
-                      'Akun anda tidak memiliki masalah',
-                      style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: 20,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.grey,
+                    Expanded(  
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,  
+                        children: [
+                          Text(
+                            'Your account does not have any problems',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontSize: 20,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.grey,
+                            ),
+                            softWrap: true,  
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
 
-                const Divider(),
+              const Divider(),
               ],
             ),
           ),

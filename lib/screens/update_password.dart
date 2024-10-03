@@ -26,7 +26,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
           builder: (context) {
             return const AlertDialog(
               content: Text(
-                'Kata sandi berhasil diubah',
+                'The password has been changed',
                 style: TextStyle(fontSize: 20),
               ),
             );
@@ -39,7 +39,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
           builder: (context) {
             return AlertDialog(
               content: Text(
-                'Terjadi kesalahan: $e',
+                'An error occured: $e',
                 style: const TextStyle(fontSize: 20),
               ),
             );
@@ -52,7 +52,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
         builder: (context) {
           return const AlertDialog(
             content: Text(
-              'Kata sandi baru tidak cocok',
+              'The password confirmation is invalid!',
               style: TextStyle(fontSize: 20),
             ),
           );
@@ -99,7 +99,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
 
                   // App Title
                   const Text(
-                    'Ganti Kata Sandi',
+                    'Change Password',
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       fontSize: 25,
@@ -113,7 +113,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                   // Password Field
                   MyTextField(
                     controller: newPasswordController,
-                    hintText: 'Kata Sandi Baru',
+                    hintText: 'New Password',
                     obscureText: true,
                   ),
 
@@ -123,7 +123,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
 
                   MyTextField(
                     controller: confirmPasswordController,
-                    hintText: 'Konfirmasi Kata Sandi Baru',
+                    hintText: 'New Password Confirmation',
                     obscureText: true,
                   ), // Tambahkan field konfirmasi password
 
@@ -134,7 +134,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                       onTap: () {
                         changePassword();
                       },
-                      text: 'Ubah Kata Sandi'),
+                      text: 'Change Password'),
 
                   const SizedBox(height: 10),
 
@@ -151,7 +151,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                           );
                         },
                         child: const Text(
-                          'Lupa Kata Sandi',
+                          'Forgot Password',
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             color: Color(0xFF4285F4),

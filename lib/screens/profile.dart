@@ -175,7 +175,7 @@ class _ProfileState extends State<Profile> {
                               child: Container(
                                   padding: const EdgeInsets.all(16),
                                   decoration: BoxDecoration(
-                                    color: Colors.amber,
+                                    color: const Color(0xFFffb703),
                                     borderRadius: BorderRadius.circular(18),
                                     boxShadow: [
                                       BoxShadow(
@@ -199,6 +199,7 @@ class _ProfileState extends State<Profile> {
                                             style: const TextStyle(
                                               fontFamily: 'Suse',
                                               fontSize: 20,
+                                              color: Color(0xFF023047), 
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -285,13 +286,13 @@ class _ProfileState extends State<Profile> {
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.edit, size: 18, color: Color(0xFF4285F4)),
+                        Icon(Icons.edit, size: 18, color:  Color(0xFF219ebc) ),
                         SizedBox(width: 2),
                         Text(
-                          'Edit Profil',
+                          'Edit Profile',
                           style: TextStyle(
                             fontSize: 16,
-                            color: Color(0xFF4285F4),
+                            color:  Color(0xFF219ebc),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -349,7 +350,7 @@ class _ProfileState extends State<Profile> {
                       Icon(
                         Icons.photo,
                         color: showImages
-                            ? const Color(0xFF4285F4)
+                            ? const Color(0xFF219ebc)
                             : Colors.grey[500],
                       ),
                       const SizedBox(width: 3),
@@ -359,7 +360,7 @@ class _ProfileState extends State<Profile> {
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.w700,
                             color: showImages
-                                ? const Color(0xFF4285F4)
+                                ? const Color(0xFF219ebc)
                                 : Colors.grey[500],
                           ))
                     ],
@@ -387,7 +388,7 @@ class _ProfileState extends State<Profile> {
                         Icons.photo_album,
                         color: showImages
                             ? Colors.grey[500]
-                            : const Color(0xFF4285F4),
+                            : const  Color(0xFF219ebc)
                       ),
                       const SizedBox(width: 3),
                       Text('Albums',
@@ -397,7 +398,7 @@ class _ProfileState extends State<Profile> {
                             fontWeight: FontWeight.w700,
                             color: showImages
                                 ? Colors.grey[500]
-                                : const Color(0xFF4285F4),
+                                : const Color(0xFF219ebc)
                           ))
                     ],
                   ),

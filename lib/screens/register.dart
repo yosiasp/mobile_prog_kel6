@@ -68,13 +68,13 @@ class _RegisterState extends State<Register> {
         aboutMeController.text.isEmpty ||
         _profileImage == null) {
       Navigator.pop(context);
-      displayMessage('Semua field harus diisi dan foto profil harus ada.');
+      displayMessage('Every field must be filled and profile picture must be added');
       return;
     }
 
     if (passwordController.text != confirmPasswordController.text) {
       Navigator.pop(context);
-      displayMessage('Password tidak sama');
+      displayMessage('The confirmation password is incorrect!');
       return;
     }
 
@@ -244,7 +244,7 @@ class _RegisterState extends State<Register> {
                       const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Daftar Akun Baru',
+                          'Register New Account',
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             color: Colors.black,
@@ -264,7 +264,7 @@ class _RegisterState extends State<Register> {
                       const SizedBox(height: 10),
                       MyTextField(
                         controller: firstNameController,
-                        hintText: 'Nama Depan',
+                        hintText: 'First Name',
                         obscureText: false,
                       ),
 
@@ -272,14 +272,14 @@ class _RegisterState extends State<Register> {
 
                       MyTextField(
                         controller: lastNameController,
-                        hintText: 'Nama Belakang',
+                        hintText: 'Last name',
                         obscureText: false,
                       ),
 
                       const SizedBox(height: 10),
                       MyTextField(
                         controller: ageController,
-                        hintText: 'Umur',
+                        hintText: 'Age',
                         obscureText: false,
                       ),
 
@@ -287,7 +287,7 @@ class _RegisterState extends State<Register> {
 
                       MyTextField(
                         controller: locationController,
-                        hintText: 'Lokasi',
+                        hintText: 'Location',
                         obscureText: false,
                       ),
 
@@ -295,7 +295,7 @@ class _RegisterState extends State<Register> {
 
                       MyTextField(
                         controller: aboutMeController,
-                        hintText: 'Tentang Saya',
+                        hintText: 'About YOU',
                         obscureText: false,
                       ),
 
@@ -313,7 +313,7 @@ class _RegisterState extends State<Register> {
                       // Password Field
                       MyTextField(
                         controller: passwordController,
-                        hintText: 'Kata Sandi',
+                        hintText: 'Password',
                         obscureText: true,
                       ),
 
@@ -322,14 +322,14 @@ class _RegisterState extends State<Register> {
                       // Confirm Password Field
                       MyTextField(
                         controller: confirmPasswordController,
-                        hintText: 'Konfirmasi Kata Sandi',
+                        hintText: 'Password confirmation',
                         obscureText: true,
                       ),
 
                       const SizedBox(height: 10),
 
                       // Sign Up Button
-                      MyButton(onTap: daftar, text: 'Daftar'),
+                      MyButton(onTap: daftar, text: 'Register'),
 
                       const SizedBox(height: 25),
 
@@ -338,7 +338,7 @@ class _RegisterState extends State<Register> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            'Sudah Punya Akun?',
+                            'Already have an account?',
                             style: TextStyle(
                               fontFamily: 'Roboto',
                               color: Colors.black,
@@ -348,7 +348,7 @@ class _RegisterState extends State<Register> {
                           GestureDetector(
                             onTap: widget.onTap,
                             child: const Text(
-                              'Masuk Sekarang',
+                              'Login now',
                               style: TextStyle(
                                 fontFamily: 'Roboto',
                                 color: Color(0xFF4285F4),
