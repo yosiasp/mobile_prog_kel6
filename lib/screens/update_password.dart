@@ -12,6 +12,7 @@ class UpdatePassword extends StatefulWidget {
 }
 
 class _UpdatePasswordState extends State<UpdatePassword> {
+  final oldPasswordController = TextEditingController();
   final newPasswordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
@@ -19,46 +20,98 @@ class _UpdatePasswordState extends State<UpdatePassword> {
     if (newPasswordController.text == confirmPasswordController.text) {
       try {
         User? user = FirebaseAuth.instance.currentUser;
+
+        // Authentication to check the old password
+        AuthCredential credential = EmailAuthProvider.credential(
+          email: user?.email ?? '', 
+          password: oldPasswordController.text,
+        );
+
+        await user?.reauthenticateWithCredential(credential);
+
+        // Updating password if the old password is corrct
         await user?.updatePassword(newPasswordController.text);
-        showDialog(
-          // ignore: use_build_context_synchronously
-          context: context,
-          builder: (context) {
-            return const AlertDialog(
-              content: Text(
-                'The password has been changed',
-                style: TextStyle(fontSize: 20),
-              ),
-            );
-          },
-        );
-      } catch (e) {
-        showDialog(
-          // ignore: use_build_context_synchronously
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              content: Text(
-                'An error occured: $e',
-                style: const TextStyle(fontSize: 20),
-              ),
-            );
-          },
-        );
+
+        String title;
+        String message;
+
+        title = 'Password Changed';
+        message = 'Your password has changed successfully';
+
+        displayMessage(title, message);
+
+      } on FirebaseAuthException catch (e) { // If old password is incorrect
+      // ignore: avoid_print, use_build_context_synchronously
+      Navigator.pop(context);
+      String title;
+      String message;
+
+      title = 'Invalid Password';
+      message = 'The old password you entered is incorrect';
+      
+      displayMessage(title, message);
+    } catch (e) {
+        String title;
+        String message;
+
+        title = 'Error';
+        message = 'An error occured: $e';
+        
+        displayMessage(title, message);
       }
     } else {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return const AlertDialog(
-            content: Text(
-              'The password confirmation is invalid!',
-              style: TextStyle(fontSize: 20),
-            ),
-          );
-        },
-      );
+        String title;
+        String message;
+
+        title = 'Invalid Confirmation Password';
+        message = 'The password confirmation you entered is incorrect';
+        
+        displayMessage(title, message);
     }
+  }
+
+  void displayMessage(String title, String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          title: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 22, 
+              fontFamily: 'Roboto', 
+              fontWeight: FontWeight.bold
+              ),
+          ),
+          content: Text(
+            message,
+            style: const TextStyle(
+              fontFamily: 'Roboto', 
+              fontSize: 18),
+          ),
+          actions: [
+            TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                'OK',
+                style: TextStyle(color: Color(0xFF219ebc)),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -110,7 +163,16 @@ class _UpdatePasswordState extends State<UpdatePassword> {
 
                   const SizedBox(height: 25),
 
-                  // Password Field
+                  // Old Password Field
+                  MyTextField(
+                    controller: oldPasswordController,
+                    hintText: 'Old Password',
+                    obscureText: true,
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  // New Password Field
                   MyTextField(
                     controller: newPasswordController,
                     hintText: 'New Password',
@@ -119,7 +181,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
 
                   const SizedBox(height: 10),
 
-                  // Confirm Password Field
+                  // New Password Confirmation Field
 
                   MyTextField(
                     controller: confirmPasswordController,

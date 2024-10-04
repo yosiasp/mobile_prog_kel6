@@ -68,13 +68,13 @@ class _RegisterState extends State<Register> {
         aboutMeController.text.isEmpty ||
         _profileImage == null) {
       Navigator.pop(context);
-      displayMessage('Every field must be filled and profile picture must be added');
+      displayMessage('Cannot Create Account','Every field must be filled and profile picture must be added');
       return;
     }
 
     if (passwordController.text != confirmPasswordController.text) {
       Navigator.pop(context);
-      displayMessage('The confirmation password is incorrect!');
+      displayMessage('Cannot Create Account','The confirmation password is incorrect!');
       return;
     }
 
@@ -104,7 +104,7 @@ class _RegisterState extends State<Register> {
     } on FirebaseAuthException catch (e) {
       if (mounted) {
         Navigator.pop(context);
-        displayMessage(e.code);
+        displayMessage('Error', 'An error occured. Please try again');
       }
     }
   }
@@ -131,14 +131,49 @@ class _RegisterState extends State<Register> {
     });
   }
 
-  void displayMessage(String message) {
+  void displayMessage(String title, String message) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(message),
-      ),
-    );
-  }
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          title: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 22, 
+              fontFamily: 'Roboto', 
+              fontWeight: FontWeight.bold
+              ),
+          ),
+          content: Text(
+            message,
+            style: const TextStyle(
+              fontFamily: 'Roboto', 
+              fontSize: 18),
+          ),
+          actions: [
+            TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                'OK',
+              style: TextStyle(color: Color(0xFF219ebc)),
+            ),
+          ),
+        ],
+      );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {

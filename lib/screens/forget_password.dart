@@ -23,34 +23,56 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     try {
       await FirebaseAuth.instance
           .sendPasswordResetEmail(email: emailController.text.toString());
-      showDialog(
-        // ignore: use_build_context_synchronously
-        context: context,
-        builder: (context) {
-          return const AlertDialog(
-            content: Text(
-              'Email with the link has been sent',
-              style: TextStyle(fontSize: 20),
-            ),
-          );
-        },
-      );
+      displayMessage('Email Sent', 'Email with the link has been sent');
     } on FirebaseAuthException catch (e) {
       // ignore: avoid_print
       print(e);
-      showDialog(
-        // ignore: use_build_context_synchronously
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            content: Text(
-              'Error: ${e.message}',
-              style: const TextStyle(fontSize: 20),
-            ),
-          );
-        },
-      );
+      displayMessage('Error', 'An error occured. Please try again');
     }
+  }
+
+  void displayMessage(String title, String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          title: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 22, 
+              fontFamily: 'Roboto', 
+              fontWeight: FontWeight.bold
+              ),
+          ),
+          content: Text(
+            message,
+            style: const TextStyle(
+              fontFamily: 'Roboto', 
+              fontSize: 18),
+          ),
+          actions: [
+            TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                'OK',
+                style: TextStyle(color: Color(0xFF219ebc)),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
