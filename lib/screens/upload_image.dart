@@ -144,8 +144,15 @@ class _UploadImageState extends State<UploadImage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Upload Image'),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color(0xFF219ebc),
+        elevation: 0,
+        leading: const Icon(Icons.publish_sharp, size: 25, color: Colors.black),
+        title: const Text(
+          'Post',
+          style:
+              TextStyle(fontSize: 24, fontFamily: 'Roboto', color: Colors.black),
+        ),
+
       ),
       backgroundColor: Colors.white,
       body: Padding(

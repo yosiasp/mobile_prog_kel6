@@ -56,7 +56,7 @@ class MainMenuState extends State<MainMenu> {
         showSelectedLabels: true, 
         iconSize: 30,
         currentIndex: screenIndex,
-        selectedItemColor: Colors.black,
+        selectedItemColor: const Color(0xFF4285F4),
         onTap: setIndex,
         elevation: 50, 
       ),
