@@ -40,7 +40,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
 
         displayMessage(title, message);
 
-      } on FirebaseAuthException catch (e) { // If old password is incorrect
+      } on FirebaseAuthException { // If old password is incorrect
       // ignore: avoid_print, use_build_context_synchronously
       Navigator.pop(context);
       String title;
@@ -128,7 +128,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
           },
         ),
         title: const Text(
-          'Batal',
+          'Cancel',
           style: TextStyle(
               fontSize: 22, fontFamily: 'Roboto', color: Colors.black),
         ),
