@@ -9,7 +9,6 @@ import 'account_status.dart';
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
-  // Logout di alihkan ke screen settings
   void logout() {
     FirebaseAuth.instance.signOut();
   }
