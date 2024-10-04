@@ -101,7 +101,7 @@ class _RegisterState extends State<Register> {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => const Home()));
       }
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       if (mounted) {
         Navigator.pop(context);
         displayMessage('Error', 'An error occured. Please try again');

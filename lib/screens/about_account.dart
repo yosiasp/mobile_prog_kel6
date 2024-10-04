@@ -26,7 +26,7 @@ class AboutAccount extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tentang Akun Anda'),
+        title: const Text('About Your Account'),
         backgroundColor: Colors.white,
       ),
       backgroundColor: Colors.white,
