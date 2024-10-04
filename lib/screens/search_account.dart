@@ -47,7 +47,7 @@ class _SearchAccountState extends State<SearchAccount> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 40),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
                 child: Row(
                   children: [
                     IconButton(
@@ -118,11 +118,126 @@ class _SearchAccountState extends State<SearchAccount> {
                     ),
                   ],
                 ),
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 40),
+                child: Row(
+                  children: [
+                    Container(
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 25),
+                        Container(
+                          height: 130,
+                          width: 130,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.3),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(18),
+                            child: 
+                                 Image.asset(
+                                    'assets/profile.JPG',
+                                    width: 130,
+                                    height: 130,
+                                    fit: BoxFit.cover,
+                                  ),
+                          ),
+                          
+                        ),
+                        Container(
+                          height: 130,
+                          width: 130,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.3),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(18),
+                            child: 
+                                 Image.asset(
+                                    'assets/account.png',
+                                    width: 130,
+                                    height: 130,
+                                    fit: BoxFit.cover,
+                                  ),
+                          ),
+                          
+                        ),
+                        Container(
+                          height: 130,
+                          width: 130,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.3),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(18),
+                            child: 
+                                 Image.asset(
+                                    'assets/img0.JPG',
+                                    width: 130,
+                                    height: 130,
+                                    fit: BoxFit.cover,
+                                  ),
+                          ),
+                          
+                        ),
+                        Container(
+                          height: 130,
+                          width: 130,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.3),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(18),
+                            child: 
+                                 Image.asset(
+                                    'assets/icon.png',
+                                    width: 130,
+                                    height: 130,
+                                    fit: BoxFit.cover,
+                                  ),
+                          ),
+                          
+                        ),
+                  ],
+                ),
+              ),
             ],
           )
         ),
-      )
-    );
+      ]))
+    ));
   }
 }
