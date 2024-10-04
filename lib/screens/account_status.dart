@@ -12,6 +12,7 @@ class AccountStatus extends StatefulWidget {
 
 class _AccountStatusState extends State<AccountStatus> {
   String username = '';
+  String profileImageUrl = '';
 
   Future<void> getUserData() async {
     User? user = FirebaseAuth.instance.currentUser;
@@ -24,8 +25,11 @@ class _AccountStatusState extends State<AccountStatus> {
           .get();
 
       if (userSnapshot.docs.isNotEmpty) {
+        var userDoc = userSnapshot.docs.first;
+
         setState(() {
-          username = userSnapshot.docs.first['username'] ?? 'Username';
+          username = userDoc['username'] ?? 'Username';
+          profileImageUrl = userDoc['profileImageUrl'] ?? '';
         });
       }
     }
@@ -71,12 +75,19 @@ class _AccountStatusState extends State<AccountStatus> {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(18),
-                    child: Image.asset(
-                      'assets/profile.JPG',
-                      width: 130,
-                      height: 130,
-                      fit: BoxFit.cover,
-                    ),
+                    child: profileImageUrl.isNotEmpty
+                    ? Image.network(
+                        profileImageUrl,
+                        width: 130,
+                        height: 130,
+                        fit: BoxFit.cover,
+                      )
+                    : Image.asset(
+                        'assets/profile.JPG',
+                        width: 130,
+                        height: 130,
+                        fit: BoxFit.cover,
+                      ),
                   ),
                 ),
 

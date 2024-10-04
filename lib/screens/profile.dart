@@ -418,6 +418,19 @@ class _ProfileState extends State<Profile> {
 
   // Widget for Images Gallery
   Widget _imagesGallery() {
+    // If there are no images yet
+    if (uploadedImages.isEmpty) {
+      return const Center(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text(
+            'No images yet. Start posting!',
+            style: TextStyle(fontSize: 18, fontFamily: 'Roboto' ,color: Colors.grey),
+          ),
+        ),
+      );
+    } 
+
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -463,6 +476,19 @@ class _ProfileState extends State<Profile> {
 
   // Widget for Albums Gallery
   Widget _albumGallery(List<String> images) {
+    // if there are no albums yet
+     if (images.isEmpty) {
+      return const Center(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text(
+            'Create your album here!',
+            style: TextStyle(fontSize: 18, fontFamily: 'Roboto' ,color: Colors.grey),
+          ),
+        ),
+      );
+    } 
+
     // Accept images as a parameter
     return GridView.builder(
       shrinkWrap: true,
