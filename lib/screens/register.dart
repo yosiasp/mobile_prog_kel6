@@ -7,7 +7,7 @@ import '../components/button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'home.dart';
+import '../auth/main_menu.dart';
 
 class Register extends StatefulWidget {
   final Function()? onTap;
@@ -86,20 +86,26 @@ class _RegisterState extends State<Register> {
 
       final profileImageUrl = await _uploadProfileImage();
 
-      await createUserInFirebase(
-          firstNameController.text,
-          lastNameController.text,
-          int.parse(ageController.text),
-          emailController.text,
-          usernameController.text,
-          locationController.text,
-          aboutMeController.text,
-          profileImageUrl);
+  await createUserInFirebase(
+    firstNameController.text,
+    lastNameController.text,
+    int.parse(ageController.text),
+    emailController.text,
+    usernameController.text,
+    locationController.text,
+    aboutMeController.text,
+    profileImageUrl,
+    [] // Empty list for uploadingImages (no image post by account yet)
+  );
 
       if (mounted) {
         Navigator.pop(context);
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => const Home()));
+        // Navigator.pushReplacement(
+        //     context, MaterialPageRoute(builder: (context) => const MainMenu()));
+        FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
       }
     } on FirebaseAuthException {
       if (mounted) {
@@ -117,7 +123,9 @@ class _RegisterState extends State<Register> {
       String username,
       String location,
       String aboutMe,
-      String? profileImageUrl) async {
+      String? profileImageUrl, 
+      List uploadedImages
+      ) async {
     await FirebaseFirestore.instance.collection('users').add({
       'first name': firstName,
       'last name': lastName,
@@ -128,6 +136,7 @@ class _RegisterState extends State<Register> {
       'location': location,
       'about me': aboutMe,
       'profileImageUrl': profileImageUrl,
+      'uploadedImages' : uploadedImages,
     });
   }
 

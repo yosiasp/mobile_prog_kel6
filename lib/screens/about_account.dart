@@ -44,6 +44,7 @@ class AboutAccount extends StatelessWidget {
 
             final userData = snapshot.data!;
             final username = userData['username'] ?? 'Username';
+            final profileImageUrl = userData['profileImageUrl'];
             final accountCreationDate =
                 userData['accountCreationDate'] ?? 'Unknown date';
 
@@ -72,12 +73,19 @@ class AboutAccount extends StatelessWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(18),
-                        child: Image.asset(
-                          'assets/profile.JPG',
-                          width: 130,
-                          height: 130,
-                          fit: BoxFit.cover,
-                        ),
+                        child: profileImageUrl.isNotEmpty
+                        ? Image.network(
+                            profileImageUrl,
+                            width: 130,
+                            height: 130,
+                            fit: BoxFit.cover,
+                          )
+                        : Image.asset(
+                            'assets/profile.JPG',
+                            width: 130,
+                            height: 130,
+                            fit: BoxFit.cover,
+                          ),
                       ),
                     ),
 
