@@ -25,7 +25,7 @@ class _OtherProfileState extends State<OtherProfile> {
           },
         ),
         title: const Text(
-          '@Username',
+          '@and',
           style:
               TextStyle(fontSize: 22, fontFamily: 'Suse', color: Colors.black),
         ),
@@ -140,7 +140,7 @@ class _OtherProfileState extends State<OtherProfile> {
                                         children: [
                                           // Fullname
                                           Text(
-                                            'Name',
+                                            'Andre',
                                             style: TextStyle(
                                               fontFamily: 'Suse',
                                               fontSize: 20,
