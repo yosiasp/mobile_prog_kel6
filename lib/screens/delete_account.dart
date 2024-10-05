@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
 
@@ -11,6 +12,58 @@ class DeleteAccount extends StatefulWidget {
 
 class _DeleteAccountState extends State<DeleteAccount> {
   final passwordController = TextEditingController();
+
+  // Function to delete account
+  Future<void> _deleteAccount() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        // Re-authenticate the user
+        AuthCredential credential = EmailAuthProvider.credential(
+          email: user.email!,
+          password: passwordController.text,
+        );
+
+        await user.reauthenticateWithCredential(credential);
+
+        // Delete the user
+        await user.delete();
+        Navigator.pop(context); // Navigate back after deletion
+      }
+    } catch (e) {
+      // Handle errors
+      print('Error: $e');
+    }
+  }
+
+  // Function to show confirmation dialog
+  void _showConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirm Deletion'),
+          content: const Text(
+              'Are you sure you want to delete your account? This action cannot be undone.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+                _deleteAccount(); // Call delete account function
+              },
+              child: const Text('Delete'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,11 +137,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
 
                   // Delete Account Button
                   MyButton(
-                      onTap: () {
-                        // Masukkin fungsinya disini
-                        // Sebelom ngehapus akun, bikin muncul AlertDialog dulu, minta konfirmasi, "apakah anda ingin menghapus...." ya/tidak"
-                      },
-                      text: 'Delete Account'),
+                      onTap: _showConfirmationDialog, text: 'Delete Account'),
                 ],
               ),
             ),

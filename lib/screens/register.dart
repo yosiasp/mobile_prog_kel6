@@ -7,7 +7,6 @@ import '../components/button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import '../auth/main_menu.dart';
 
 class Register extends StatefulWidget {
   final Function()? onTap;
