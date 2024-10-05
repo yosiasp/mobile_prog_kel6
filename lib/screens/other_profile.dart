@@ -1,8 +1,19 @@
-// ignore_for_file: unnecessary_const
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'post_info.dart';
+import 'about_other_acount.dart';
 
 class OtherProfile extends StatefulWidget {
-  const OtherProfile({super.key, this.onTap});
+
+  final String username;
+
+  const OtherProfile({
+    super.key, 
+    this.onTap,
+    required this.username,
+  });
+
   final Function()? onTap;
 
   @override
@@ -11,6 +22,59 @@ class OtherProfile extends StatefulWidget {
 
 class _OtherProfileState extends State<OtherProfile> {
   bool showImages = true;
+  String email = '';
+  String firstname = '';
+  String lastname = '';
+  String username = '';
+  String location = '';
+  String aboutMe = '';
+  String profileImageUrl = '';
+  List<String> uploadedImages = [];
+
+  // ignore: non_constant_identifier_names
+  List<String> docIDs = [];
+
+  Future<void> getDocIDs() async {
+    // Added return type
+    await FirebaseFirestore.instance
+        .collection('users')
+        .get()
+
+        // ignore: avoid_function_literals_in_foreach_calls
+        .then((snapshot) => snapshot.docs.forEach((element) {
+              // ignore: avoid_print
+              print(element.reference);
+            }));
+  }
+
+Future<void> getUserData() async {
+    // Fetch user data based on the username from widget parameters
+    QuerySnapshot userSnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .where('username', isEqualTo: widget.username)
+        .get();
+
+    if (userSnapshot.docs.isNotEmpty) {
+      DocumentSnapshot userDoc = userSnapshot.docs.first;
+
+      setState(() {
+        firstname = userDoc['first name'] ?? '';
+        lastname = userDoc['last name'] ?? '';
+        email = userDoc['email'] ?? ''; 
+        aboutMe = userDoc['about me'] ?? '';
+        location = userDoc['location'] ?? '';
+        profileImageUrl = userDoc['profileImageUrl'] ?? '';
+        uploadedImages = List<String>.from(userDoc['uploadedImages'] ?? []);
+      });
+    } 
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserData();
+    getDocIDs();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +88,10 @@ class _OtherProfileState extends State<OtherProfile> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
-          '@and',
-          style:
-              TextStyle(fontSize: 22, fontFamily: 'Suse', color: Colors.black),
+        title: Text(
+          widget.username, 
+          style: const TextStyle(
+              fontSize: 22, fontFamily: 'Suse', color: Colors.black),
         ),
         centerTitle: true,
         actions: [
@@ -43,12 +107,18 @@ class _OtherProfileState extends State<OtherProfile> {
                   PopupMenuItem(
                     child: ListTile(
                       leading: const Icon(Icons.info_outline),
-                      title: const Text('Tentang akun'),
+                      title: const Text('About account'),
                       onTap: () {
                         Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AboutOtherAccount(username: widget.username)
+                          ),
+                        );
                       },
                     ),
-                  ),
+                ),
                 ],
               );
             },
@@ -101,12 +171,19 @@ class _OtherProfileState extends State<OtherProfile> {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(18),
-                            child: Image.asset(
-                              'assets/profile.JPG',
-                              width: 130,
-                              height: 130,
-                              fit: BoxFit.cover,
-                            ),
+                            child: profileImageUrl.isNotEmpty
+                                ? Image.network(
+                                    profileImageUrl,
+                                    width: 130,
+                                    height: 130,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Image.asset(
+                                    'assets/profile.JPG',
+                                    width: 130,
+                                    height: 130,
+                                    fit: BoxFit.cover,
+                                  ),
                           ),
                         ),
 
@@ -120,7 +197,7 @@ class _OtherProfileState extends State<OtherProfile> {
                               child: Container(
                                   padding: const EdgeInsets.all(16),
                                   decoration: BoxDecoration(
-                                    color: Colors.amber,
+                                    color: const Color(0xFFffb703),
                                     borderRadius: BorderRadius.circular(18),
                                     boxShadow: [
                                       BoxShadow(
@@ -131,19 +208,20 @@ class _OtherProfileState extends State<OtherProfile> {
                                       ),
                                     ],
                                   ),
-                                  child: const Column(
+                                  child: Column(
                                     children: [
                                       // Fullname, role, and Location
-                                      const Column(
+                                      Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
                                           // Fullname
                                           Text(
-                                            'Andre',
-                                            style: TextStyle(
+                                            '$firstname $lastname',
+                                            style: const TextStyle(
                                               fontFamily: 'Suse',
                                               fontSize: 20,
+                                              color: Color(0xFF023047), 
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -151,17 +229,19 @@ class _OtherProfileState extends State<OtherProfile> {
                                           const SizedBox(height: 0.8),
 
                                           // Location
-                                          const Row(
+                                          Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
+                                              // ignore: prefer_const_constructors
                                               Icon(
                                                 Icons.location_on,
                                                 color: Colors.grey,
                                                 size: 14.5,
                                               ),
                                               Text(
-                                                'Location',
+                                                location,
+                                                // ignore: prefer_const_constructors
                                                 style: TextStyle(
                                                   fontFamily: 'Roboto',
                                                   fontSize: 14.5,
@@ -229,7 +309,7 @@ class _OtherProfileState extends State<OtherProfile> {
                           'Subscribe',
                           style: TextStyle(
                             fontSize: 16,
-                            color: Color(0xFF4285F4),
+                            color: Color(0xFF219ebc),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -243,13 +323,13 @@ class _OtherProfileState extends State<OtherProfile> {
             ),
 
             // About Section (Flexible pharagraph)
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(children: [
                 Flexible(
                   child: Text(
-                    'Halo nama saya Andre. Saya adalah fotografer berbasis di Bandung, Indonesia. Saya sudah menempuh dunia fotografi sejak tahun 2016.',
-                    style: TextStyle(
+                    aboutMe,
+                    style: const TextStyle(
                       fontSize: 15,
                       fontFamily: 'Suse',
                       fontWeight: FontWeight.w500,
@@ -287,7 +367,7 @@ class _OtherProfileState extends State<OtherProfile> {
                       Icon(
                         Icons.photo,
                         color: showImages
-                            ? const Color(0xFF4285F4)
+                            ? const Color(0xFF219ebc)
                             : Colors.grey[500],
                       ),
                       const SizedBox(width: 3),
@@ -297,7 +377,7 @@ class _OtherProfileState extends State<OtherProfile> {
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.w700,
                             color: showImages
-                                ? const Color(0xFF4285F4)
+                                ? const Color(0xFF219ebc)
                                 : Colors.grey[500],
                           ))
                     ],
@@ -325,7 +405,7 @@ class _OtherProfileState extends State<OtherProfile> {
                         Icons.photo_album,
                         color: showImages
                             ? Colors.grey[500]
-                            : const Color(0xFF4285F4),
+                            : const  Color(0xFF219ebc)
                       ),
                       const SizedBox(width: 3),
                       Text('Albums',
@@ -335,7 +415,7 @@ class _OtherProfileState extends State<OtherProfile> {
                             fontWeight: FontWeight.w700,
                             color: showImages
                                 ? Colors.grey[500]
-                                : const Color(0xFF4285F4),
+                                : const Color(0xFF219ebc)
                           ))
                     ],
                   ),
@@ -346,101 +426,141 @@ class _OtherProfileState extends State<OtherProfile> {
             const Divider(),
 
             // Showing The Gallery Chosen
-            showImages ? _imagesGallery() : _albumGallery(),
+            showImages ? _imagesGallery() : _albumGallery(uploadedImages),
           ],
         ),
       ),
     );
   }
-}
 
-// Widget for Images Gallery
-Widget _imagesGallery() {
-  return GridView.builder(
-    shrinkWrap: true,
-    physics: const NeverScrollableScrollPhysics(),
-    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 2, // Number Of Images For Each Row
-      mainAxisSpacing: 6, // Space Betwen Rows Of Posts
-      crossAxisSpacing: 6, // Space Between Columns Of Posts
-      childAspectRatio: 1 / 1, // Aspect ratio
-    ),
-
-    itemCount: 3, // Number Of Posts
-
-    // Loop To Show Posts
-    itemBuilder: (context, index) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(18),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.3),
-                spreadRadius: 2.5,
-                blurRadius: 5,
-                offset: const Offset(0, 3),
-              ),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(24),
-            child: Image.asset(
-              'assets/img$index.JPG',
-              width: 300,
-              height: 300,
-              fit: BoxFit.cover,
-            ),
+  // Widget for Images Gallery
+  Widget _imagesGallery() {
+    // If there are no images yet
+    if (uploadedImages.isEmpty) {
+      return const Center(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text(
+            'No images yet. Start posting!',
+            style: TextStyle(fontSize: 18, fontFamily: 'Roboto' ,color: Colors.grey),
           ),
         ),
       );
-    },
-  );
-}
+    } 
 
-// Widget for Albums Gallery
-Widget _albumGallery() {
-  return GridView.builder(
-    shrinkWrap: true,
-    physics: const NeverScrollableScrollPhysics(),
-    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 1, // Number Of Albums For Each Row
-      mainAxisSpacing: 8, // Space Betwen Rows Of Gallery
-      childAspectRatio: 16 / 9, // Aspect Ratio
-    ),
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 6,
+        crossAxisSpacing: 6,
+        childAspectRatio: 1 / 1,
+      ),
+      itemCount: uploadedImages.length,
 
-    itemCount: 3, // Number Of Albums
-
-    // Loop To Show Albums
-    itemBuilder: (context, index) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(18),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.3),
-                spreadRadius: 2.5,
-                blurRadius: 5,
-                offset: const Offset(0, 3),
+      // Loop To Show Posts
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () {
+          // Navigate to ImageDetailScreen with only imageUrl
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PostInfo(
+                imageUrl: uploadedImages[index],
               ),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(24),
-            child: Image.asset(
-              'assets/img$index.JPG',
-              fit: BoxFit.cover,
+            ),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(18),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.3),
+                  spreadRadius: 2.5,
+                  blurRadius: 5,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(24),
+              child: Image.network(
+                uploadedImages[index],
+                width: 300,
+                height: 300,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
+        );
+        
+      },
+    );
+  }
+
+  // Widget for Albums Gallery
+  Widget _albumGallery(List<String> images) {
+    // if there are no albums yet
+     if (images.isEmpty) {
+      return const Center(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text(
+            'Create your album here!',
+            style: TextStyle(fontSize: 18, fontFamily: 'Roboto' ,color: Colors.grey),
+          ),
+        ),
       );
-    },
-  );
+    } 
+
+    // Accept images as a parameter
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 1,
+        mainAxisSpacing: 8,
+        childAspectRatio: 16 / 9,
+      ),
+
+      itemCount: images.length,
+
+      // Loop To Show Albums
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(18),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.3),
+                  spreadRadius: 2.5,
+                  blurRadius: 5,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(24),
+              child: Image.network(
+                images[index],
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
 
 class ProfileInfo extends StatelessWidget {

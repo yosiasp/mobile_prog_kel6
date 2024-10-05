@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'notifications.dart';
 import 'post_info.dart';
+import 'other_profile.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key, this.onTap});
@@ -100,13 +101,25 @@ class PostWidget extends StatelessWidget {
                       NetworkImage(profileImageUrl), // {{ edit_4 }}
                 ),
                 const SizedBox(width: 8),
-                Text(
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OtherProfile(
+                          username: username,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Text(
                   username,
                   style: const TextStyle(
-                    fontWeight: FontWeight.bold,
                     fontSize: 19,
+                    fontWeight: FontWeight.bold,
                     fontFamily: 'Suse', 
                     ),
+                  ),
                 ),
               ],
             ),

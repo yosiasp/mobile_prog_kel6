@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'other_profile.dart';
 
 class PostInfo extends StatefulWidget {
   final String imageUrl;
@@ -116,12 +117,24 @@ class _PostInfoState extends State<PostInfo> {
                         backgroundImage: NetworkImage(profileImageUrl!),
                       ),
                       const SizedBox(width: 10),
-                      Text(
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OtherProfile(
+                                username: username!,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Text(
                         username!,
                         style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Suse', 
+                          ),
                         ),
                       ),
                     ],

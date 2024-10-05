@@ -33,14 +33,14 @@ class _SearchAccountState extends State<SearchAccount> {
                           children: [
                             ElevatedButton(
                                 onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const OtherProfile();
-                                      },
-                                    ),
-                                  );
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) {
+                                  //       return const OtherProfile();
+                                  //     },
+                                  //   ),
+                                  // );
                                 },
                                 child: Icon(Icons.search)),
                             Expanded(
