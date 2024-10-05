@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../components/text_field.dart';
 import '../components/button.dart';
+import '../auth/login_or_register.dart';
 
 class DeleteAccount extends StatefulWidget {
   const DeleteAccount({super.key});
@@ -28,11 +29,19 @@ class _DeleteAccountState extends State<DeleteAccount> {
 
         // Delete the user
         await user.delete();
-        Navigator.pop(context); // Navigate back after deletion
+        if (context.mounted) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const LoginOrRegister(),
+            ),
+          );
+        }
+
       }
     } catch (e) {
-      // Handle errors
-      print('Error: $e');
+      // Handle errors (wrong password)
+      displayMessage('Password Invalid', 'The password you have entered is invalid');
     }
   }
 
@@ -57,7 +66,53 @@ class _DeleteAccountState extends State<DeleteAccount> {
                 Navigator.of(context).pop(); // Close the dialog
                 _deleteAccount(); // Call delete account function
               },
-              child: const Text('Delete'),
+              child: const Text('Delete' , style: TextStyle(
+                color: Colors.red
+                )),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+   void displayMessage(String title, String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          title: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 22, 
+              fontFamily: 'Roboto', 
+              fontWeight: FontWeight.bold
+              ),
+          ),
+          content: Text(
+            message,
+            style: const TextStyle(
+              fontFamily: 'Roboto', 
+              fontSize: 18),
+          ),
+          actions: [
+            TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                'OK',
+                style: TextStyle(color: Color(0xFF219ebc)),
+              ),
             ),
           ],
         );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'notifications.dart';
+import 'post_info.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key, this.onTap});
@@ -94,14 +95,18 @@ class PostWidget extends StatelessWidget {
             child: Row(
               children: [
                 CircleAvatar(
-                  radius: 20,
+                  radius: 25,
                   backgroundImage:
                       NetworkImage(profileImageUrl), // {{ edit_4 }}
                 ),
                 const SizedBox(width: 8),
                 Text(
                   username,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 19,
+                    fontFamily: 'Suse', 
+                    ),
                 ),
               ],
             ),
@@ -109,12 +114,19 @@ class PostWidget extends StatelessWidget {
           // Bagian gambar post
           GestureDetector(
             onTap: () {
-              // Tindakan saat gambar di-tap
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PostInfo(
+                    imageUrl: imageUrl,
+                  ),
+                ),
+              );
             },
             child: Image.network(
               imageUrl,
               fit: BoxFit.cover,
-              height: 500,
+              height: 400,
               width: double.infinity,
             ),
           ),
@@ -124,7 +136,11 @@ class PostWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             child: Text(
               caption,
-              style: const TextStyle(fontWeight: FontWeight.normal),
+              style: const TextStyle(
+                fontWeight: FontWeight.normal,
+                fontFamily: 'Suse', 
+                fontSize: 17,
+                ),
             ),
           ),
           // Bagian interaksi (like, comment)

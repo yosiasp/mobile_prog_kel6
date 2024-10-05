@@ -39,7 +39,6 @@ class _LoginState extends State<Login> {
       }
     } on FirebaseAuthException catch (e) {
       // ignore: avoid_print, use_build_context_synchronously
-      Navigator.pop(context);
       String title;
       String message;
 
@@ -54,7 +53,7 @@ class _LoginState extends State<Login> {
           break;
         case 'wrong-password':
           title = 'Wrong Password';
-          message = 'The password is invallid';
+          message = 'The password is invalid';
           break;
         case 'user-disabled':
           title = 'Disabled Account';

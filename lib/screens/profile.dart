@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'edit_profile.dart';
 import 'settings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'post_info.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key, this.onTap});
@@ -444,7 +445,19 @@ class _ProfileState extends State<Profile> {
 
       // Loop To Show Posts
       itemBuilder: (context, index) {
-        return Padding(
+        return GestureDetector(
+          onTap: () {
+          // Navigate to ImageDetailScreen with only imageUrl
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PostInfo(
+                imageUrl: uploadedImages[index],
+              ),
+            ),
+          );
+        },
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4.0),
           child: Container(
             decoration: BoxDecoration(
@@ -469,7 +482,9 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           ),
+        ),
         );
+        
       },
     );
   }
