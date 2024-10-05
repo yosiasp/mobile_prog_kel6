@@ -28,7 +28,7 @@ class SettingsScreen extends StatelessWidget {
               ),
           ),
           actions: [
-            // No option (closing the dialog)
+            // Cancel option (closing the dialog)
             TextButton(
               onPressed: () {
                 Navigator.pop(context); 
@@ -42,7 +42,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
               ),
             ),
-            // Yes option (Logging out)
+            // Log out option 
             TextButton(
               style: TextButton.styleFrom(
                 backgroundColor: const Color(0xFF219ebc),
