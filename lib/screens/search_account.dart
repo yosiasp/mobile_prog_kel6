@@ -11,7 +11,7 @@ class SearchAccount extends StatefulWidget {
 class _SearchAccountState extends State<SearchAccount> {
   bool showImages = true;
   
-  late String username = 'vivi123';
+  final String username = 'jeyjey';
 
   final fieldText = TextEditingController();
 
@@ -138,9 +138,14 @@ class _SearchAccountState extends State<SearchAccount> {
                         ),
                       ),
                       showImages ? _imagesGallery() : _albumGallery()
-                    ])))));
-  }
-}
+                    ]
+                  )
+                )
+              )
+            )
+          );
+        }
+      }
 
 Widget _imagesGallery() {
   return GridView.builder(

@@ -131,6 +131,7 @@ class _UploadImageState extends State<UploadImage> {
     }
   }
 
+  // show message after clicking Save or Send
   void displayMessage(String message) {
     showDialog(
       context: context,
@@ -140,10 +141,10 @@ class _UploadImageState extends State<UploadImage> {
     );
   }
 
+  // clear character on search bar
   void clearText() {
     _captionController.clear();
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -198,10 +199,8 @@ class _UploadImageState extends State<UploadImage> {
                 ),
               ),
               const SizedBox(height: 20),
-              // ignore: prefer_const_constructors
-              Text(
+              const Text(
                 'Add caption below 👇',
-                // ignore: prefer_const_constructors
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 15,
