@@ -19,7 +19,6 @@ class _SearchAccountState extends State<SearchAccount> {
     fieldText.clear();
   }
 
-  TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(

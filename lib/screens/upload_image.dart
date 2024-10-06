@@ -140,6 +140,11 @@ class _UploadImageState extends State<UploadImage> {
     );
   }
 
+  void clearText() {
+    _captionController.clear();
+  }
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -213,9 +218,13 @@ class _UploadImageState extends State<UploadImage> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
                     controller: _captionController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       hintText: "Write your caption here",
-                      prefixIcon: Icon(Icons.message, color: Colors.blue),
+                      prefixIcon: const Icon(Icons.message, color: Colors.blue),
+                      suffixIcon: IconButton( 
+                        icon: const Icon(Icons.clear),
+                        onPressed: clearText,
+                        ),
                       border: InputBorder.none,
                     ),
                   ),
