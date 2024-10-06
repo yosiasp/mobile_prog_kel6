@@ -45,7 +45,6 @@ dependencies:
   gallery_picker: ^0.5.1
   path_provider: ^2.0.9
   http: ^1.2.2
-  device_preview: ^1.2.0
 
 dev_dependencies:
   flutter_test:

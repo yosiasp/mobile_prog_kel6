@@ -10,6 +10,8 @@ class SearchAccount extends StatefulWidget {
 
 class _SearchAccountState extends State<SearchAccount> {
   bool showImages = true;
+  
+  late String username = 'vivi123';
 
   final fieldText = TextEditingController();
 
@@ -33,16 +35,17 @@ class _SearchAccountState extends State<SearchAccount> {
                           children: [
                             ElevatedButton(
                                 onPressed: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) {
-                                  //       return const OtherProfile();
-                                  //     },
-                                  //   ),
-                                  // );
+                                  Navigator.push(
+                                     context,
+                                     MaterialPageRoute(
+                                       builder: (context) => OtherProfile(
+                                        username: username,
+                                        ),
+                                     ),
+                                   );
                                 },
-                                child: Icon(Icons.search)),
+                                child: const Icon(Icons.search)
+                            ),
                             Expanded(
                               child: TextField(
                                 decoration: InputDecoration(
