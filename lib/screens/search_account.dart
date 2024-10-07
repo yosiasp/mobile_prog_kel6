@@ -23,11 +23,13 @@ class _SearchAccountState extends State<SearchAccount> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            // create scrollable screen
             body: SingleChildScrollView(
                 child: SizedBox(
                     height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width,
                     child: Column(children: [
+                      // search bar
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 30, 20, 10),
                         child: Row(
@@ -60,6 +62,7 @@ class _SearchAccountState extends State<SearchAccount> {
                           ],
                         ),
                       ),
+                      // search option
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
                         child: Row(
@@ -147,6 +150,7 @@ class _SearchAccountState extends State<SearchAccount> {
         }
       }
 
+// images in screen
 Widget _imagesGallery() {
   return GridView.builder(
     shrinkWrap: true,
